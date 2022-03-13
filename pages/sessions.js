@@ -9,6 +9,7 @@ import {
   Button,
 } from '@mui/material'
 import { UserProvider, UserConsumer } from '../src/context/User'
+import Sessions from '../src/components/Sessions'
 
 export default function SessionSelectPage() {
   return (
@@ -25,17 +26,16 @@ export default function SessionSelectPage() {
               <link rel="icon" href="/favicon.ico" />
             </Head>
 
+            <FormControl fullWidth>
+              <Button variant="contained" type="submit" onClick={deleteUser}>
+                Delete data
+              </Button>
+            </FormControl>
+
             <Typography variant="h5" color="text.primary" align="center">
               Schedule required data
             </Typography>
-
-            <Paper>
-              <FormControl fullWidth>
-                <Button variant="contained" type="submit" onClick={deleteUser}>
-                  Delete data
-                </Button>
-              </FormControl>
-            </Paper>
+            <Sessions />
 
             <footer>
               <Typography variant="span" color="text.secondary" align="center">
