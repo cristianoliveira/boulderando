@@ -27,7 +27,14 @@ function FormDateInput({ name, label, description, options = {} }) {
     </StyledFormControl>
   )
 }
-function FormInput({ name, label, description, value, disclaimer, options = {} }) {
+function FormInput({
+  name,
+  label,
+  description,
+  value,
+  disclaimer,
+  options = {},
+}) {
   const { formControl, input } = options
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
@@ -48,6 +55,8 @@ const StyledForm = styled.form`
   padding: 20px;
 `
 
+const FULL_GRID = 12
+
 function Form({ onSubmit }) {
   return (
     <StyledForm onSubmit={onSubmit}>
@@ -55,43 +64,43 @@ function Form({ onSubmit }) {
         direction="row"
         justify="flex-start"
         alignItems="flex-start"
-        spacing={1}
+        spacing={2}
         container
       >
-        <Grid item xs={6}>
+        <Grid item xs={FULL_GRID / 2}>
           <FormInput name="name" label="First Name" />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={FULL_GRID / 2}>
           <FormInput name="last_name" label="Last Name" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={FULL_GRID}>
           <FormDateInput name="birthday" label="Birthday" />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={FULL_GRID}>
           <FormInput name="address" label="Street address" />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={FULL_GRID / 2}>
           <FormInput name="postal_code" label="Postal Code" />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={FULL_GRID / 2}>
           <FormInput name="city" label="City" value="Berlin" />
         </Grid>
-        <Grid item xs={12}>
-          <FormInput name="email" label="Email"/>
+        <Grid item xs={FULL_GRID}>
+          <FormInput name="email" label="Email" />
         </Grid>
-        <Grid item xs={12}>
-          <FormInput name="usc_number" label="Urban Sports Club No."/>
+        <Grid item xs={FULL_GRID}>
+          <FormInput name="usc_number" label="Urban Sports Club No." />
           <FormHelperText>Your USB member number.</FormHelperText>
         </Grid>
-        <Grid item xs={12}>
-          <FormControl fullWidth>
-            <Button type="submit">Submit</Button>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <FormHelperText variant="outlined">** This data is stored in your browser and can be deleted at any time</FormHelperText>
-        </Grid>
       </Grid>
+      <FormControl fullWidth>
+        <Button variant="contained" type="submit">
+          Submit
+        </Button>
+      </FormControl>
+      <FormHelperText variant="outlined">
+        ** This data is stored in your browser and can be deleted at any time
+      </FormHelperText>
     </StyledForm>
   )
 }
