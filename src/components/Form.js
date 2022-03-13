@@ -6,50 +6,9 @@ import Input from '@mui/material/Input'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import styled from '@emotion/styled'
-
-const StyledFormControl = styled(FormControl)`
-  & input {
-    text-align: right;
-  }
-`
-function FormDateInput({ name, label, description, options = {} }) {
-  const { formControl, input } = options
-  return (
-    <StyledFormControl fullWidth margin="dense" {...formControl}>
-      <InputLabel htmlFor={name}>{label}</InputLabel>
-      <Input
-        type="date"
-        id={name}
-        name={name}
-        aria-describedby={`Input for ${name}`}
-        {...input}
-      />
-    </StyledFormControl>
-  )
-}
-function FormInput({
-  name,
-  label,
-  description,
-  value,
-  disclaimer,
-  options = {},
-}) {
-  const { formControl, input } = options
-  return (
-    <FormControl fullWidth margin="dense" {...formControl}>
-      <InputLabel htmlFor={name}>{label}</InputLabel>
-      <Input
-        type={input?.type || 'text'}
-        id={name}
-        name={name}
-        aria-describedby={`Input for ${name}`}
-        value={value}
-        {...input}
-      />
-    </FormControl>
-  )
-}
+import { useForm } from 'react-hook-form'
+import TextField from './TextField'
+import DateField from './DateField'
 
 const StyledForm = styled.form`
   padding: 20px;
@@ -58,8 +17,14 @@ const StyledForm = styled.form`
 const FULL_GRID = 12
 
 function Form({ onSubmit }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm()
+
   return (
-    <StyledForm onSubmit={onSubmit}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Grid
         direction="row"
         justify="flex-start"
@@ -68,28 +33,45 @@ function Form({ onSubmit }) {
         container
       >
         <Grid item xs={FULL_GRID / 2}>
-          <FormInput name="name" label="First Name" />
+          <TextField name="name" label="First Name" register={register} required />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
-          <FormInput name="last_name" label="Last Name" />
+          <TextField name="last_name" label="Last Name" register={register} />
         </Grid>
         <Grid item xs={FULL_GRID}>
-          <FormDateInput name="birthday" label="Birthday" />
+          <DateField name="birthday" label="Birthday" register={register} />
         </Grid>
         <Grid item xs={FULL_GRID}>
-          <FormInput name="address" label="Street address" />
+          <TextField
+            name="address"
+            label="Street address"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
-          <FormInput name="postal_code" label="Postal Code" />
+          <TextField
+            name="postal_code"
+            label="Postal Code"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
-          <FormInput name="city" label="City" value="Berlin" />
+          <TextField
+            name="city"
+            label="City"
+            value="Berlin"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID}>
-          <FormInput name="email" label="Email" />
+          <TextField name="email" label="Email" register={register} />
         </Grid>
         <Grid item xs={FULL_GRID}>
-          <FormInput name="usc_number" label="Urban Sports Club No." />
+          <TextField
+            name="usc_number"
+            label="Urban Sports Club No."
+            register={register}
+          />
           <FormHelperText>Your USB member number.</FormHelperText>
         </Grid>
       </Grid>
