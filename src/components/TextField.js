@@ -2,7 +2,7 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 
-export default function TextField({ name, label, description, register, options = {} }) {
+export default function TextField({ name, label, description, register, required, options = {} }) {
   const { formControl, input } = options
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
@@ -13,7 +13,7 @@ export default function TextField({ name, label, description, register, options 
         name={name}
         aria-describedby={`Input for ${name}`}
         {...input}
-        {...register(name)}
+        {...register(name, { required: true })}
       />
     </FormControl>
   )

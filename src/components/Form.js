@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import styled from '@emotion/styled'
+
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
-import InputLabel from '@mui/material/InputLabel'
-import Input from '@mui/material/Input'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import styled from '@emotion/styled'
 import { useForm } from 'react-hook-form'
+import Alert from '@mui/material/Alert'
+import AlertTitle from '@mui/material/AlertTitle'
+
 import TextField from './TextField'
 import DateField from './DateField'
 
@@ -16,11 +18,13 @@ const StyledForm = styled.form`
 
 const FULL_GRID = 12
 
+const showErrorFields = errors => Object.keys(errors).map(e =>e).join(', ')
+
 function Form({ onSubmit }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid, isSubmitted },
   } = useForm()
 
   return (
@@ -33,7 +37,11 @@ function Form({ onSubmit }) {
         container
       >
         <Grid item xs={FULL_GRID / 2}>
-          <TextField name="name" label="First Name" register={register} required />
+          <TextField
+            name="name"
+            label="First Name"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
           <TextField name="last_name" label="Last Name" register={register} />
@@ -74,10 +82,15 @@ function Form({ onSubmit }) {
           />
           <FormHelperText>Your USB member number.</FormHelperText>
         </Grid>
+        <Grid item xs={FULL_GRID}>
+          {isSubmitted && !isValid && (
+            <Alert severity="error">All fields are required. Missing fields: {showErrorFields(errors)}</Alert>
+          )}
+        </Grid>
       </Grid>
       <FormControl fullWidth>
         <Button variant="contained" type="submit">
-          Submit
+          Save data
         </Button>
       </FormControl>
       <FormHelperText variant="outlined">
