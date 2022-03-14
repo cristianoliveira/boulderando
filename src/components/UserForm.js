@@ -9,9 +9,9 @@ import { useForm } from 'react-hook-form'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 
-import PhoneField from './PhoneField'
-import TextField from './TextField'
-import DateField from './DateField'
+import PhoneField from './fields/PhoneField'
+import TextField from './fields/TextField'
+import DateField from './fields/DateField'
 
 const StyledForm = styled.form`
   padding: 20px;
@@ -24,16 +24,16 @@ const showErrorFields = (errors) =>
     .map((e) => e)
     .join(', ')
 
-function Form({ onSubmit }) {
+function Form({ user = {}, onSubmit }) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isSubmitted },
   } = useForm({
-    defaultValues: { type: 'Urban Sports Club' },
+    defaultValues: { type: 'Urban Sports Club', ...user },
   })
 
-  const errorsList = showErrorFields(errors);
+  const errorsList = showErrorFields(errors)
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Grid
@@ -81,10 +81,7 @@ function Form({ onSubmit }) {
         </Grid>
         <Grid item xs={FULL_GRID}>
           <div style={{ visibility: 'hidden', height: 0 }}>
-            <TextField
-              name="type"
-              register={register}
-            />
+            <TextField name="type" register={register} />
           </div>
           <TextField
             name="usc_number"

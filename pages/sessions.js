@@ -12,9 +12,10 @@ import {
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import UserIcon from '@mui/icons-material/Person'
+import EditIcon from '@mui/icons-material/Edit';
 import { UserProvider, UserConsumer } from '../src/context/User'
 import { SessionProvider, SessionConsumer } from '../src/context/Sessions'
-import Sessions from '../src/components/Sessions'
+import SessionsSelector from '../src/components/SessionsSelector'
 
 function Item({ children }) {
   return <div>{children}</div>
@@ -28,7 +29,7 @@ export default function SessionSelectPage() {
   return (
     <UserProvider>
       <UserConsumer>
-        {({ user, deleteUser }) => (
+        {({ user, deleteUser, editUser }) => (
           <>
             <Head>
               <title>Sessions to schedule</title>
@@ -59,6 +60,12 @@ export default function SessionSelectPage() {
                   Delete
                 </Button>
               </Grid>
+              <Grid item xs={3}>
+                <Button type="submit" onClick={editUser}>
+                  <EditIcon />
+                  Edit
+                </Button>
+              </Grid>
             </Grid>
           )}
 
@@ -66,7 +73,7 @@ export default function SessionSelectPage() {
               Schedule required data
             </Typography>
 
-            <Sessions user={user} />
+            <SessionsSelector user={user} />
 
             <footer>
               <Typography variant="span" color="text.secondary" align="center">

@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import * as storage from '../../storage/local';
@@ -10,6 +10,10 @@ export const UserConsumer = UserContext.Consumer
 export function UserProvider({ children }) {
   const router = useRouter()
   const [user, setUser] = useState(storage.getUser())
+
+  const editUser = () => {
+    router.push('/edit')
+  }
 
   const deleteUser = () => {
     storage.deleteUser()
@@ -23,17 +27,8 @@ export function UserProvider({ children }) {
     router.push('/sessions')
   }
 
-  useEffect(() => {
-    if (!user) {
-      router.push('/')
-    } else {
-      router.push('/sessions')
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
-    <UserContext.Provider value={{ user, saveUser, deleteUser }}>
+    <UserContext.Provider value={{ user, saveUser, deleteUser, editUser }}>
       {children}
     </UserContext.Provider>
   )
