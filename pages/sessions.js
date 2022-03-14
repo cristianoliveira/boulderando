@@ -12,7 +12,7 @@ import {
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import UserIcon from '@mui/icons-material/Person'
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from '@mui/icons-material/Edit'
 import { UserProvider, UserConsumer } from '../src/context/User'
 import { SessionProvider, SessionConsumer } from '../src/context/Sessions'
 import SessionsSelector from '../src/components/SessionsSelector'
@@ -40,34 +40,34 @@ export default function SessionSelectPage() {
               <link rel="icon" href="/favicon.ico" />
             </Head>
 
-          {user && (
-            <Grid container spacing={4}
-              direction="row"
-              alignItems="center"
-              justifyContent="left"
-            >
-              <Grid item xs={2}>
-                <UserIcon />
+            {user && (
+              <Grid
+                container
+                spacing={4}
+                direction="row"
+                alignItems="center"
+                justifyContent="left"
+              >
+                <Grid item xs={2}>
+                  <UserIcon />
+                </Grid>
+                <Grid item xs={4} justifyContent="left">
+                  <UserProfile>{user.name}</UserProfile>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button type="submit" onClick={deleteUser}>
+                    <DeleteIcon />
+                    Delete
+                  </Button>
+                </Grid>
+                <Grid item xs={3}>
+                  <Button type="submit" onClick={editUser}>
+                    <EditIcon />
+                    Edit
+                  </Button>
+                </Grid>
               </Grid>
-              <Grid item xs={4}>
-                <UserProfile>
-                  {user.name}
-                </UserProfile>
-              </Grid>
-              <Grid item xs={3}>
-                <Button type="submit" onClick={deleteUser}>
-                  <DeleteIcon />
-                  Delete
-                </Button>
-              </Grid>
-              <Grid item xs={3}>
-                <Button type="submit" onClick={editUser}>
-                  <EditIcon />
-                  Edit
-                </Button>
-              </Grid>
-            </Grid>
-          )}
+            )}
 
             <Typography variant="h5" color="text.primary" align="center">
               Schedule required data

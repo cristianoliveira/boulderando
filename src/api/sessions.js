@@ -17,7 +17,6 @@ export const postSessionSchedule = async (user, session) => {
       {
         user,
         session,
-        dry_run: true,
       },
       {
         headers: {

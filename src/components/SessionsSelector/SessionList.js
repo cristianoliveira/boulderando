@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from '@emotion/styled'
 import {
   Typography,
   Table,
@@ -9,6 +10,11 @@ import {
   Alert,
   AlertTitle,
 } from '@mui/material'
+
+const StyledAlert = styled(Alert)`
+  overflow-wrap: anywhere;
+  margin: auto;
+`
 
 function SessionList({ sessions, result, error, isProcessing, hasSubmitted, scheduleSession }) {
   return (
@@ -48,16 +54,17 @@ function SessionList({ sessions, result, error, isProcessing, hasSubmitted, sche
       <TableRow>
         <TableCell colSpan="6">
           {error && hasSubmitted && !isProcessing && (
-            <Alert severity={'error'}>
-              <AlertTitle>Schedule result</AlertTitle>
+            <StyledAlert severity={'error'} fullWidth
+  maxWidth="sm">
+              <AlertTitle>Schedule error</AlertTitle>
               {error}
-            </Alert>
+            </StyledAlert>
           )}
           {result && hasSubmitted && !isProcessing && (
-            <Alert severity={'success'}>
+            <StyledAlert severity={'success'}>
               <AlertTitle>Schedule result</AlertTitle>
               {result}
-            </Alert>
+            </StyledAlert>
           )}
         </TableCell>
       </TableRow>
