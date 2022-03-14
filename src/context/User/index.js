@@ -14,11 +14,13 @@ export function UserProvider({ children }) {
   const deleteUser = () => {
     storage.deleteUser()
     setUser(null)
+    router.push('/')
   }
 
   const saveUser = (user) => {
     storage.saveUser(user)
     setUser(user)
+    router.push('/sessions')
   }
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export function UserProvider({ children }) {
       router.push('/sessions')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [])
 
   return (
     <UserContext.Provider value={{ user, saveUser, deleteUser }}>

@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 
+import PhoneField from './PhoneField'
 import TextField from './TextField'
 import DateField from './DateField'
 
@@ -18,15 +19,21 @@ const StyledForm = styled.form`
 
 const FULL_GRID = 12
 
-const showErrorFields = errors => Object.keys(errors).map(e =>e).join(', ')
+const showErrorFields = (errors) =>
+  Object.keys(errors)
+    .map((e) => e)
+    .join(', ')
 
 function Form({ onSubmit }) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isSubmitted },
-  } = useForm()
+  } = useForm({
+    defaultValues: { type: 'Urban Sports Club' },
+  })
 
+  const errorsList = showErrorFields(errors);
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Grid
@@ -37,11 +44,7 @@ function Form({ onSubmit }) {
         container
       >
         <Grid item xs={FULL_GRID / 2}>
-          <TextField
-            name="name"
-            label="First Name"
-            register={register}
-          />
+          <TextField name="name" label="First Name" register={register} />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
           <TextField name="last_name" label="Last Name" register={register} />
@@ -64,17 +67,25 @@ function Form({ onSubmit }) {
           />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
-          <TextField
-            name="city"
-            label="City"
-            value="Berlin"
-            register={register}
-          />
+          <TextField name="city" label="City" register={register} />
         </Grid>
         <Grid item xs={FULL_GRID}>
           <TextField name="email" label="Email" register={register} />
         </Grid>
         <Grid item xs={FULL_GRID}>
+          <PhoneField
+            name="phone_number"
+            label="Phone Number"
+            register={register}
+          />
+        </Grid>
+        <Grid item xs={FULL_GRID}>
+          <div style={{ visibility: 'hidden', height: 0 }}>
+            <TextField
+              name="type"
+              register={register}
+            />
+          </div>
           <TextField
             name="usc_number"
             label="Urban Sports Club No."
@@ -83,8 +94,10 @@ function Form({ onSubmit }) {
           <FormHelperText>Your USB member number.</FormHelperText>
         </Grid>
         <Grid item xs={FULL_GRID}>
-          {isSubmitted && !isValid && (
-            <Alert severity="error">All fields are required. Missing fields: {showErrorFields(errors)}</Alert>
+          {isSubmitted && !isValid && errorsList && (
+            <Alert severity="error">
+              All fields are required. Missing fields: {errorsList}
+            </Alert>
           )}
         </Grid>
       </Grid>

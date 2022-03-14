@@ -8,7 +8,7 @@ export const saveUser = (user) => {
 
 export const getUser = () => {
   if (typeof window === 'undefined') {
-    return
+    return null
   }
 
   const user = window.localStorage.getItem('user')

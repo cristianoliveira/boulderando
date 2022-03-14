@@ -10,16 +10,14 @@ import {
   AlertTitle,
 } from '@mui/material'
 
-function SessionList({ sessions, result, isFailed }) {
+function SessionList({ sessions, result, error, isProcessing, hasSubmitted, scheduleSession }) {
   return (
     <Table>
       <TableHead>
-        <TableRow>
-          <TableCell>Gym</TableCell>
-          <TableCell>Day</TableCell>
-          <TableCell>Time</TableCell>
-          <TableCell>Actions</TableCell>
-        </TableRow>
+        <TableCell>Gym</TableCell>
+        <TableCell>Day</TableCell>
+        <TableCell>Time</TableCell>
+        <TableCell>Actions</TableCell>
       </TableHead>
       {sessions.map((session, i) => (
         <TableRow key={i} fullWidth>
@@ -34,10 +32,11 @@ function SessionList({ sessions, result, isFailed }) {
           <TableCell>{session.time}</TableCell>
           <TableCell>
             <Button
+              disabled={isProcessing}
               variant="contained"
               type="submit"
               onClick={() => {
-                console.log('@@@@@@ scheduling: ', session)
+                scheduleSession(session)
               }}
               fullWidth
             >
@@ -47,9 +46,15 @@ function SessionList({ sessions, result, isFailed }) {
         </TableRow>
       ))}
       <TableRow>
-        <TableCell>
-          {result && (
-            <Alert severity={isFailed ? 'error' : 'success'}>
+        <TableCell colSpan="6">
+          {error && hasSubmitted && !isProcessing && (
+            <Alert severity={'error'}>
+              <AlertTitle>Schedule result</AlertTitle>
+              {error}
+            </Alert>
+          )}
+          {result && hasSubmitted && !isProcessing && (
+            <Alert severity={'success'}>
               <AlertTitle>Schedule result</AlertTitle>
               {result}
             </Alert>

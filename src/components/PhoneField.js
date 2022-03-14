@@ -2,27 +2,18 @@ import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
 import Input from '@mui/material/Input'
 
-export default function TextField({
-  name,
-  label,
-  description,
-  placeholder,
-  value,
-  register,
-  required,
-  formControl,
-  ...props
-}) {
+export default function TextField({ name, label, description, register, required, options = {} }) {
+  const { formControl, input } = options
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
       <Input
-        type="text"
+        type="tel"
+        placeholder="0000 00000000"
         id={name}
         name={name}
-        placeholder={placeholder}
         aria-describedby={`Input for ${name}`}
-        {...props}
+        {...input}
         {...register(name, { required: true })}
       />
     </FormControl>

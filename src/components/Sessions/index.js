@@ -2,11 +2,13 @@ import React from 'react'
 import { SessionProvider, SessionConsumer } from '../../context/Sessions'
 import SessionList from './SessionList'
 
-function Session() {
+function Session({ user }) {
   return (
-    <SessionProvider>
+    <SessionProvider user={user}>
       <SessionConsumer>
-        {({ sessions }) => <SessionList sessions={sessions} />}
+        {(context) => (
+          <SessionList {...context} />
+        )}
       </SessionConsumer>
     </SessionProvider>
   )

@@ -10,8 +10,14 @@ const StyledFormControl = styled(FormControl)`
   }
 `
 
-export default function DateField({ name, label, description, register, options = {} }) {
-  const { formControl, input } = options
+export default function DateField({
+  name,
+  label,
+  description,
+  register,
+  formControl,
+  ...props
+}) {
   return (
     <StyledFormControl fullWidth margin="dense" {...formControl}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
@@ -20,7 +26,7 @@ export default function DateField({ name, label, description, register, options 
         id={name}
         name={name}
         aria-describedby={`Input for ${name}`}
-        {...input}
+        {...props}
         {...register(name)}
       />
     </StyledFormControl>
