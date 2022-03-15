@@ -1,7 +1,7 @@
 ## Boulderando 
 
 This is a toy project made by Bouldering Fans that got sick of having to book session in Berlin because of COVID restrictions.
-Together with [it's backend](https://github.com/juanibiapina/bouldering-scheduler) we can book bouldering sessions with a click with any device.
+Together with [its backend](https://github.com/juanibiapina/bouldering-scheduler) it allow you book bouldering sessions with a button click in any device.
 
 https://boulderando.vercel.app/
 
