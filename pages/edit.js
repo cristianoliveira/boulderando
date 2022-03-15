@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import { Paper, Typography, Link, Container } from '@mui/material'
-import UserForm from '../src/components/UserForm'
+import UserForm from '../src/components/User/Form'
 import { UserProvider, UserConsumer } from '../src/context/User'
 
 export default function Home() {

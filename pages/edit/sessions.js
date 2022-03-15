@@ -15,7 +15,7 @@ import UserIcon from '@mui/icons-material/Person'
 import EditIcon from '@mui/icons-material/Edit'
 import { UserProvider, UserConsumer } from '../src/context/User'
 import { SessionProvider, SessionConsumer } from '../src/context/Sessions'
-import SessionsSelector from '../src/components/Sessions'
+import SessionsSelector from '../src/components/SessionsSelector'
 
 function Item({ children }) {
   return <div>{children}</div>

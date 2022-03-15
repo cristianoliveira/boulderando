@@ -9,11 +9,11 @@ import { useForm } from 'react-hook-form'
 import Alert from '@mui/material/Alert'
 import AlertTitle from '@mui/material/AlertTitle'
 
-import PhoneField from './fields/PhoneField'
-import TextField from './fields/TextField'
-import DateField from './fields/DateField'
+import PhoneField from '../fields/PhoneField'
+import TextField from '../fields/TextField'
+import DateField from '../fields/DateField'
 
-import * as TID from '../constants/data-testid'
+import * as TID from '../../constants/data-testid'
 
 const StyledForm = styled.form`
   padding: 20px;
