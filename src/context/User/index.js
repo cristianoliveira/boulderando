@@ -12,7 +12,7 @@ export function UserProvider({ guard, children }) {
   const [user, setUser] = useState(storage.getUser())
 
   const editUser = () => {
-    router.push('/edit')
+    router.push('/user/edit')
   }
 
   const deleteUser = () => {
