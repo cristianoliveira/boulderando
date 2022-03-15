@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 import * as storage from '../../storage/local'
 
-const UserContext = createContext()
+export const UserContext = createContext()
 
 export const UserConsumer = UserContext.Consumer
 

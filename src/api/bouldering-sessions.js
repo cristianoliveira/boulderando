@@ -29,7 +29,8 @@ export const postSessionSchedule = async (
         },
       }
     )
-    return { data: JSON.stringify(res) }
+
+    return { data: res.data }
   } catch (error) {
     return {
       error: {

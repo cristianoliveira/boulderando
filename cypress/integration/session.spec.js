@@ -7,7 +7,9 @@ describe('Bouldering Session Selection', () => {
   afterEach(() => {
     cy.window().then((w) => {
       w.localStorage.removeItem('user')
+      w.localStorage.removeItem('sessions')
       expect(w.localStorage.getItem('user')).equal(null)
+      expect(w.localStorage.getItem('sessions')).equal(null)
     })
   })
 
@@ -38,4 +40,21 @@ describe('Bouldering Session Selection', () => {
       timeout: 10000,
     }).should('be.visible')
   })
+
+  it('allows adding custom session', () => {
+    cy.get(byDataTestId(TID.SESSION_FORM_ADD_CUSTOM_SESSION)).click()
+
+    cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_GYM)).click()
+    cy.get(byDataTestId('option--basement')).click()
+
+    cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_DAY)).click()
+    cy.get(byDataTestId('option--this tuesday')).click()
+
+    cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_TIME)).click()
+    cy.get(byDataTestId('option--12:00 - 14:00')).click()
+
+    cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_SUBMIT_BUTTON)).click()
+
+    cy.contains('12:00 - 14:00').should('exist')
+  });
 })
