@@ -5,7 +5,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ci:start": "yarn dev & wait-on wait-on http://localhost:3333",
+    "ci:start": "yarn dev & wait-on http://localhost:3333",
     "test": "echo 'nothing here' ",
     "test:ui": "cypress run",
     "cy:open": "cypress open"
