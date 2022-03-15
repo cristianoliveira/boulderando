@@ -24,13 +24,8 @@ const UserProfile = styled.span`
 `
 
 export default function SessionSelectPage() {
-  const router = useRouter()
-  if (!getUser()) {
-    router.push('/')
-  }
-
   return (
-    <UserProvider>
+    <UserProvider guard={true}>
       <UserConsumer>
         {({ user, deleteUser, editUser }) => (
           <>
