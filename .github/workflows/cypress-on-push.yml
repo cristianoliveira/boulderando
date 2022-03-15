@@ -70,5 +70,5 @@ jobs:
         run: |
           cp .env.example .env
       - name: Run test server and UI checks
-        run: yarn test:ui
+        run: yarn ci:start && yarn test:ui
 
