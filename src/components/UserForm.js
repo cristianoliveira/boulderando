@@ -13,6 +13,8 @@ import PhoneField from './fields/PhoneField'
 import TextField from './fields/TextField'
 import DateField from './fields/DateField'
 
+import * as TID from '../constants/data-testid'
+
 const StyledForm = styled.form`
   padding: 20px;
 `
@@ -44,16 +46,32 @@ function Form({ user = {}, onSubmit }) {
         container
       >
         <Grid item xs={FULL_GRID / 2}>
-          <TextField name="name" label="First Name" register={register} />
+          <TextField
+            data-testid={TID.USER_INPUT_FIRST_NAME}
+            name="name"
+            label="First Name"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
-          <TextField name="last_name" label="Last Name" register={register} />
+          <TextField
+            data-testid={TID.USER_INPUT_LAST_NAME}
+            name="last_name"
+            label="Last Name"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID}>
-          <DateField name="birthday" label="Birthday" register={register} />
+          <DateField
+            data-testid={TID.USER_INPUT_BIRTHDAY}
+            name="birthday"
+            label="Birthday"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID}>
           <TextField
+            data-testid={TID.USER_INPUT_STREET_ADDRESS}
             name="address"
             label="Street address"
             register={register}
@@ -61,19 +79,31 @@ function Form({ user = {}, onSubmit }) {
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
           <TextField
+            data-testid={TID.USER_INPUT_POSTALCODE}
             name="postal_code"
             label="Postal Code"
             register={register}
           />
         </Grid>
         <Grid item xs={FULL_GRID / 2}>
-          <TextField name="city" label="City" register={register} />
+          <TextField
+            data-testid={TID.USER_INPUT_CITY}
+            name="city"
+            label="City"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID}>
-          <TextField name="email" label="Email" register={register} />
+          <TextField
+            data-testid={TID.USER_INPUT_EMAIL}
+            name="email"
+            label="Email"
+            register={register}
+          />
         </Grid>
         <Grid item xs={FULL_GRID}>
           <PhoneField
+            data-testid={TID.USER_INPUT_PHONE_NUMBER}
             name="phone_number"
             label="Phone Number"
             register={register}
@@ -84,6 +114,7 @@ function Form({ user = {}, onSubmit }) {
             <TextField name="type" register={register} />
           </div>
           <TextField
+            data-testid={TID.USER_INPUT_URBAN_SPORT_NUMBER}
             name="usc_number"
             label="Urban Sports Club No."
             register={register}
@@ -92,14 +123,20 @@ function Form({ user = {}, onSubmit }) {
         </Grid>
         <Grid item xs={FULL_GRID}>
           {isSubmitted && !isValid && errorsList && (
-            <Alert severity="error">
+            <Alert
+            data-testid={TID.USER_FORM_ERROR_MESSAGE_CONTAINER}
+            severity="error">
               All fields are required. Missing fields: {errorsList}
             </Alert>
           )}
         </Grid>
       </Grid>
       <FormControl fullWidth>
-        <Button variant="contained" type="submit">
+        <Button
+          data-testid={TID.USER_FORM_SUBMIT_BUTTON}
+          variant="contained"
+          type="submit"
+        >
           Save data
         </Button>
       </FormControl>

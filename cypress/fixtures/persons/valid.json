@@ -1,0 +1,13 @@
+{
+  "name": "Name",
+  "lastName": "Foo",
+  "birthday": "1969-04-20",
+  "address": {
+    "street": "Mein Str, 22b",
+    "postalCode": "00000",
+    "city": "Berlin"
+  },
+  "phoneNumber": "000000000000",
+  "email": "my@gmail.com",
+  "urbanSportNumber": "000000000"
+}

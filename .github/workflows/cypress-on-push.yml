@@ -1,0 +1,80 @@
+name: Cypress checks
+on: [push]
+jobs:
+  quick-checks:
+    name: Check unit tests, lint and others quick checks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Use Node.js v17
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.7.1
+
+      ## Setup yarn
+      - name: Create .npmrc file
+        env:
+          GHB_PACKAGES_TOKEN: ${{ secrets.GHB_PACKAGES_TOKEN }}
+        run: |
+          yarn setup
+      - name: Install dependencies
+        run: |
+          npm install -g yarn
+          yarn install
+      - name: Build packages
+        run: |
+          yarn build
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      ## Running scripts
+      - name: Run unit tests
+        run: yarn test
+      - name: Run linting checks
+        run: yarn lint
+
+  ui-tests:
+    name: Check ui tests with cypress
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Use Node.js v17
+        uses: actions/setup-node@v1
+        with:
+          node-version: 17.7.1
+
+      ## Setup yarn
+      - name: Install dependencies
+        run: |
+          npm install -g yarn
+          yarn install
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      ## Running scripts
+      - name: Create project config for testing
+        run: |
+          cp .env.example .env
+      - name: Run test server and UI checks
+        run: yarn test:ui
+
