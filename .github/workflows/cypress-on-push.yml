@@ -12,12 +12,6 @@ jobs:
         with:
           node-version: 17.7.1
 
-      ## Setup yarn
-      - name: Create .npmrc file
-        env:
-          GHB_PACKAGES_TOKEN: ${{ secrets.GHB_PACKAGES_TOKEN }}
-        run: |
-          yarn setup
       - name: Install dependencies
         run: |
           npm install -g yarn
