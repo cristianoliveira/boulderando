@@ -1,21 +1,19 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 
-import Head from 'next/head'
-import Image from 'next/image'
 import {
-  Paper,
   Typography,
-  Link,
   Grid,
-  FormControl,
   Button,
 } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete'
 import UserIcon from '@mui/icons-material/Person'
 import EditIcon from '@mui/icons-material/Edit'
+
 import { UserProvider, UserConsumer } from '../src/context/User'
 import { SessionProvider, SessionConsumer } from '../src/context/Sessions'
 import SessionsSelector from '../src/components/Sessions'
+import { getUser } from '../src/storage/local';
 
 function Item({ children }) {
   return <div>{children}</div>
@@ -26,20 +24,16 @@ const UserProfile = styled.span`
 `
 
 export default function SessionSelectPage() {
+  const router = useRouter()
+  if (!getUser()) {
+    router.push('/')
+  }
+
   return (
     <UserProvider>
       <UserConsumer>
         {({ user, deleteUser, editUser }) => (
           <>
-            <Head>
-              <title>Sessions to schedule</title>
-              <meta
-                name="description"
-                content="Here you schedule the sessions for the week"
-              />
-              <link rel="icon" href="/favicon.ico" />
-            </Head>
-
             {user && (
               <Grid
                 container
@@ -74,21 +68,6 @@ export default function SessionSelectPage() {
             </Typography>
 
             <SessionsSelector user={user} />
-
-            <footer>
-              <Typography variant="span" color="text.secondary" align="center">
-                Developed by Bouldering Fans.
-              </Typography>
-              <Link
-                href="https://github.com/cristianoliveira/boulderando"
-                target="_blank"
-                rel="noopener noreferrer"
-                align="center"
-                variant="body2"
-              >
-                Repo on Github
-              </Link>
-            </footer>
           </>
         )}
       </UserConsumer>

@@ -63,7 +63,7 @@ describe('User Data Form', () => {
       .type(person.name)
     cy.get(byDataTestId(TID.USER_INPUT_LAST_NAME))
       .should('exist')
-      .type(person.laaaast_name)
+      .type(person.last_name)
     cy.get(byDataTestId(TID.USER_INPUT_BIRTHDAY))
       .should('exist')
       .type(person.birthday)
@@ -91,13 +91,13 @@ describe('User Data Form', () => {
     })
   })
 
-  it.only('can edit user data', () => {
+  it('can edit user data', () => {
     cy.window().then((w) => {
       w.localStorage.setItem('user', JSON.stringify(person))
       expect(JSON.parse(w.localStorage.getItem('user'))).include(person)
     })
 
-    cy.visit('http://localhost:3333/edit')
+    cy.visit('http://localhost:3333/user/edit')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
       .find('input')
