@@ -34,15 +34,16 @@ jobs:
         run: |
           cp .env.example .env
 
-      - name: Run unit tests
-        run: yarn test
-
       - name: Run linting checks
         run: yarn lint
 
-      - name: Run test server and UI checks
-        run: |
-          yarn ci:start
-          yarn test:ui
+      - name: Run unit tests
+        run: yarn test
+
+      - name: Start server
+        run: yarn ci:start
+
+      - name: Run Cypress tests
+        run: yarn test:ui
 
 
