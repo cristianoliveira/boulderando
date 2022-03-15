@@ -2,7 +2,7 @@ name: Cypress checks
 on: [push]
 jobs:
   checks:
-    name: Check unit tests + linter + cypress
+    name: Check ui tests with cypress
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -41,11 +41,8 @@ jobs:
         run: yarn lint
 
       - name: Run test server and UI checks
-        run: yarn test:ui
-        with:
-          # wait for the URL to respond
-          # using the default parameter
-          start: yarn ci:start
-          wait-on: 'http://localhost:3050'
+        run: |
+          yarn ci:start
+          yarn test:ui
 
 
