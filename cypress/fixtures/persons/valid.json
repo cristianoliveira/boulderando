@@ -1,0 +1,11 @@
+{
+  "name": "John",
+  "last_name": "Doe",
+  "birthday": "1969-04-20",
+  "address": "Mein Str, 22b",
+  "postal_code": "00000",
+  "city": "Berlin",
+  "phone_number": "000000000000",
+  "email": "my@gmail.com",
+  "usc_number": "000000000"
+}

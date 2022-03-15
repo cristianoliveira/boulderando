@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import { getSessions, postSessionSchedule } from '../../api/sessions'
+import { getSessions, postSessionSchedule } from '../../api/bouldering-sessions'
 
 const SessionContext = createContext()
 

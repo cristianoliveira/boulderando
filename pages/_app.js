@@ -1,20 +1,34 @@
+import Head from 'next/head'
+import Image from 'next/image'
+import { Paper, Typography, Link, Container } from '@mui/material'
 
 function MyApp({ Component, pageProps }) {
-  console.log('pageProps: ', pageProps);
-  return <Component {...pageProps} />
-}
+  return (
+    <>
+      <Head>
+        <title>Boulderando</title>
+        <meta
+          name="description"
+          content="Booking bouldering sessions made easy"
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <Component {...pageProps} />
 
-// `getStaticProps`, and similar Next.js methods like `getStaticPaths` and `getServerSideProps`
-// only run in Node.js. Check the terminal to see the environment variables
-export async function getStaticProps() {
-  // Using the variables below in the browser will return `undefined`. Next.js doesn't
-  // expose environment variables unless they start with `NEXT_PUBLIC_`
-  console.log(
-    '[Node.js only] API_URL:',
-    process.env.API_URL
+      <Typography variant="small" color="text.primary" align="center">
+        <small>Developed by Bouldering Fans. </small>
+        <Link
+          href="https://github.com/cristianoliveira/boulderando"
+          target="_blank"
+          rel="noopener noreferrer"
+          align="center"
+          variant="body2"
+        >
+          Fork it on Github
+        </Link>
+      </Typography>
+    </>
   )
-
-  return { props: { apiUrl: process.env.API_URL } }
 }
 
 export default MyApp
