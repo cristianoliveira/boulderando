@@ -10,3 +10,6 @@ export const USER_INPUT_URBAN_SPORT_NUMBER = 'user--input--urban_sport_number';
 
 export const USER_FORM_SUBMIT_BUTTON = 'user--form_submit--button';
 export const USER_FORM_ERROR_MESSAGE_CONTAINER = 'user--form_error_messsage--container';
+
+export const SESSION_FORM_ERROR_MESSAGE_CONTAINER = 'session--form_error_messsage--container';
+export const SESSION_FORM_SUCCESS_MESSAGE_CONTAINER = 'session--form_success_messsage--container';

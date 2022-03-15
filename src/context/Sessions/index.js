@@ -20,7 +20,7 @@ export function SessionProvider({ user, children }) {
     postSessionSchedule(user, session).then(({ data, error }) => {
       setResult(data)
       setIsProcessing(false)
-      setError(error.message)
+      setError(error?.message)
     })
   }
 

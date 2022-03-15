@@ -7,5 +7,6 @@
   "city": "Berlin",
   "phone_number": "000000000000",
   "email": "my@gmail.com",
-  "usc_number": "000000000"
+  "usc_number": "000000000",
+  "type": "Urban Sports Club"
 }

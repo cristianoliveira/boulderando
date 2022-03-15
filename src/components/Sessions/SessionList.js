@@ -11,12 +11,24 @@ import {
   AlertTitle,
 } from '@mui/material'
 
+import {
+  SESSION_FORM_ERROR_MESSAGE_CONTAINER,
+  SESSION_FORM_SUCCESS_MESSAGE_CONTAINER,
+} from '../../constants/data-testid'
+
 const StyledAlert = styled(Alert)`
   overflow-wrap: anywhere;
   margin: auto;
 `
 
-function SessionList({ sessions, result, error, isProcessing, hasSubmitted, scheduleSession }) {
+function SessionList({
+  sessions,
+  result,
+  error,
+  isProcessing,
+  hasSubmitted,
+  scheduleSession,
+}) {
   return (
     <Table>
       <TableHead>
@@ -54,14 +66,21 @@ function SessionList({ sessions, result, error, isProcessing, hasSubmitted, sche
       <TableRow>
         <TableCell colSpan="6">
           {error && hasSubmitted && !isProcessing && (
-            <StyledAlert severity={'error'} fullWidth
-  maxWidth="sm">
+            <StyledAlert
+              data-testid={SESSION_FORM_ERROR_MESSAGE_CONTAINER}
+              severity={'error'}
+              fullWidth
+              maxWidth="sm"
+            >
               <AlertTitle>Schedule error</AlertTitle>
               {error}
             </StyledAlert>
           )}
           {result && hasSubmitted && !isProcessing && (
-            <StyledAlert severity={'success'}>
+            <StyledAlert
+              data-testid={SESSION_FORM_SUCCESS_MESSAGE_CONTAINER}
+              severity={'success'}
+            >
               <AlertTitle>Schedule result</AlertTitle>
               {result}
             </StyledAlert>
