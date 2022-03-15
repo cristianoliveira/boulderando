@@ -24,7 +24,7 @@ export default function TextField({
         {...register(name, { required: true })}
       >
         {selectOptions.map(({ value, label }) => (
-          <MenuItem data-testid={`option--${value}`} value={value}>{label}</MenuItem>
+          <MenuItem key={value} data-testid={`option--${value}`} value={value}>{label}</MenuItem>
         ))}
       </Select>
     </FormControl>
