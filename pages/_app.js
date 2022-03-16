@@ -1,6 +1,10 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Paper, Typography, Link, Container } from '@mui/material'
+import NavBar from '../src/components/NavBar'
+
+import { UserProvider, UserConsumer } from '../src/context/User'
+import { SessionProvider } from '../src/context/Sessions'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,7 +17,17 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+
+      <UserProvider>
+        <UserConsumer>
+          {(user) => (
+            <SessionProvider user={user}>
+              <NavBar />
+              <Component {...pageProps} />
+            </SessionProvider>
+          )}
+        </UserConsumer>
+      </UserProvider>
 
       <Typography variant="small" color="text.primary" align="center">
         <small>Developed by Bouldering Fans. </small>

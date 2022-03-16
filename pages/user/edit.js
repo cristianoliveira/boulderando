@@ -12,10 +12,6 @@ export default function UserEdit() {
       <UserConsumer>
         {({ user, saveUser }) => (
           <Paper>
-            <Typography variant="h5" color="text.primary" align="center">
-              Editing User
-            </Typography>
-
             <UserForm
               user={user}
               onSubmit={(data) => {

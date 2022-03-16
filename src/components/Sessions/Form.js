@@ -29,7 +29,7 @@ const showErrorFields = (errors) =>
     .map((e) => e)
     .join(', ')
 
-// DO NOT ASK ME HOW, HAVE FAITH
+// Sometime in life you have to just have faith
 // range from 8:00 to 21:30
 const timesSelection = [...Array(20).keys()]
   .filter((i) => i >= 8 && i <= 20)

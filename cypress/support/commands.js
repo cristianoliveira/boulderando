@@ -23,3 +23,24 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('useLocalStorage', (key, data) => {
+  cy.window().then((w) => {
+    w.localStorage.setItem(key, JSON.stringify(data))
+    expect(JSON.parse(w.localStorage.getItem(key))).include(data)
+  })
+ });
+
+Cypress.Commands.add('getLocalStorage', (key) => {
+  return cy.window().then((w) => {
+    return w.localStorage.getItem(key)
+  })
+ });
+
+Cypress.Commands.add('removeLocalStorage', (key) => {
+  cy.window().then((w) => {
+    w.localStorage.removeItem('user')
+    expect(w.localStorage.getItem('user')).equal(null)
+  })
+ });

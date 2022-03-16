@@ -12,9 +12,6 @@ export default function UserNew() {
       <UserConsumer>
         {({ saveUser }) => (
           <Paper>
-            <Typography variant="h5" color="text.primary" align="center">
-              New User
-            </Typography>
             <UserForm
               onSubmit={(data) => {
                 saveUser(data)

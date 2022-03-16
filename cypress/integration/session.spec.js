@@ -38,7 +38,7 @@ describe('Bouldering Session Selection', () => {
     cy.wait(5000)
     cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER), {
       timeout: 10000,
-    }).should('be.visible')
+    }).should('be.visible').should('contain', 'saturday')
   })
 
   it('allows adding custom session', () => {

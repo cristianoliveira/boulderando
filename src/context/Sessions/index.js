@@ -5,11 +5,11 @@ import * as storage from '../../storage/local'
 
 import { getSessions, postSessionSchedule } from '../../api/bouldering-sessions'
 
-const SessionContext = createContext()
+export const SessionContext = createContext()
 
 export const SessionConsumer = SessionContext.Consumer
 
-export function SessionProvider({ user, children }) {
+export function SessionProvider({ children }) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [sessions, setSessions] = useState([])
@@ -17,13 +17,12 @@ export function SessionProvider({ user, children }) {
   const [error, setError] = useState(null)
   const router = useRouter()
 
-  const scheduleSession = (session) => {
+  const scheduleSession = (session, user) => {
     setHasSubmitted(true)
     setIsProcessing(true)
-    postSessionSchedule(user, session).then(({ data, error }) => {
-      setResult({ ...data, ...session })
+    return postSessionSchedule(user, session).then(({ data, error }) => {
       setIsProcessing(false)
-      setError(error?.message)
+      return { data: { ...data, ...session }, error }
     })
   }
 

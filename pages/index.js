@@ -1,5 +1,11 @@
-import UserNew from './user/new'
+import Sessions from './sessions'
+
+import NavBar from '../src/components/NavBar'
 
 export default function Home() {
-  return <UserNew />
+  return (
+    <>
+      <Sessions />
+    </>
+  )
 }

@@ -18,20 +18,20 @@ export function UserProvider({ guard, children }) {
   const deleteUser = () => {
     storage.deleteUser()
     setUser(null)
-    router.push('/')
+    router.push('/user/new')
   }
 
   const saveUser = (user) => {
     storage.saveUser(user)
     setUser(user)
-    router.push('/sessions')
+    router.push('/')
   }
 
   useEffect(() => {
-    if (!storage.getUser()) {
-      router.push('/')
+    if (!user) {
+      router.push('/user/new')
     }
-  }, [])
+  }, [user])
 
   return (
     <UserContext.Provider value={{ user, saveUser, deleteUser, editUser }}>
