@@ -14,10 +14,13 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 
+import { UserContext } from '../../context/User'
+import { SessionContext } from '../../context/Sessions'
+
 import {
   SESSION_FORM_ERROR_MESSAGE_CONTAINER,
   SESSION_FORM_SUCCESS_MESSAGE_CONTAINER,
-  SESSION_FORM_ADD_CUSTOM_SESSION
+  SESSION_FORM_ADD_CUSTOM_SESSION,
 } from '../../constants/data-testid'
 
 const StyledAlert = styled(Alert)`
@@ -25,26 +28,25 @@ const StyledAlert = styled(Alert)`
   margin: auto;
 `
 
-function SessionList({
-  sessions,
-  result,
-  error,
-  isProcessing,
-  hasSubmitted,
-  scheduleSession,
-  addCustomSession,
-}) {
-  const resMessage = result
+const formatResult = (result) =>
+  result
     ? `🧗🧗🧗🧗🧗
 ${result.gym_name} ${result.human_date} ${result.scheduled_time}
 🧗🧗🧗🧗🧗
 `
     : ''
 
+function SessionList() {
+  const [result, setResult] = React.useState(null)
+  const { user } = React.useContext(UserContext)
+  const sessionContext = React.useContext(SessionContext)
   return (
     <>
       <div>
-        <Button data-testid={SESSION_FORM_ADD_CUSTOM_SESSION} onClick={addCustomSession}>
+        <Button
+          data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
+          onClick={sessionContext.addCustomSession}
+        >
           <AddBoxIcon />
           Custom session
         </Button>
@@ -56,7 +58,7 @@ ${result.gym_name} ${result.human_date} ${result.scheduled_time}
           <TableCell>Time</TableCell>
           <TableCell>Actions</TableCell>
         </TableHead>
-        {sessions.map((session, i) => (
+        {sessionContext.sessions.map((session, i) => (
           <TableRow key={i} fullWidth>
             <TableCell>
               <Typography variant="h6" color="text.secondary" align="left">
@@ -69,11 +71,13 @@ ${result.gym_name} ${result.human_date} ${result.scheduled_time}
             <TableCell>{session.time}</TableCell>
             <TableCell>
               <Button
-                disabled={isProcessing}
+                disabled={sessionContext.isProcessing}
                 variant="contained"
                 type="submit"
                 onClick={() => {
-                  scheduleSession(session)
+                  sessionContext.scheduleSession(session, user).then((res) => {
+                    setResult(res)
+                  })
                 }}
                 fullWidth
               >
@@ -84,35 +88,41 @@ ${result.gym_name} ${result.human_date} ${result.scheduled_time}
         ))}
         <TableRow>
           <TableCell colSpan="6">
-            {error && hasSubmitted && !isProcessing && (
-              <StyledAlert
-                data-testid={SESSION_FORM_ERROR_MESSAGE_CONTAINER}
-                severity={'error'}
-                fullWidth
-                maxWidth="sm"
-              >
-                <AlertTitle>Schedule error</AlertTitle>
-                {error}
-              </StyledAlert>
-            )}
-            {result && hasSubmitted && !isProcessing && (
-              <StyledAlert
-                data-testid={SESSION_FORM_SUCCESS_MESSAGE_CONTAINER}
-                severity={'success'}
-                action={
-                  <Button color="inherit" size="small">
-                    <ContentCopyIcon
-                      onClick={() => {
-                        navigator.clipboard.writeText(resMessage)
-                      }}
-                    />
-                  </Button>
-                }
-              >
-                <AlertTitle>Success check your email</AlertTitle>
-                {`${resMessage}`}
-              </StyledAlert>
-            )}
+            {result?.error &&
+              sessionContext?.hasSubmitted &&
+              !sessionContext.isProcessing && (
+                <StyledAlert
+                  data-testid={SESSION_FORM_ERROR_MESSAGE_CONTAINER}
+                  severity={'error'}
+                  fullWidth
+                  maxWidth="sm"
+                >
+                  <AlertTitle>Schedule error</AlertTitle>
+                  {`${JSON.stringify(result?.error)}`}
+                </StyledAlert>
+              )}
+            {result?.data &&
+              sessionContext?.hasSubmitted &&
+              !sessionContext.isProcessing && (
+                <StyledAlert
+                  data-testid={SESSION_FORM_SUCCESS_MESSAGE_CONTAINER}
+                  severity={'success'}
+                  action={
+                    <Button color="inherit" size="small">
+                      <ContentCopyIcon
+                        onClick={() => {
+                          navigator.clipboard.writeText(
+                            formatResult(result?.data)
+                          )
+                        }}
+                      />
+                    </Button>
+                  }
+                >
+                  <AlertTitle>Success check your email</AlertTitle>
+                  {`${formatResult(result?.data)}`}
+                </StyledAlert>
+              )}
           </TableCell>
         </TableRow>
       </Table>
