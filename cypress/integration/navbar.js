@@ -13,7 +13,7 @@ const cleanUpUser = () => {
   cy.removeLocalStorage('user')
 }
 
-describe('User Data Form', () => {
+describe('Navigation Bar', () => {
   afterEach(cleanUpUser)
 
   it('always is present', () => {
