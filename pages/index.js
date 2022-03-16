@@ -1,11 +1,10 @@
-import Sessions from './sessions'
 
-import NavBar from '../src/components/NavBar'
+import SessionList from '../src/components/Sessions/SessionList'
 
 export default function Home() {
   return (
     <>
-      <Sessions />
+      <SessionList />
     </>
   )
 }

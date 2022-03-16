@@ -4,6 +4,10 @@ import * as TID from '../../src/constants/data-testid'
 import person from '../fixtures/persons/valid.json'
 
 describe('Bouldering Session Selection', () => {
+  beforeEach(() => {
+    cy.viewport('iphone-7')
+  })
+
   afterEach(() => {
     cy.window().then((w) => {
       w.localStorage.removeItem('user')
@@ -21,7 +25,9 @@ describe('Bouldering Session Selection', () => {
     })
 
     cy.visit('http://localhost:3333/sessions')
-    cy.window().then((w) => { w.dry_run = true })
+    cy.window().then((w) => {
+      w.dry_run = true
+    })
   })
 
   it('has options for a tuesday, thursday and saturday by default', () => {
@@ -37,7 +43,13 @@ describe('Bouldering Session Selection', () => {
     cy.contains('saturday').parent().find('button').click()
     cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER), {
       timeout: 20000,
-    }).should('be.visible').should('contain', 'saturday')
+    })
+      .should('be.visible')
+      .should('contain', 'saturday')
+
+    cy.get(byDataTestId(TID.SESSION_FORM_ERROR_MESSAGE_CONTAINER)).should(
+      'not.exist'
+    )
   })
 
   it('allows adding custom session', () => {
@@ -55,5 +67,5 @@ describe('Bouldering Session Selection', () => {
     cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_SUBMIT_BUTTON)).click()
 
     cy.contains('12:00 - 14:00').should('exist')
-  });
+  })
 })
