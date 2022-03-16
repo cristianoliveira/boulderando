@@ -48,7 +48,7 @@ describe('Bouldering Session Selection', () => {
       .should('contain', 'saturday')
 
     cy.get(byDataTestId(TID.SESSION_FORM_ERROR_MESSAGE_CONTAINER)).should(
-      'not.be.visible'
+      'not.exist'
     )
   })
 
