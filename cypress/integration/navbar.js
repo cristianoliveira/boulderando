@@ -14,6 +14,10 @@ const cleanUpUser = () => {
 }
 
 describe('Navigation Bar', () => {
+  beforeEach(() => {
+    cy.viewport('iphone-7')
+  })
+
   afterEach(cleanUpUser)
 
   it('always is present', () => {

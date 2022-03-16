@@ -13,6 +13,7 @@ import {
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 import { UserContext } from '../../context/User'
 import { SessionContext } from '../../context/Sessions'
@@ -56,14 +57,12 @@ function SessionList() {
           <TableCell>Gym</TableCell>
           <TableCell>Day</TableCell>
           <TableCell>Time</TableCell>
-          <TableCell>Actions</TableCell>
+          <TableCell>Schedule</TableCell>
         </TableHead>
         {sessionContext.sessions.map((session, i) => (
           <TableRow key={i} fullWidth>
             <TableCell>
-              <Typography variant="h6" color="text.secondary" align="left">
-                {session.gym_name}
-              </Typography>
+              {session.gym_name}
             </TableCell>
             <TableCell>
               {(session.human_date || '').replace(/this/, '')}
@@ -81,7 +80,7 @@ function SessionList() {
                 }}
                 fullWidth
               >
-                Schedule
+                <EventAvailableIcon />
               </Button>
             </TableCell>
           </TableRow>
@@ -101,7 +100,7 @@ function SessionList() {
                   {`${JSON.stringify(result?.error)}`}
                 </StyledAlert>
               )}
-            {result?.data &&
+            {!result?.error && result?.data &&
               sessionContext?.hasSubmitted &&
               !sessionContext.isProcessing && (
                 <StyledAlert
