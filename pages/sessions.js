@@ -7,7 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import UserIcon from '@mui/icons-material/Person'
 import EditIcon from '@mui/icons-material/Edit'
 
-import SessionsSelector from '../src/components/Sessions'
+import SessionList from '../src/components/Sessions/SessionList'
 
 const UserProfile = styled.span`
   vertical-align: super;
@@ -16,7 +16,7 @@ const UserProfile = styled.span`
 export default function SessionSelectPage() {
   return (
     <>
-      <SessionsSelector />
+      <SessionList />
     </>
   )
 }

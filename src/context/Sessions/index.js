@@ -33,6 +33,9 @@ export function SessionProvider({ children }) {
   const saveCustomSession = (session) => {
     const sessions = storage.get('sessions')
     storage.save('sessions', [...(sessions || []), session])
+    setSessions(curSessions => {
+      return [...curSessions, session]
+    });
     router.push('/sessions')
   }
 
@@ -41,7 +44,7 @@ export function SessionProvider({ children }) {
     getSessions().then((defaultSessions) => {
       setSessions([...defaultSessions, ...(customSessions || [])])
     })
-  }, [])
+  }, [sessions.length])
 
   return (
     <SessionContext.Provider
