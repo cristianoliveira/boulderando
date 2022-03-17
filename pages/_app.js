@@ -19,14 +19,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <UserProvider>
-        <UserConsumer>
-          {(user) => (
-            <SessionProvider user={user}>
-              <NavBar />
-              <Component {...pageProps} />
-            </SessionProvider>
-          )}
-        </UserConsumer>
+        <SessionProvider>
+          <Component {...pageProps} />
+        </SessionProvider>
       </UserProvider>
 
       <Box>

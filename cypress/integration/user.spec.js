@@ -1,14 +1,12 @@
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
+import * as NB_TID from '../../src/components/NavBar'
 
 import person from '../fixtures/persons/valid.json'
 
 describe('User Data Form', () => {
   afterEach(() => {
-    cy.window().then((w) => {
-      w.localStorage.removeItem('user')
-      expect(w.localStorage.getItem('user')).equal(null)
-    })
+    cy.localStorage().then((ls) => ls.removeItem('user'))
   })
 
   it('requires user booking data', () => {
@@ -86,16 +84,17 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.window().then((w) => {
-      expect(JSON.parse(w.localStorage.getItem('user'))).include(person)
+    cy.getLocalStorage('user').then((user) => {
+      expect(user).deep.equal(person)
     })
+
+    cy.url().should('include', '/')
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
   })
 
   it('can edit user data', () => {
-    cy.window().then((w) => {
-      w.localStorage.setItem('user', JSON.stringify(person))
-      expect(JSON.parse(w.localStorage.getItem('user'))).include(person)
-    })
+    cy.setLocalStorage('user', person)
 
     cy.visit('http://localhost:3333/user/edit')
 
@@ -131,14 +130,14 @@ describe('User Data Form', () => {
       .find('input')
       .should('have.value', person.usc_number)
 
-    cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME)).type(' NewName')
+    cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
+      .find('input')
+      .type(' NewName')
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.window().then((w) => {
-      expect(JSON.parse(w.localStorage.getItem('user'))).include({
-        name: 'John NewName',
-      })
+    cy.getLocalStorage('user').then((user) => {
+      expect(user.name).equal('John NewName')
     })
   })
 })

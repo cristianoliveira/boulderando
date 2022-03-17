@@ -12,7 +12,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 
-import { UserContext } from '../context/User'
+import useUserContext from '../context/User'
 
 const PAGE_TITLES = {
   '/': 'Book Session',
@@ -27,11 +27,15 @@ export const NAVBAR_USER_MENU_CONTAINER = 'navbar_user_menu_button--container'
 export const NAVBAR_USER_MENU_ITEM_DELETE = 'navbar_user_menu_button--delete'
 export const NAVBAR_USER_MENU_ITEM_EDIT = 'navbar_user_menu_button--edit'
 
-export default function ButtonAppBar() {
+export default function NavBar() {
   const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
-  const { user, deleteUser, editUser } = React.useContext(UserContext)
+  const { user, deleteUser, editUser } = useUserContext()
   const router = useRouter()
+
+  const handleEditUser = () => {
+    editUser()
+  }
 
   const handleChange = (event) => {
     setAuth(event.target.checked)
@@ -95,7 +99,7 @@ export default function ButtonAppBar() {
                 </MenuItem>
                 <MenuItem
                   data-testid={NAVBAR_USER_MENU_ITEM_EDIT}
-                  onClick={editUser}
+                  onClick={handleEditUser}
                 >
                   Edit
                 </MenuItem>

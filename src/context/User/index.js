@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import * as storage from '../../storage/local'
@@ -38,4 +38,8 @@ export function UserProvider({ guard, children }) {
       {children}
     </UserContext.Provider>
   )
+}
+
+export default () => {
+  return useContext(UserContext);
 }
