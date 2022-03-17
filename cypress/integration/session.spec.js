@@ -9,25 +9,19 @@ describe('Bouldering Session Selection', () => {
   })
 
   afterEach(() => {
-    cy.window().then((w) => {
-      w.localStorage.removeItem('user')
-      w.localStorage.removeItem('sessions')
-      expect(w.localStorage.getItem('user')).equal(null)
-      expect(w.localStorage.getItem('sessions')).equal(null)
+    cy.removeLocalStorage('user')
+    cy.removeLocalStorage('sessions')
+    cy.localStorage(ls => {
+      expect(ls.getItem('user')).equal(null)
+      expect(ls.getItem('sessions')).equal(null)
     })
   })
 
   beforeEach(() => {
-    cy.window().then((w) => {
-      w.dry_run = true
-      w.localStorage.setItem('user', JSON.stringify(person))
-      expect(w.localStorage.getItem('user')).not.equal(null)
-    })
+    cy.setLocalStorage('user', person)
 
     cy.visit('http://localhost:3333/sessions')
-    cy.window().then((w) => {
-      w.dry_run = true
-    })
+    cy.window().then((w) => w.dry_run = true)
   })
 
   it('has options for a tuesday, thursday and saturday by default', () => {

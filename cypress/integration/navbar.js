@@ -6,7 +6,7 @@ import person from '../fixtures/persons/valid.json'
 import * as NB_TID from '../../src/components/NavBar'
 
 const withUser = () => {
-  cy.useLocalStorage('user', person)
+  cy.setLocalStorage('user', person)
 }
 
 const cleanUpUser = () => {
@@ -33,16 +33,18 @@ describe('Navigation Bar', () => {
   describe('when a user is registered', () => {
     beforeEach(() => {
       withUser()
+      cy.visit('http://localhost:3333/')
     })
 
     it('gives options to edit user', () => {
-      cy.visit('http://localhost:3333/')
       //
       //
       cy.get(byDataTestId(NB_TID.NAVBAR_CONTAINER)).should('be.visible')
       cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
         .should('be.visible')
         .click()
+
+      cy.wait(500)
 
       cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_ITEM_EDIT))
         .should('be.visible')
@@ -52,8 +54,6 @@ describe('Navigation Bar', () => {
     })
 
     it('gives options to delete and add new user', () => {
-      cy.visit('http://localhost:3333/')
-
       cy.get(byDataTestId(NB_TID.NAVBAR_CONTAINER)).should('be.visible')
       cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
         .should('be.visible')
