@@ -27,10 +27,11 @@ export const NAVBAR_USER_MENU_CONTAINER = 'navbar_user_menu_button--container'
 export const NAVBAR_USER_MENU_ITEM_DELETE = 'navbar_user_menu_button--delete'
 export const NAVBAR_USER_MENU_ITEM_EDIT = 'navbar_user_menu_button--edit'
 
-export default function ButtonAppBar() {
+export default function NavBar() {
   const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
-  const { user, deleteUser, editUser } = React.useContext(UserContext)
+  const userContext = React.useContext(UserContext)
+  const { user, deleteUser, editUser } = userContext
   const router = useRouter()
 
   const handleChange = (event) => {

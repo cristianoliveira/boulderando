@@ -24,12 +24,15 @@ export function UserProvider({ guard, children }) {
   const saveUser = (user) => {
     storage.saveUser(user)
     setUser(user)
-    router.push('/')
   }
 
   useEffect(() => {
     if (!user) {
       router.push('/user/new')
+    }
+
+    if (user) {
+      router.push('/')
     }
   }, [user])
 

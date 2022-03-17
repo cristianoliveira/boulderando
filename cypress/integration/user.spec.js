@@ -1,5 +1,6 @@
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
+import * as NB_TID from '../../src/components/NavBar'
 
 import person from '../fixtures/persons/valid.json'
 
@@ -89,9 +90,13 @@ describe('User Data Form', () => {
     cy.window().then((w) => {
       expect(JSON.parse(w.localStorage.getItem('user'))).include(person)
     })
+
+    cy.url().should('include', '/')
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
   })
 
-  it('can edit user data', () => {
+  it.only('can edit user data', () => {
     cy.window().then((w) => {
       w.localStorage.setItem('user', JSON.stringify(person))
       expect(JSON.parse(w.localStorage.getItem('user'))).include(person)
