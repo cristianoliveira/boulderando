@@ -35,7 +35,7 @@ describe('Bouldering Session Selection', () => {
     cy.contains('boulderklub').should('exist')
   })
 
-  it('allows adding custom session', () => {
+  it('allows adding and deleting custom session', () => {
     cy.get(byDataTestId(TID.SESSION_FORM_ADD_CUSTOM_SESSION)).click()
 
     cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_GYM)).click()
@@ -50,5 +50,9 @@ describe('Bouldering Session Selection', () => {
     cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_SUBMIT_BUTTON)).click()
 
     cy.contains('12:00 - 14:00').should('exist')
+
+    cy.get(byDataTestId(TID.SESSION_FORM_DELETE_CUSTOM_SESSION)).click()
+
+    cy.contains('12:00 - 14:00').should('not.exist')
   })
 })

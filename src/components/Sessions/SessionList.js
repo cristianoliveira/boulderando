@@ -8,22 +8,24 @@ import {
   Button,
   Alert,
   AlertTitle,
+  Grid
 } from '@mui/material'
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 
 import { UserContext } from '../../context/User'
 import { SessionContext } from '../../context/Sessions'
 import useBookingHistoryContext from '../../context/BookingHistory'
-
-import getNextPossibleDay from '../../modules/weekday';
+import getNextPossibleDay from '../../modules/weekday'
 
 import {
   SESSION_FORM_ERROR_MESSAGE_CONTAINER,
   SESSION_FORM_SUCCESS_MESSAGE_CONTAINER,
   SESSION_FORM_ADD_CUSTOM_SESSION,
+  SESSION_FORM_DELETE_CUSTOM_SESSION
 } from '../../constants/data-testid'
 
 const StyledAlert = styled(Alert)`
@@ -39,6 +41,15 @@ ${result.gym_name} ${result.human_date} ${result.scheduled_time}
 `
     : ''
 
+const TbCell = (props) => (
+  <TableCell
+    sx={{
+      padding: '8px',
+    }}
+    {...props}
+  />
+)
+
 function SessionList() {
   const [result, setResult] = React.useState(null)
   const { user } = React.useContext(UserContext)
@@ -49,36 +60,47 @@ function SessionList() {
     if (result?.data) {
       bookingHistory.saveBookedSession(result.data)
     }
-    // eslint-disable-next-line
   }, [result])
   return (
     <>
-      <div>
+       <Grid container spacing={2}>
+        <Grid item xs={2}>
         <Button
           data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
           onClick={sessionContext.addCustomSession}
         >
           <AddBoxIcon />
-          Custom session
         </Button>
-      </div>
+        </Grid>
+        <Grid item xs={2}>
+        <Button
+          data-testid={SESSION_FORM_DELETE_CUSTOM_SESSION}
+          onClick={sessionContext.deleteCustomSessions}
+        >
+          <DeleteOutlineIcon />
+        </Button>
+        </Grid>
+      </Grid>
       <Table>
         <TableHead>
-          <TableCell>Gym</TableCell>
-          <TableCell>Day</TableCell>
-          <TableCell>Time</TableCell>
-          <TableCell>Schedule</TableCell>
+          <TableRow>
+            <TbCell>Gym</TbCell>
+            <TbCell>Day</TbCell>
+            <TbCell>Time</TbCell>
+            <TbCell>Schedule</TbCell>
+          </TableRow>
         </TableHead>
         {sessionContext.sessions.map((session, i) => (
-          <TableRow key={i} fullWidth>
-            <TableCell>{session.gym_name}</TableCell>
-            <TableCell>
-              {(session.human_date || '').replace(/this/, '')}
-              -
-              {getNextPossibleDay((session.human_date || '').replace(/this /, ''))}
-            </TableCell>
-            <TableCell>{session.time}</TableCell>
-            <TableCell>
+          <TableRow key={i}>
+            <TbCell>{session.gym_name}</TbCell>
+            <TbCell>
+              {(session.human_date || '').replace(/this/, '')}-
+              {getNextPossibleDay(
+                (session.human_date || '').replace(/this /, '')
+              )}
+            </TbCell>
+            <TbCell>{session.time}</TbCell>
+            <TbCell>
               <Button
                 disabled={sessionContext.isProcessing}
                 variant="contained"
@@ -88,11 +110,10 @@ function SessionList() {
                     setResult(res)
                   })
                 }}
-                fullWidth
               >
                 <EventAvailableIcon />
               </Button>
-            </TableCell>
+            </TbCell>
           </TableRow>
         ))}
         <TableRow>
@@ -103,7 +124,6 @@ function SessionList() {
                 <StyledAlert
                   data-testid={SESSION_FORM_ERROR_MESSAGE_CONTAINER}
                   severity={'error'}
-                  fullWidth
                   maxWidth="sm"
                 >
                   <AlertTitle>Schedule error</AlertTitle>
