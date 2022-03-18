@@ -13,16 +13,14 @@ export function SessionProvider({ children }) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [sessions, setSessions] = useState([])
-  const [result, setResult] = useState(null)
-  const [error, setError] = useState(null)
   const router = useRouter()
 
   const scheduleSession = (session, user) => {
     setHasSubmitted(true)
     setIsProcessing(true)
-    return postSessionSchedule(user, session).then(({ data, error }) => {
+    return postSessionSchedule(user, session).then((res) => {
       setIsProcessing(false)
-      return { data: { ...data, ...session }, error }
+      return { data: { ...res.data, ...session }, error: res.error }
     })
   }
 
@@ -30,12 +28,15 @@ export function SessionProvider({ children }) {
     router.push('/sessions/new')
   }
 
+  const deleteCustomSessions = () => {
+    storage.remove('sessions')
+    setSessions([])
+  }
+
   const saveCustomSession = (session) => {
-    const sessions = storage.get('sessions')
-    storage.save('sessions', [...(sessions || []), session])
-    setSessions(curSessions => {
-      return [...curSessions, session]
-    });
+    const storedSessions = storage.get('sessions')
+    storage.save('sessions', [...(storedSessions || []), session])
+    setSessions((curSessions) => [...curSessions, session])
     router.push('/sessions')
   }
 
@@ -51,11 +52,10 @@ export function SessionProvider({ children }) {
       value={{
         sessions,
         addCustomSession,
+        deleteCustomSessions,
         scheduleSession,
         saveCustomSession,
         isProcessing,
-        result,
-        error,
         hasSubmitted,
       }}
     >
@@ -64,6 +64,4 @@ export function SessionProvider({ children }) {
   )
 }
 
-export default () => {
-  return useContext(SessionContext)
-}
+export default () => useContext(SessionContext)

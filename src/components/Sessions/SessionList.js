@@ -8,10 +8,12 @@ import {
   Button,
   Alert,
   AlertTitle,
+  Grid
 } from '@mui/material'
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 
 import { UserContext } from '../../context/User'
@@ -60,15 +62,24 @@ function SessionList() {
   }, [result])
   return (
     <>
-      <div>
+       <Grid container spacing={2}>
+        <Grid item xs={2}>
         <Button
           data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
           onClick={sessionContext.addCustomSession}
         >
           <AddBoxIcon />
-          Custom session
         </Button>
-      </div>
+        </Grid>
+        <Grid item xs={2}>
+        <Button
+          data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
+          onClick={sessionContext.deleteCustomSessions}
+        >
+          <DeleteOutlineIcon />
+        </Button>
+        </Grid>
+      </Grid>
       <Table>
         <TableHead>
           <TableRow>
