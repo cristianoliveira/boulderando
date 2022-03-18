@@ -25,6 +25,7 @@ import {
   SESSION_FORM_ERROR_MESSAGE_CONTAINER,
   SESSION_FORM_SUCCESS_MESSAGE_CONTAINER,
   SESSION_FORM_ADD_CUSTOM_SESSION,
+  SESSION_FORM_DELETE_CUSTOM_SESSION
 } from '../../constants/data-testid'
 
 const StyledAlert = styled(Alert)`
@@ -73,7 +74,7 @@ function SessionList() {
         </Grid>
         <Grid item xs={2}>
         <Button
-          data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
+          data-testid={SESSION_FORM_DELETE_CUSTOM_SESSION}
           onClick={sessionContext.deleteCustomSessions}
         >
           <DeleteOutlineIcon />
