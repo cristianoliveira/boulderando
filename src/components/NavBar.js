@@ -11,6 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import AccountCircle from '@mui/icons-material/AccountCircle'
+import HistoryIcon from '@mui/icons-material/History'
 
 import useUserContext from '../context/User'
 
@@ -26,6 +27,8 @@ export const NAVBAR_USER_MENU_BUTTON = 'navbar_user_menu_button'
 export const NAVBAR_USER_MENU_CONTAINER = 'navbar_user_menu_button--container'
 export const NAVBAR_USER_MENU_ITEM_DELETE = 'navbar_user_menu_button--delete'
 export const NAVBAR_USER_MENU_ITEM_EDIT = 'navbar_user_menu_button--edit'
+
+export const NAVBAR_BOOKING_HISTORY_MENU = 'navbar_booking_history_button'
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true)
@@ -56,6 +59,27 @@ export default function NavBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {PAGE_TITLES[router.asPath]}
           </Typography>
+          <IconButton
+            data-testid={NAVBAR_BOOKING_HISTORY_MENU}
+            size="large"
+            aria-label="account of current user"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={() => {
+              router.push('/booking-history/')
+            }}
+            color="inherit"
+          >
+            <Box sx={{ m: 1 }}>
+              <HistoryIcon
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+              />
+            </Box>
+          </IconButton>
           {user && (
             <div>
               <IconButton
@@ -70,9 +94,6 @@ export default function NavBar() {
                 <Box sx={{ m: 1 }}>
                   <AccountCircle />
                 </Box>
-                <Typography variant="h6" component="small" sx={{ flexGrow: 1 }}>
-                  {user.name}
-                </Typography>
               </IconButton>
               <Menu
                 data-tesid={NAVBAR_USER_MENU_CONTAINER}
@@ -91,6 +112,9 @@ export default function NavBar() {
                 keepMounted
                 autoFocus
               >
+                <MenuItem disabled>
+                  {user.name}
+                </MenuItem>
                 <MenuItem
                   data-testid={NAVBAR_USER_MENU_ITEM_DELETE}
                   onClick={deleteUser}
@@ -101,7 +125,7 @@ export default function NavBar() {
                   data-testid={NAVBAR_USER_MENU_ITEM_EDIT}
                   onClick={handleEditUser}
                 >
-                  Edit
+                 Edit
                 </MenuItem>
               </Menu>
             </div>

@@ -1,5 +1,6 @@
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
+import * as NB_TID from '../../src/components/NavBar'
 
 import person from '../fixtures/persons/valid.json'
 
@@ -44,6 +45,13 @@ describe('Bouldering Session Selection', () => {
     cy.get(byDataTestId(TID.SESSION_FORM_ERROR_MESSAGE_CONTAINER)).should(
       'not.exist'
     )
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_BOOKING_HISTORY_MENU))
+      .should('be.visible')
+      .click()
+
+    cy.contains('basement').should('be.visible')
+    cy.contains('saturday').should('be.visible')
   })
 
   it('allows adding custom session', () => {

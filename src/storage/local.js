@@ -35,6 +35,18 @@ export const save = (key, data) => {
   window.localStorage.setItem(key, JSON.stringify(data))
 }
 
+export const push = (key, item) => {
+  if (typeof window === 'undefined') {
+    return
+  }
+
+  const list = get(key)
+  const updatedList = [...(list || []), item]
+  window.localStorage.setItem(key, JSON.stringify(updatedList))
+
+  return updatedList
+}
+
 export const get = (key) => {
   if (typeof window === 'undefined') {
     return null

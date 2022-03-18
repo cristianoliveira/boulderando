@@ -6,7 +6,7 @@
     "start": "next start",
     "lint": "next lint",
     "ci:start": "yarn dev & wait-on http://localhost:3333",
-    "test": "echo 'nothing here' ",
+    "test": "jest ./src/**/*.spec.js",
     "test:ui": "cypress run",
     "cy:open": "cypress open"
   },
@@ -16,6 +16,7 @@
     "@mui/icons-material": "^5.5.0",
     "@mui/material": "^5.5.0",
     "axios": "^0.26.1",
+    "dayjs": "^1.11.0",
     "dotenv-load": "^2.0.0",
     "next": "12.1.0",
     "next-env": "^1.1.1",
@@ -24,9 +25,11 @@
     "react-hook-form": "^7.28.0"
   },
   "devDependencies": {
+    "babel-jest": "^27.5.1",
     "cypress": "^9.5.2",
     "eslint": "8.9.0",
     "eslint-config-next": "12.1.0",
+    "jest": "^27.5.1",
     "prettier": "^2.5.1",
     "wait-on": "^6.0.1"
   }
