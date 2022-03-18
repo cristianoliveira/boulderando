@@ -34,7 +34,7 @@ describe('Bouldering Session Selection', () => {
     cy.contains('boulderklub').should('exist')
   })
 
-  it.only('allows booking bouldering sessions', () => {
+  it('allows booking bouldering sessions', () => {
     cy.contains('saturday').parent().find('button').click()
     cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER), {
       timeout: 20000,

@@ -5,9 +5,6 @@ import NavBar from '../src/components/NavBar'
 
 export default function Home() {
   return (
-    <UserProvider>
-      <NavBar />
       <SessionList />
-    </UserProvider>
   )
 }

@@ -1,8 +1,4 @@
-import { useRouter } from 'next/router'
-
-import Head from 'next/head'
-import Image from 'next/image'
-import { Paper, Typography, Link, Container } from '@mui/material'
+import { Paper } from '@mui/material'
 import UserForm from '../../src/components/User/Form'
 import useUserContext from '../../src/context/User'
 

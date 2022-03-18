@@ -1,11 +1,10 @@
-import { useContext } from 'react'
 import { Paper, Typography } from '@mui/material'
 import SessionsForm from '../../src/components/Sessions/Form'
 
-import { SessionContext } from '../../src/context/Sessions'
+import useSessionContext from '../../src/context/Sessions'
 
 export default function New() {
-  const sessionContext = useContext(SessionContext);
+  const sessionContext = useSessionContext();
   return (
     <Paper>
       <Typography variant="h5" color="text.primary" align="center">
