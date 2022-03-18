@@ -1,5 +1,4 @@
 import { byDataTestId } from '../support/data-testid'
-import * as TID from '../../src/constants/data-testid'
 
 import person from '../fixtures/persons/valid.json'
 
@@ -43,8 +42,6 @@ describe('Navigation Bar', () => {
       cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
         .should('be.visible')
         .click()
-
-      cy.wait(500)
 
       cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_ITEM_EDIT))
         .should('be.visible')

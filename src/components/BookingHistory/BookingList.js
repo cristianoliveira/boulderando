@@ -1,32 +1,16 @@
-import React from 'react'
-import styled from '@emotion/styled'
 import {
-  Typography,
   Table,
   TableRow,
   TableCell,
   TableHead,
-  Button,
-  Alert,
-  AlertTitle,
 } from '@mui/material'
 
 import getNextPossibleDay from '../../modules/weekday';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import AddBoxIcon from '@mui/icons-material/AddBox'
-import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 
 import useBookingHistoryContext from '../../context/BookingHistory'
 
-const StyledAlert = styled(Alert)`
-  overflow-wrap: anywhere;
-  margin: auto;
-`
-
 function BookingList() {
-
   const { bookingHistory } = useBookingHistoryContext();
-  console.log('@@@@@@ bookingHistory: ', bookingHistory);
   return (
     <>
       <Table>

@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 
 export default function TextField({
   name,
-  label,
+  label: inputLabel,
   description,
   register,
   required,
@@ -15,7 +15,7 @@ export default function TextField({
 }) {
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
-      <InputLabel htmlFor={name}>{label}</InputLabel>
+      <InputLabel htmlFor={name}>{inputLabel}</InputLabel>
       <Select
         id={name}
         name={name}

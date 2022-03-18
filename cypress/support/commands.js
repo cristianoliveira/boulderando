@@ -28,25 +28,21 @@
 Cypress.Commands.add('setLocalStorage', (key, data) => {
   cy.window().then((w) => {
     w.localStorage.setItem(key, JSON.stringify(data))
+    // eslint-disable-next-line
     expect(JSON.parse(w.localStorage.getItem(key))).include(data)
   })
  });
 
-Cypress.Commands.add('getLocalStorage', (key) => {
-  return cy.window().then((w) => {
-    return JSON.parse(w.localStorage.getItem(key))
-  })
- });
+Cypress.Commands.add('getLocalStorage', (key) => cy.window().then((w) => JSON.parse(w.localStorage.getItem(key))));
 
-Cypress.Commands.add('removeLocalStorage', (key) => {
+Cypress.Commands.add('removeLocalStorage', () => {
   cy.window().then((w) => {
     w.localStorage.removeItem('user')
+    // eslint-disable-next-line
     expect(w.localStorage.getItem('user')).equal(null)
   })
  });
 
 Cypress.Commands.add('localStorage', () => {
-  cy.window().then((w) => {
-    return w.localStorage
-  })
+  cy.window().then((w) => w.localStorage)
  });

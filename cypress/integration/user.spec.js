@@ -84,9 +84,7 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.getLocalStorage('user').then((user) => {
-      expect(user).deep.equal(person)
-    })
+    cy.getLocalStorage('user').then((user) => expect(user).deep.equal(person))
 
     cy.url().should('include', '/')
 
@@ -136,8 +134,8 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.getLocalStorage('user').then((user) => {
-      expect(user.name).equal('John NewName')
+    cy.getLocalStorage('user').then(async (user) => {
+      await expect(user.name).equal('John NewName')
     })
   })
 })

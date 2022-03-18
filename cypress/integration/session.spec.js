@@ -12,7 +12,7 @@ describe('Bouldering Session Selection', () => {
   afterEach(() => {
     cy.removeLocalStorage('user')
     cy.removeLocalStorage('sessions')
-    cy.localStorage(ls => {
+    cy.localStorage((ls) => {
       expect(ls.getItem('user')).equal(null)
       expect(ls.getItem('sessions')).equal(null)
     })
@@ -22,7 +22,9 @@ describe('Bouldering Session Selection', () => {
     cy.setLocalStorage('user', person)
 
     cy.visit('http://localhost:3333/sessions')
-    cy.window().then((w) => w.dry_run = true)
+    // TODO move this dry_run to a ENV variable
+    // eslint-disable-next-line
+    cy.window().then((w) => (w.dry_run = true))
   })
 
   it('has options for a tuesday, thursday and saturday by default', () => {

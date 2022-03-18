@@ -11,7 +11,7 @@ export default function UserNew() {
             onSubmit={(data) => {
               saveUser(data)
             }}
-          ></UserForm>
+          />
         </Paper>
       )}
     </UserConsumer>

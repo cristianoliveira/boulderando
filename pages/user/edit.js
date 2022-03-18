@@ -11,7 +11,7 @@ export default function UserEdit() {
         onSubmit={(data) => {
           saveUser(data)
         }}
-      ></UserForm>
+      />
     </Paper>
   )
 }

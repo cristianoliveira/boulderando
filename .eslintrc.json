@@ -1,3 +1,12 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "airbnb-base",
+    "prettier",
+    "plugin:jest/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "rules": {
+    "no-console": "error"
+  }
 }

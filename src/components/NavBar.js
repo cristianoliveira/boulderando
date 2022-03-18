@@ -5,9 +5,7 @@ import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
-import MenuIcon from '@mui/icons-material/Menu'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import AccountCircle from '@mui/icons-material/AccountCircle'
@@ -31,17 +29,12 @@ export const NAVBAR_USER_MENU_ITEM_EDIT = 'navbar_user_menu_button--edit'
 export const NAVBAR_BOOKING_HISTORY_MENU = 'navbar_booking_history_button'
 
 export default function NavBar() {
-  const [auth, setAuth] = React.useState(true)
   const [anchorEl, setAnchorEl] = React.useState(null)
   const { user, deleteUser, editUser } = useUserContext()
   const router = useRouter()
 
   const handleEditUser = () => {
     editUser()
-  }
-
-  const handleChange = (event) => {
-    setAuth(event.target.checked)
   }
 
   const handleMenu = (event) => {
