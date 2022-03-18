@@ -14,7 +14,7 @@ export default function New() {
         onSubmit={(data) => {
           sessionContext.saveCustomSession(data)
         }}
-      ></SessionsForm>
+      />
     </Paper>
   )
 }

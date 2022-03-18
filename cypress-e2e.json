@@ -9,7 +9,7 @@
     "toConsole": true
   },
   "chromeWebSecurity": false,
-  "retries": 2,
-  "testFiles": ["**/*.spec.js"],
-  "ignoreTestFiles": "**/*.spec.e2e.js"
+  "retries": 3,
+  "testFiles": "**/*.spec.e2e.js",
+  "ignoreTestFiles": "**/*.unstable.spec.e2e.js"
 }

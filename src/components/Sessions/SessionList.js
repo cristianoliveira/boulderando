@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import {
-  Typography,
   Table,
   TableRow,
   TableCell,
@@ -11,7 +10,6 @@ import {
   AlertTitle,
 } from '@mui/material'
 
-import getNextPossibleDay from '../../modules/weekday';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
@@ -19,6 +17,8 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 import { UserContext } from '../../context/User'
 import { SessionContext } from '../../context/Sessions'
 import useBookingHistoryContext from '../../context/BookingHistory'
+
+import getNextPossibleDay from '../../modules/weekday';
 
 import {
   SESSION_FORM_ERROR_MESSAGE_CONTAINER,
@@ -49,6 +49,7 @@ function SessionList() {
     if (result?.data) {
       bookingHistory.saveBookedSession(result.data)
     }
+    // eslint-disable-next-line
   }, [result])
   return (
     <>

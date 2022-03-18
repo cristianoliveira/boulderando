@@ -10,7 +10,7 @@ describe('User Data Form', () => {
   })
 
   it('requires user booking data', () => {
-    cy.visit('http://localhost:3333/')
+    cy.visit('/')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME)).should('exist')
     cy.get(byDataTestId(TID.USER_INPUT_LAST_NAME)).should('exist')
@@ -54,7 +54,7 @@ describe('User Data Form', () => {
   })
 
   it('collects and store locally user data', () => {
-    cy.visit('http://localhost:3333/')
+    cy.visit('/')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
       .should('exist')
@@ -84,9 +84,7 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.getLocalStorage('user').then((user) => {
-      expect(user).deep.equal(person)
-    })
+    cy.getLocalStorage('user').then((user) => expect(user).deep.equal(person))
 
     cy.url().should('include', '/')
 
@@ -96,7 +94,7 @@ describe('User Data Form', () => {
   it('can edit user data', () => {
     cy.setLocalStorage('user', person)
 
-    cy.visit('http://localhost:3333/user/edit')
+    cy.visit('/user/edit')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
       .find('input')
@@ -136,8 +134,8 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.getLocalStorage('user').then((user) => {
-      expect(user.name).equal('John NewName')
+    cy.getLocalStorage('user').then(async (user) => {
+      await expect(user.name).equal('John NewName')
     })
   })
 })

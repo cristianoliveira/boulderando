@@ -1,6 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import { Paper, Typography, Link, Container, Box } from '@mui/material'
+import { Typography, Link, Box } from '@mui/material'
 import NavBar from '../src/components/NavBar'
 
 import { UserProvider, UserConsumer } from '../src/context/User'

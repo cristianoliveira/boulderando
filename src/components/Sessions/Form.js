@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import styled from '@emotion/styled'
 
 import FormControl from '@mui/material/FormControl'
@@ -7,11 +6,7 @@ import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
 import { useForm } from 'react-hook-form'
 import Alert from '@mui/material/Alert'
-import AlertTitle from '@mui/material/AlertTitle'
 
-import PhoneField from '../fields/PhoneField'
-import TextField from '../fields/TextField'
-import DateField from '../fields/DateField'
 import SelectField from '../fields/SelectField'
 
 import * as TID from '../../constants/data-testid'
@@ -34,7 +29,7 @@ const timesSelection = [...Array(20).keys()]
   .map((i) => [`${i}:00 - ${i + 2}:00`, `${i}:30 - ${i + 2}:30`])
   .flat()
 
-function Form({ user = {}, onSubmit }) {
+function Form({ onSubmit }) {
   const {
     register,
     handleSubmit,
