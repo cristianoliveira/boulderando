@@ -20,7 +20,7 @@ describe('Bouldering Session Selection', () => {
   beforeEach(() => {
     cy.setLocalStorage('user', person)
 
-    cy.visit('http://localhost:3333/sessions')
+    cy.visit('/sessions')
     // TODO move this dry_run to a ENV variable
     // eslint-disable-next-line
     cy.window().then((w) => (w.dry_run = true))

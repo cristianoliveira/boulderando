@@ -10,7 +10,7 @@ describe('User Data Form', () => {
   })
 
   it('requires user booking data', () => {
-    cy.visit('http://localhost:3333/')
+    cy.visit('/')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME)).should('exist')
     cy.get(byDataTestId(TID.USER_INPUT_LAST_NAME)).should('exist')
@@ -54,7 +54,7 @@ describe('User Data Form', () => {
   })
 
   it('collects and store locally user data', () => {
-    cy.visit('http://localhost:3333/')
+    cy.visit('/')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
       .should('exist')
@@ -94,7 +94,7 @@ describe('User Data Form', () => {
   it('can edit user data', () => {
     cy.setLocalStorage('user', person)
 
-    cy.visit('http://localhost:3333/user/edit')
+    cy.visit('/user/edit')
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
       .find('input')

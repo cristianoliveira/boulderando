@@ -20,19 +20,19 @@ describe('Navigation Bar', () => {
   afterEach(cleanUpUser)
 
   it('always is present', () => {
-    cy.visit('http://localhost:3333/')
+    cy.visit('/')
     cy.get(byDataTestId(NB_TID.NAVBAR_CONTAINER)).should('be.visible')
 
     withUser()
 
-    cy.visit('http://localhost:3333/sessions')
+    cy.visit('/sessions')
     cy.get(byDataTestId(NB_TID.NAVBAR_CONTAINER)).should('be.visible')
   })
 
   describe('when a user is registered', () => {
     beforeEach(() => {
       withUser()
-      cy.visit('http://localhost:3333/')
+      cy.visit('/')
     })
 
     it('gives options to edit user', () => {

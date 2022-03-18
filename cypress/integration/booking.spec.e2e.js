@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
 
@@ -7,6 +9,7 @@ describe('Bouldering Session Selection', () => {
   beforeEach(() => {
     cy.viewport('iphone-7')
   })
+
 
   afterEach(() => {
     cy.removeLocalStorage('user')
@@ -20,7 +23,7 @@ describe('Bouldering Session Selection', () => {
   beforeEach(() => {
     cy.setLocalStorage('user', person)
 
-    cy.visit('http://localhost:3333/sessions')
+    cy.visit('/sessions')
     // TODO move this dry_run to a ENV variable
     // eslint-disable-next-line
     cy.window().then((w) => (w.dry_run = true))
@@ -28,6 +31,7 @@ describe('Bouldering Session Selection', () => {
 
   it('allows booking bouldering sessions', () => {
     cy.contains('saturday').parent().find('button').click()
+dayjs.add(-1,)
     cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER), {
       timeout: 20000,
     })
