@@ -4,9 +4,6 @@ import useUserContext from '../../src/context/User'
 
 export default function UserEdit() {
   const { user, saveUser } = useUserContext()
-  if (!user) {
-    debugger
-  }
   return (
     <Paper>
       <UserForm
