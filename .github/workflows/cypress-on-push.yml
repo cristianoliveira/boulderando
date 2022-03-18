@@ -46,4 +46,7 @@ jobs:
       - name: Run Cypress tests
         run: yarn test:ui
 
+      - name: Run Cypress tests
+        run: yarn test:e2e
+
 

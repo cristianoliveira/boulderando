@@ -7,8 +7,10 @@
     "lint": "next lint && eslint cypress -c cypress/.eslintrc",
     "ci:start": "yarn dev & wait-on http://localhost:3333",
     "test": "jest ./src/**/*.spec.js",
-    "test:ui": "cypress run",
-    "cy:open": "cypress open",
+    "test:ui": "cypress run -C cypress.json",
+    "cy:open": "cypress open -C cypress.json",
+    "test:e2e": "cypress run -C cypress-e2e.json",
+    "cy:open:e2e": "cypress open -C cypress-e2e.json",
     "prepare": "husky install"
   },
   "dependencies": {
