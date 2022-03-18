@@ -20,3 +20,5 @@ export const CUSTOM_SESSION_FORM_GYM = 'custom_session_form_gym';
 export const CUSTOM_SESSION_FORM_DAY = 'custom_session_form_day';
 export const CUSTOM_SESSION_FORM_TIME = 'custom_session_form_time';
 export const CUSTOM_SESSION_FORM_SUBMIT_BUTTON = 'custom_session_form_submit_button';
+
+export const BOOKING_HISTORY_MENU_CONTAINER = 'booking_history_menu_container';

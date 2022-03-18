@@ -5,6 +5,7 @@ import NavBar from '../src/components/NavBar'
 
 import { UserProvider, UserConsumer } from '../src/context/User'
 import { SessionProvider } from '../src/context/Sessions'
+import { BookingHistoryProvider } from '../src/context/BookingHistory'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -19,9 +20,16 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <UserProvider>
-        <SessionProvider>
-          <Component {...pageProps} />
-        </SessionProvider>
+        <UserConsumer>
+          {(user) => (
+            <SessionProvider user={user}>
+              <BookingHistoryProvider>
+                <NavBar />
+                <Component {...pageProps} />
+              </BookingHistoryProvider>
+            </SessionProvider>
+          )}
+        </UserConsumer>
       </UserProvider>
 
       <Box>

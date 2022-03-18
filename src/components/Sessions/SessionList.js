@@ -11,12 +11,14 @@ import {
   AlertTitle,
 } from '@mui/material'
 
+import getNextPossibleDay from '../../modules/weekday';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 
 import { UserContext } from '../../context/User'
 import { SessionContext } from '../../context/Sessions'
+import useBookingHistoryContext from '../../context/BookingHistory'
 
 import {
   SESSION_FORM_ERROR_MESSAGE_CONTAINER,
@@ -41,6 +43,13 @@ function SessionList() {
   const [result, setResult] = React.useState(null)
   const { user } = React.useContext(UserContext)
   const sessionContext = React.useContext(SessionContext)
+  const bookingHistory = useBookingHistoryContext()
+
+  React.useEffect(() => {
+    if (result?.data) {
+      bookingHistory.saveBookedSession(result.data)
+    }
+  }, [result])
   return (
     <>
       <div>
@@ -64,6 +73,8 @@ function SessionList() {
             <TableCell>{session.gym_name}</TableCell>
             <TableCell>
               {(session.human_date || '').replace(/this/, '')}
+              -
+              {getNextPossibleDay((session.human_date || '').replace(/this /, ''))}
             </TableCell>
             <TableCell>{session.time}</TableCell>
             <TableCell>
