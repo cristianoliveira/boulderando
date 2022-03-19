@@ -1,5 +1,3 @@
-import dayjs from 'dayjs';
-
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
 
@@ -31,7 +29,6 @@ describe('Bouldering Session Selection', () => {
 
   it('allows booking bouldering sessions', () => {
     cy.contains('saturday').parent().find('button').click()
-dayjs.add(-1,)
     cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER), {
       timeout: 20000,
     })

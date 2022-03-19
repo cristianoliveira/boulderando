@@ -2,13 +2,12 @@ import * as React from 'react'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
 
 const ITEM_HEIGHT = 48
 
-export default function LongMenu({ options, onClick }) {
+export default function LongMenu({ MenuIcon, options, onClick, ...props }) {
   const [selected, setSelected] = React.useState("")
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
@@ -29,8 +28,9 @@ export default function LongMenu({ options, onClick }) {
         aria-haspopup="true"
         onClick={handleClick}
         color="inherit"
+        data-testid={props['data-testid']}
       >
-        <MoreVertIcon />
+        <MenuIcon />
       </IconButton>
       <Menu
         id="long-menu"
@@ -47,7 +47,7 @@ export default function LongMenu({ options, onClick }) {
           },
         }}
       >
-        {options.map(({ id, Icon, label }) => (
+        {options.map(({ id, Icon, label, ...oProps }) => (
           <MenuItem
             key={id}
             selected={id === selected}
@@ -56,10 +56,13 @@ export default function LongMenu({ options, onClick }) {
               onClick({ id, label });
               handleClose()
             }}
+            {...oProps}
           >
+          {Icon && (
             <ListItemIcon>
               <Icon fontSize="small" />
             </ListItemIcon>
+          )}
             <ListItemText>{label}</ListItemText>
           </MenuItem>
         ))}
