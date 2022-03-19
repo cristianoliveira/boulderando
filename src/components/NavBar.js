@@ -10,6 +10,9 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import AccountCircle from '@mui/icons-material/AccountCircle'
 import HistoryIcon from '@mui/icons-material/History'
+import ListAltIcon from '@mui/icons-material/ListAlt'
+
+import MoreVertIcon from './NavBar/MoreMenu'
 
 import useUserContext from '../context/User'
 
@@ -48,6 +51,27 @@ export default function NavBar() {
   return (
     <AppBar position="static" data-testid={NAVBAR_CONTAINER}>
       <Toolbar>
+        <MoreVertIcon
+          options={[
+            { id: 'session', Icon: ListAltIcon, label: 'Sessions' },
+            { id: 'booking-history', Icon: HistoryIcon, label: 'History' },
+          ]}
+          onClick={({ id }) => {
+            switch (id) {
+              case 'session':
+                router.push('/sessions')
+
+                break
+
+              case 'booking-history':
+                router.push('/booking-history')
+
+                break
+
+              default:
+            }
+          }}
+        />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {PAGE_TITLES[router.asPath]}
         </Typography>
@@ -62,15 +86,7 @@ export default function NavBar() {
           }}
           color="inherit"
         >
-          <Box sx={{ m: 1 }}>
-            <HistoryIcon
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              color="inherit"
-            />
-          </Box>
+
         </IconButton>
         {user && (
           <div>

@@ -42,9 +42,6 @@ dayjs.add(-1,)
       'not.exist'
     )
 
-      .should('be.visible')
-      .click()
-
     cy.contains('basement').should('be.visible')
     cy.contains('saturday').should('be.visible')
   })
