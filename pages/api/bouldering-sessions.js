@@ -20,21 +20,25 @@ const SESSIONS_TIME = {
 const sessions = [
   {
     gym_name: GYMS.BASEMENT,
+    day_of_week: DAYS_OF_THE_WEEK.SATURDAY.replace(/this /, ''),
     human_date: DAYS_OF_THE_WEEK.SATURDAY,
     time: SESSIONS_TIME.MORNING_10_30,
   },
   {
     gym_name: GYMS.BKK,
+    day_of_week: DAYS_OF_THE_WEEK.TUESDAY.replace(/this /, ''),
     human_date: DAYS_OF_THE_WEEK.TUESDAY,
     time: SESSIONS_TIME.EVENING_19_00,
   },
   {
     gym_name: GYMS.BKK,
+    day_of_week: DAYS_OF_THE_WEEK.THURSDAY.replace(/this /, ''),
     human_date: DAYS_OF_THE_WEEK.THURSDAY,
     time: SESSIONS_TIME.EVENING_19_00,
   },
   {
     gym_name: GYMS.BASEMENT,
+    day_of_week: DAYS_OF_THE_WEEK.THURSDAY.replace(/this /, ''),
     human_date: DAYS_OF_THE_WEEK.THURSDAY,
     time: SESSIONS_TIME.EVENING_18_30,
   },
