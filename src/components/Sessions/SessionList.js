@@ -8,12 +8,12 @@ import {
   Button,
   Alert,
   AlertTitle,
-  Grid
+  Grid,
 } from '@mui/material'
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import AddBoxIcon from '@mui/icons-material/AddBox'
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EventAvailableIcon from '@mui/icons-material/EventAvailable'
 
 import { UserContext } from '../../context/User'
@@ -25,7 +25,7 @@ import {
   SESSION_FORM_ERROR_MESSAGE_CONTAINER,
   SESSION_FORM_SUCCESS_MESSAGE_CONTAINER,
   SESSION_FORM_ADD_CUSTOM_SESSION,
-  SESSION_FORM_DELETE_CUSTOM_SESSION
+  SESSION_FORM_DELETE_CUSTOM_SESSION,
 } from '../../constants/data-testid'
 
 const StyledAlert = styled(Alert)`
@@ -36,7 +36,9 @@ const StyledAlert = styled(Alert)`
 const formatResult = (result) =>
   result
     ? `🧗🧗🧗🧗🧗
-${result.gym_name} ${result.human_date} ${result.scheduled_time}
+${result.gym_name} ${result.day_of_week} ${getNextPossibleDay(result.day_of_week)} ${
+        result.scheduled_time
+      }
 🧗🧗🧗🧗🧗
 `
     : ''
@@ -57,28 +59,28 @@ function SessionList() {
   const bookingHistory = useBookingHistoryContext()
 
   React.useEffect(() => {
-    if (result?.data) {
+    if (result) {
       bookingHistory.saveBookedSession(result.data)
     }
   }, [result])
   return (
     <>
-       <Grid container spacing={2}>
+      <Grid container spacing={2}>
         <Grid item xs={2}>
-        <Button
-          data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
-          onClick={sessionContext.addCustomSession}
-        >
-          <AddBoxIcon />
-        </Button>
+          <Button
+            data-testid={SESSION_FORM_ADD_CUSTOM_SESSION}
+            onClick={sessionContext.addCustomSession}
+          >
+            <AddBoxIcon />
+          </Button>
         </Grid>
         <Grid item xs={2}>
-        <Button
-          data-testid={SESSION_FORM_DELETE_CUSTOM_SESSION}
-          onClick={sessionContext.deleteCustomSessions}
-        >
-          <DeleteOutlineIcon />
-        </Button>
+          <Button
+            data-testid={SESSION_FORM_DELETE_CUSTOM_SESSION}
+            onClick={sessionContext.deleteCustomSessions}
+          >
+            <DeleteOutlineIcon />
+          </Button>
         </Grid>
       </Grid>
       <Table>
@@ -94,10 +96,7 @@ function SessionList() {
           <TableRow key={i}>
             <TbCell>{session.gym_name}</TbCell>
             <TbCell>
-              {(session.human_date || '').replace(/this/, '')}-
-              {getNextPossibleDay(
-                (session.human_date || '').replace(/this /, '')
-              )}
+              {session.day_of_week}-{getNextPossibleDay(session.day_of_week)}
             </TbCell>
             <TbCell>{session.time}</TbCell>
             <TbCell>
@@ -130,8 +129,7 @@ function SessionList() {
                   {`${JSON.stringify(result?.error)}`}
                 </StyledAlert>
               )}
-            {!result?.error &&
-              result?.data &&
+            {result?.data &&
               sessionContext?.hasSubmitted &&
               !sessionContext.isProcessing && (
                 <StyledAlert

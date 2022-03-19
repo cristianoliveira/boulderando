@@ -38,7 +38,11 @@ function Form({ onSubmit }) {
 
   const errorsList = showErrorFields(errors)
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm
+      onSubmit={handleSubmit((data) =>
+        onSubmit({ ...data, day_of_week: data.human_date.replace(/this /, '') })
+      )}
+    >
       <Grid
         direction="row"
         justify="flex-start"
@@ -80,7 +84,10 @@ function Form({ onSubmit }) {
             name="time"
             label="Day of the week"
             register={register}
-            selectOptions={timesSelection.map(time => ({ label: time, value: time }))}
+            selectOptions={timesSelection.map((time) => ({
+              label: time,
+              value: time,
+            }))}
           />
         </Grid>
         <Grid item xs={FULL_GRID}>

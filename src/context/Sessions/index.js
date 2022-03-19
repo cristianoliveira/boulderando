@@ -18,9 +18,14 @@ export function SessionProvider({ children }) {
   const scheduleSession = (session, user) => {
     setHasSubmitted(true)
     setIsProcessing(true)
-    return postSessionSchedule(user, session).then((res) => {
+    return postSessionSchedule(user, session).then(({ data, error }) => {
       setIsProcessing(false)
-      return { data: { ...res.data, ...session }, error: res.error }
+
+      if (data) {
+        return { data: { ...data, ...session } };
+      }
+
+      return { error }
     })
   }
 
