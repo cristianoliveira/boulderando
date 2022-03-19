@@ -29,6 +29,43 @@ describe('Navigation Bar', () => {
     cy.get(byDataTestId(NB_TID.NAVBAR_CONTAINER)).should('be.visible')
   })
 
+  it('allows user to navigate through the pages', () => {
+    cy.visit('/')
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_BUTTON))
+      .should('be.visible')
+      .click()
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_ITEM_SESSION)).should(
+      'have.attr','aria-disabled', 'true'
+    )
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_ITEM_HISTORY)).should(
+      'have.attr','aria-disabled', 'true'
+    )
+
+    withUser()
+    cy.visit('/')
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_BUTTON))
+      .should('be.visible')
+      .click()
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_ITEM_HISTORY))
+      .should('be.visible')
+      .click()
+
+    cy.url().should('include', '/booking-history')
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_BUTTON))
+      .should('be.visible')
+      .click()
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_ITEM_SESSION))
+      .should('be.visible')
+      .click()
+
+    cy.url().should('include', '/session')
+
+  })
+
   describe('when a user is registered', () => {
     beforeEach(() => {
       withUser()
