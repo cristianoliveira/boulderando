@@ -1,6 +1,7 @@
 name: Run e2e on deploy
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
-on: [push, deployment, deployment_status]
+# on: [push, deployment, deployment_status]
+ on: [deployment_status]
 jobs:
   e2e:
     # only runs this job on successful deploy
@@ -14,11 +15,21 @@ jobs:
         with:
           node-version: 17.7.1
 
+      # - name: Dump GitHub context
+      #   env:
+      #     GITHUB_CONTEXT: ${{ toJson(github) }}
+      #   run: |
+      #     echo "$GITHUB_CONTEXT"
+
       - name: Install dependencies
         run: yarn install
 
-      - name: Run Cypress tests
+      - name: Run Ui tests
         run: yarn test:ui
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
 
+      - name: Run e2e tests
+        run: yarn test:e2e
+        env:
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
