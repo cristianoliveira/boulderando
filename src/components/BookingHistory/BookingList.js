@@ -26,8 +26,8 @@ ${result.gym_name} ${result.day_of_week} ${result.booking_date} ${result.schedul
 export const BOOKING_HISTORY_LIST_ITEM = 'booking_history_list_item'
 
 dayjs.extend(customParseFormat)
-const sortByDate = (sessions) =>
-  sessions.sort(
+const sortByBookingDate = (sessions) =>
+  sessions.filter(s => s.booking_date).sort(
     (a, b) =>
       dayjs(b.booking_date, 'DD/MM/YYYY').toDate() -
       dayjs(a.booking_date, 'DD/MM/YYYY').toDate()
@@ -45,7 +45,7 @@ function BookingList() {
           <TbCell>Created At</TbCell>
           <TbCell>Copy</TbCell>
         </TableHead>
-        {sortByDate(bookingHistory).map((session, i) => (
+        {sortByBookingDate(bookingHistory).map((session, i) => (
           <TableRow
             data-testid={BOOKING_HISTORY_LIST_ITEM}
             key={i}

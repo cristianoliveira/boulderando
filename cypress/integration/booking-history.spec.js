@@ -26,15 +26,12 @@ describe('Booking history', () => {
   it('shows booking session from the newsest to oldest', () => {
     cy.get(byDataTestId(BL_TID.BOOKING_HISTORY_LIST_ITEM))
       .first()
-      .then(e => {
-        expect(e.text()).include('basement')
-        expect(e.text()).include('26/03/2022')
-      })
+      .should('contain', 'basement')
+      .should('contain', 'saturday-26/03/2022')
+
     cy.get(byDataTestId(BL_TID.BOOKING_HISTORY_LIST_ITEM))
       .last()
-      .then(e => {
-        expect(e.text()).include('boulderklub')
-        expect(e.text()).include('24/02/2022')
-      })
+      .should('contain', 'boulderklub')
+      .should('contain', 'tuesday-24/02/2022')
   })
 })
