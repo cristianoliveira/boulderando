@@ -2,14 +2,14 @@ import { createContext, useContext } from 'react'
 import dayjs from 'dayjs'
 import getNextPossibleDay from '../../modules/weekday'
 
-import useStorage from '../../hooks/useStorage'
+import useListStorage from '../../hooks/useListStorage'
 
 export const BookingHistoryContext = createContext()
 
 export const BookingConsumer = BookingHistoryContext.Consumer
 
 export function BookingHistoryProvider({ children }) {
-  const [bookingHistory, setBookingHistory] = useStorage('booking-history', [])
+  const [bookingHistory, setBookingHistory] = useListStorage('booking-history', [])
 
   const saveBookedSession = (session) => {
     const history = {
