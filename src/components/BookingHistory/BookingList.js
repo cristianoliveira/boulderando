@@ -1,4 +1,8 @@
-import { Table, TableRow, TableCell, TableHead } from '@mui/material'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+import { Table, TableRow, TableCell, TableHead, Button } from '@mui/material'
+import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 
 import useBookingHistoryContext from '../../context/BookingHistory'
 
@@ -11,6 +15,24 @@ const TbCell = (props) => (
   />
 )
 
+const formatSession = (result) =>
+  result
+    ? `🧗🧗🧗🧗🧗
+${result.gym_name} ${result.day_of_week} ${result.booking_date} ${result.scheduled_time}
+🧗🧗🧗🧗🧗
+`
+    : ''
+
+export const BOOKING_HISTORY_LIST_ITEM = 'booking_history_list_item'
+
+dayjs.extend(customParseFormat)
+const sortByDate = (sessions) =>
+  sessions.sort(
+    (a, b) =>
+      dayjs(b.created_at, 'DD/MM/YYYY').toDate() -
+      dayjs(a.created_at, 'DD/MM/YYYY').toDate()
+  )
+
 function BookingList() {
   const { bookingHistory } = useBookingHistoryContext()
   return (
@@ -21,9 +43,11 @@ function BookingList() {
           <TbCell>Date</TbCell>
           <TbCell>Time</TbCell>
           <TbCell>Created At</TbCell>
+          <TbCell>Copy</TbCell>
         </TableHead>
-        {bookingHistory.map((session, i) => (
+        {sortByDate(bookingHistory).map((session, i) => (
           <TableRow
+            data-testid={BOOKING_HISTORY_LIST_ITEM}
             key={i}
             sx={{
               color: session.error ? 'red' : 'green',
@@ -37,6 +61,15 @@ function BookingList() {
             </TbCell>
             <TbCell>{session.time}</TbCell>
             <TbCell>{session.created_at}</TbCell>
+            <TbCell>
+              <Button color="inherit" size="small">
+                <ContentCopyIcon
+                  onClick={() => {
+                    navigator.clipboard.writeText(formatSession(session))
+                  }}
+                />
+              </Button>
+            </TbCell>
           </TableRow>
         ))}
       </Table>
