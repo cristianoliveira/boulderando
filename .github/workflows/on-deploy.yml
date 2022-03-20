@@ -4,7 +4,6 @@ on: [push, deployment, deployment_status]
 jobs:
   e2e:
     # only runs this job on successful deploy
-    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,7 +22,11 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run Ui tests
+      - name: Run unit tests
+        run: yarn test
+
+      - name: Run UI tests
+        if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
         run: yarn test:ui
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
