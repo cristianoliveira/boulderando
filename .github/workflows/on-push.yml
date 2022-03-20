@@ -28,8 +28,11 @@ jobs:
       - name: Run unit tests
         run: yarn test
 
-      - name: Start server
-        run: yarn ci:start
+      - name: Run build
+        run: yarn build
 
-      - name: Run Cypress tests
-        run: yarn test:ui
+      # - name: Start server
+      #   run: yarn ci:start
+
+      # - name: Run Cypress tests
+      #   run: yarn test:ui
