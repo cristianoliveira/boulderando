@@ -13,7 +13,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 17.7.1
-          cache: 'yarn'
 
       - name: Dump GitHub context
         env:
