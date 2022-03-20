@@ -5,7 +5,7 @@ import * as BL_TID from '../../src/components/BookingHistory/BookingList'
 import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
 
-describe('Bouldering Session Selection', () => {
+describe('Booking history', () => {
   beforeEach(() => {
     cy.viewport('iphone-7')
     cy.setLocalStorage('user', person)
@@ -27,14 +27,14 @@ describe('Bouldering Session Selection', () => {
     cy.get(byDataTestId(BL_TID.BOOKING_HISTORY_LIST_ITEM))
       .first()
       .then(e => {
-        expect(e.text()).include('boulderklub')
-        expect(e.text()).include('24/03/2022')
+        expect(e.text()).include('basement')
+        expect(e.text()).include('26/03/2022')
       })
     cy.get(byDataTestId(BL_TID.BOOKING_HISTORY_LIST_ITEM))
       .last()
       .then(e => {
         expect(e.text()).include('boulderklub')
-        expect(e.text()).include('20/02/2022')
+        expect(e.text()).include('24/02/2022')
       })
   })
 })

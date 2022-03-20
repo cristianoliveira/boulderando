@@ -29,8 +29,8 @@ dayjs.extend(customParseFormat)
 const sortByDate = (sessions) =>
   sessions.sort(
     (a, b) =>
-      dayjs(b.created_at, 'DD/MM/YYYY').toDate() -
-      dayjs(a.created_at, 'DD/MM/YYYY').toDate()
+      dayjs(b.booking_date, 'DD/MM/YYYY').toDate() -
+      dayjs(a.booking_date, 'DD/MM/YYYY').toDate()
   )
 
 function BookingList() {
