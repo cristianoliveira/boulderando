@@ -29,10 +29,6 @@ export function SessionProvider({ children }) {
     })
   }
 
-  const addCustomSession = () => {
-    router.push('/sessions/new')
-  }
-
   const deleteCustomSessions = () => {
     resetSessions()
   }
@@ -54,7 +50,6 @@ export function SessionProvider({ children }) {
     <SessionContext.Provider
       value={{
         sessions,
-        addCustomSession,
         deleteCustomSessions,
         scheduleSession,
         saveCustomSession,

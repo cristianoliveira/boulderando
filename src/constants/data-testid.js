@@ -14,9 +14,6 @@ export const USER_FORM_ERROR_MESSAGE_CONTAINER = 'user--form_error_messsage--con
 export const SESSION_FORM_ERROR_MESSAGE_CONTAINER = 'session--form_error_messsage--container';
 export const SESSION_FORM_SUCCESS_MESSAGE_CONTAINER = 'session--form_success_messsage--container';
 
-export const SESSION_FORM_ADD_CUSTOM_SESSION = 'session--add-custom--actions';
-export const SESSION_FORM_DELETE_CUSTOM_SESSION = 'session--delete-custom--actions';
-
 export const CUSTOM_SESSION_FORM_GYM = 'custom_session_form_gym';
 export const CUSTOM_SESSION_FORM_DAY = 'custom_session_form_day';
 export const CUSTOM_SESSION_FORM_TIME = 'custom_session_form_time';
