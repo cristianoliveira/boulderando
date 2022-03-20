@@ -28,6 +28,8 @@
     "react-hook-form": "^7.28.0"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
     "babel-jest": "^27.5.1",
     "cypress": "^9.5.2",
     "eslint": "^8.11.0",

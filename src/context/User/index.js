@@ -1,29 +1,26 @@
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
-
-import * as storage from '../../storage/local'
+import useStorage from '../../hooks/useStorage'
 
 export const UserContext = createContext()
 
 export const UserConsumer = UserContext.Consumer
 
-export function UserProvider({ guard, children }) {
+export function UserProvider({ children }) {
   const router = useRouter()
-  const [user, setUser] = useState(storage.getUser())
+  const [user, setUser, removeUser] = useStorage('user')
 
   const editUser = () => {
     router.push('/user/edit')
   }
 
   const deleteUser = () => {
-    storage.deleteUser()
-    setUser(null)
+    removeUser()
     router.push('/user/new')
   }
 
-  const saveUser = (user) => {
-    storage.saveUser(user)
-    setUser(user)
+  const saveUser = (_user) => {
+    setUser(_user)
     router.push('/')
   }
 
@@ -40,6 +37,4 @@ export function UserProvider({ guard, children }) {
   )
 }
 
-export default () => {
-  return useContext(UserContext);
-}
+export default () => useContext(UserContext)
