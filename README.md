@@ -19,7 +19,7 @@ docker-compose up
 
 Open [http://localhost:3333](http://localhost:3333) with your browser to see the result.
 
-### Tests 
+## Tests 
 
 This project contains unit and e2e tests using cypress. In order to run it execute:
 
@@ -37,12 +37,12 @@ yarn cy:open
 yarn cy:open:e2e
 ```
 
-## Deploy on Vercel
+## Deploy your own using Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcristianoliveira%2Fboulderando&env=API_URL&project-name=my-boulderando)
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-### Licence
+## Licence
 
 MIT
