@@ -13,13 +13,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 17.7.1
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install
-
-      - name: Create project config for testing
-        run: |
-          cp .env.example .env
 
       - name: Run Cypress tests
         run: yarn test:ui
