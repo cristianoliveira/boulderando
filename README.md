@@ -1,36 +1,38 @@
 ## Boulderando 
 
 This is a toy project made by Bouldering Fans that got sick of having to book session in Berlin because of COVID restrictions.
-Together with [its backend](https://github.com/juanibiapina/bouldering-scheduler) it allow you book bouldering sessions with a button click in any device.
+Together with [its backend](https://github.com/juanibiapina/bouldering-scheduler) it allow you book bouldering sessions with a click of a button on any device.
 
 https://boulderando.vercel.app/
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
+yarn && yarn dev
+```
+Or simply 
+```
+docker-compose up
 ```
 
 Open [http://localhost:3333](http://localhost:3333) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Tests 
 
-### Tests with cypress
-
-This project contains e2e tests using cypress. In order to run it execute:
+This project contains unit and e2e tests using cypress. In order to run it execute:
 
 All tests in headless mode
 ```
+yarn test
 yarn test:ui
+yarn test:e2e
 ```
 
-Or using cypress UI
+Or running on Cypress UI
+
 ```
 yarn cy:open
+yarn cy:open:e2e
 ```
 
 ## Deploy on Vercel
