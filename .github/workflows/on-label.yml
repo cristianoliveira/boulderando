@@ -1,0 +1,35 @@
+name: Cypress e2e checks
+on:
+  pull_request:
+    types: [ labeled ]
+
+jobs:
+  e2e:
+    name: Check e2e tests
+    if: ${{ github.event.label.name == 'e2e' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js v17
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17.7.1
+          cache: 'yarn'
+
+      ## Setup yarn
+      - name: Install dependencies
+        run: yarn install
+
+      ## Running scripts
+      - name: Create project config for testing
+        run: |
+          cp .env.example .env
+
+      - name: Start server
+        run: yarn ci:start
+
+      - name: Run Cypress tests
+        run: yarn test:e2e
+
+
