@@ -2,32 +2,20 @@ name: Cypress checks
 on: [push]
 jobs:
   checks:
-    name: Check ui tests with cypress
+    name: Check ui + unit tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
       - name: Use Node.js v17
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 17.7.1
+          cache: 'yarn'
 
       ## Setup yarn
       - name: Install dependencies
-        run: |
-          npm install -g yarn
-          yarn install
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v1
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        run: yarn install
 
       ## Running scripts
       - name: Create project config for testing
@@ -45,5 +33,33 @@ jobs:
 
       - name: Run Cypress tests
         run: yarn test:ui
+
+  e2e:
+    name: Check e2e tests
+    if: ${{ github.event.label.name == 'e2e' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js v17
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17.7.1
+          cache: 'yarn'
+
+      ## Setup yarn
+      - name: Install dependencies
+        run: yarn install
+
+      ## Running scripts
+      - name: Create project config for testing
+        run: |
+          cp .env.example .env
+
+      - name: Start server
+        run: yarn ci:start
+
+      - name: Run Cypress tests
+        run: yarn test:e2e
 
 
