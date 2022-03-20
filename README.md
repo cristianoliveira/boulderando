@@ -45,7 +45,7 @@ yarn cy:open:e2e
 
 ## Deploy your own using Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcristianoliveira%2Fboulderando&env=API_URL&project-name=my-boulderando)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcristianoliveira%2Fboulderando&env=NEXT_PUBLIC_API_URL&project-name=my-boulderando)
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
