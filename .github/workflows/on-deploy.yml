@@ -1,9 +1,10 @@
-name: Run e2e on deploy
+name: Run UI on deploy
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on: [push, deployment, deployment_status]
 jobs:
   e2e:
     # only runs this job on successful deploy
+    if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,11 +23,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run unit tests
-        run: yarn test
-
-      - name: Run UI tests
-        if: github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success'
+      - name: Run Ui tests
         run: yarn test:ui
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
