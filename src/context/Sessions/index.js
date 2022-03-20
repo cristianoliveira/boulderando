@@ -43,9 +43,11 @@ export function SessionProvider({ children }) {
   }
 
   useEffect(() => {
-    getSessions().then((defaultSessions) => {
-      setSessions([...defaultSessions, ...(sessions || [])])
-    })
+    if (!sessions.length) {
+      getSessions().then((defaultSessions) => {
+        setSessions(defaultSessions)
+      })
+    }
   }, [])
 
   return (

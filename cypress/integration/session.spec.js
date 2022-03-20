@@ -1,6 +1,8 @@
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
 
+import * as SL_TID from '../../src/components/Sessions/SessionList'
+
 import person from '../fixtures/persons/valid.json'
 
 describe('Bouldering Session Selection', () => {
@@ -36,6 +38,8 @@ describe('Bouldering Session Selection', () => {
   })
 
   it('allows adding and deleting custom session', () => {
+    cy.get(byDataTestId(SL_TID.SESSION_LIST_TABLE_ITEM)).should('have.length', 4)
+
     cy.get(byDataTestId(TID.SESSION_FORM_ADD_CUSTOM_SESSION)).click()
 
     cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_GYM)).click()
@@ -51,8 +55,10 @@ describe('Bouldering Session Selection', () => {
 
     cy.contains('12:00 - 14:00').should('exist')
 
+    cy.get(byDataTestId(SL_TID.SESSION_LIST_TABLE_ITEM)).should('have.length', 5)
+
     cy.get(byDataTestId(TID.SESSION_FORM_DELETE_CUSTOM_SESSION)).click()
 
-    cy.contains('12:00 - 14:00').should('not.exist')
+    cy.get(byDataTestId(SL_TID.SESSION_LIST_TABLE_ITEM)).should('have.length', 0)
   })
 })

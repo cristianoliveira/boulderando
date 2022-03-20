@@ -52,6 +52,8 @@ const TbCell = (props) => (
   />
 )
 
+export const SESSION_LIST_TABLE_ITEM = 'session_list_table_item';
+
 function SessionList() {
   const [result, setResult] = React.useState(null)
   const { user } = React.useContext(UserContext)
@@ -93,7 +95,7 @@ function SessionList() {
           </TableRow>
         </TableHead>
         {sessionContext.sessions.map((session, i) => (
-          <TableRow key={i}>
+          <TableRow data-testid={SESSION_LIST_TABLE_ITEM} key={i}>
             <TbCell>{session.gym_name}</TbCell>
             <TbCell>
               {session.day_of_week}-{getNextPossibleDay(session.day_of_week)}
