@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react'
 import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
 import getNextPossibleDay from '../../modules/weekday'
 
 import useListStorage from '../../hooks/useListStorage'
@@ -7,6 +9,15 @@ import useListStorage from '../../hooks/useListStorage'
 export const BookingHistoryContext = createContext()
 
 export const BookingConsumer = BookingHistoryContext.Consumer
+
+
+dayjs.extend(customParseFormat)
+const sortByBookingDate = (sessions) =>
+  sessions.filter(s => s.booking_date).sort(
+    (a, b) =>
+      dayjs(b.booking_date, 'DD/MM/YYYY').toDate() -
+      dayjs(a.booking_date, 'DD/MM/YYYY').toDate()
+  )
 
 export function BookingHistoryProvider({ children }) {
   const [bookingHistory, setBookingHistory] = useListStorage('booking-history', [])
@@ -22,7 +33,7 @@ export function BookingHistoryProvider({ children }) {
 
   return (
     <BookingHistoryContext.Provider
-      value={{ bookingHistory, saveBookedSession }}
+      value={{ bookingHistory: sortByBookingDate(bookingHistory), saveBookedSession }}
     >
       {children}
     </BookingHistoryContext.Provider>

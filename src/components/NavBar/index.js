@@ -9,11 +9,13 @@ import HistoryIcon from '@mui/icons-material/History'
 import ListAltIcon from '@mui/icons-material/ListAlt'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EditIcon from '@mui/icons-material/Edit'
+import AddBoxIcon from '@mui/icons-material/AddBox'
 
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import NavBarMenu from './NavBarMenu'
 
 import useUserContext from '../../context/User'
+import useSessionContext from '../../context/Sessions'
 
 const PAGE_TITLES = {
   '/': 'Book Session',
@@ -33,10 +35,15 @@ export const NAVBAR_NAVIGATION_MENU_BUTTON = 'navbar_navigation_menu_button'
 export const NAVBAR_NAVIGATION_MENU_ITEM_SESSION = 'navbar_navigation_menu_item_session'
 export const NAVBAR_NAVIGATION_MENU_ITEM_HISTORY = 'navbar_navigation_menu_item_history'
 
+export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD = 'navbar_navigation_menu_item_custom--add';
+
+export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE = 'navbar_navigation_menu_item_custom--delete';
+
 export const NAVBAR_BOOKING_HISTORY_MENU = 'navbar_booking_history_button'
 
 export default function NavBar() {
   const { user, deleteUser, editUser } = useUserContext()
+  const { deleteCustomSessions } = useSessionContext()
   const router = useRouter()
 
   return (
@@ -47,6 +54,13 @@ export default function NavBar() {
           MenuIcon={MoreVertIcon}
           options={[
             {
+              id: 'booking-history',
+              Icon: HistoryIcon,
+              label: 'History',
+              'data-testid': NAVBAR_NAVIGATION_MENU_ITEM_HISTORY,
+              disabled: !user,
+            },
+            {
               id: 'session',
               Icon: ListAltIcon,
               label: 'Sessions',
@@ -54,10 +68,17 @@ export default function NavBar() {
               disabled: !user,
             },
             {
-              id: 'booking-history',
-              Icon: HistoryIcon,
-              label: 'History',
-              'data-testid': NAVBAR_NAVIGATION_MENU_ITEM_HISTORY,
+              id: 'add-custom-session',
+              Icon: AddBoxIcon,
+              label: 'Add Custom',
+              'data-testid': NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD,
+              disabled: !user,
+            },
+            {
+              id: 'delete-custom-session',
+              Icon: DeleteOutlineIcon,
+              label: 'Delete All',
+              'data-testid': NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE,
               disabled: !user,
             },
           ]}
@@ -69,6 +90,14 @@ export default function NavBar() {
 
               case 'booking-history':
                 router.push('/booking-history')
+                break
+
+              case 'add-custom-session':
+                router.push('/sessions/new')
+                break
+
+              case 'delete-custom-session':
+                deleteCustomSessions()
                 break
 
               default:

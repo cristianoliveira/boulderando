@@ -1,20 +1,16 @@
-import { Paper, Typography } from '@mui/material'
+import { Container, Typography } from '@mui/material'
 import SessionsForm from '../../src/components/Sessions/Form'
 
 import useSessionContext from '../../src/context/Sessions'
 
 export default function New() {
-  const sessionContext = useSessionContext();
+  const { saveCustomSession } = useSessionContext()
   return (
-    <Paper>
+    <Container>
       <Typography variant="h5" color="text.primary" align="center">
         Adding custom session
       </Typography>
-      <SessionsForm
-        onSubmit={(data) => {
-          sessionContext.saveCustomSession(data)
-        }}
-      />
-    </Paper>
+      <SessionsForm onSubmit={saveCustomSession} />
+    </Container>
   )
 }

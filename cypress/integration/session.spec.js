@@ -2,6 +2,7 @@ import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
 
 import * as SL_TID from '../../src/components/Sessions/SessionList'
+import * as NB_TID from '../../src/components/NavBar'
 
 import person from '../fixtures/persons/valid.json'
 
@@ -40,7 +41,8 @@ describe('Bouldering Session Selection', () => {
   it('allows adding and deleting custom session', () => {
     cy.get(byDataTestId(SL_TID.SESSION_LIST_TABLE_ITEM)).should('have.length', 4)
 
-    cy.get(byDataTestId(TID.SESSION_FORM_ADD_CUSTOM_SESSION)).click()
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_BUTTON)).click()
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD)).click()
 
     cy.get(byDataTestId(TID.CUSTOM_SESSION_FORM_GYM)).click()
     cy.get(byDataTestId('option--basement')).click()
@@ -57,7 +59,8 @@ describe('Bouldering Session Selection', () => {
 
     cy.get(byDataTestId(SL_TID.SESSION_LIST_TABLE_ITEM)).should('have.length', 5)
 
-    cy.get(byDataTestId(TID.SESSION_FORM_DELETE_CUSTOM_SESSION)).click()
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_BUTTON)).click()
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE)).click()
 
     cy.get(byDataTestId(SL_TID.SESSION_LIST_TABLE_ITEM)).should('have.length', 0)
   })
