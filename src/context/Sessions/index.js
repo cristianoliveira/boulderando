@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
-import * as storage from '../../storage/local'
+import useListStorage from '../../hooks/useListStorage'
 
 import { getSessions, postSessionSchedule } from '../../api/bouldering-sessions'
 
@@ -12,7 +12,7 @@ export const SessionConsumer = SessionContext.Consumer
 export function SessionProvider({ children }) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [sessions, setSessions] = useState([])
+  const [sessions, setSessions, resetSessions] = useListStorage('sessions', [])
   const router = useRouter()
 
   const scheduleSession = (session, user) => {
@@ -34,23 +34,19 @@ export function SessionProvider({ children }) {
   }
 
   const deleteCustomSessions = () => {
-    storage.remove('sessions')
-    setSessions([])
+    resetSessions()
   }
 
   const saveCustomSession = (session) => {
-    const storedSessions = storage.get('sessions')
-    storage.save('sessions', [...(storedSessions || []), session])
-    setSessions((curSessions) => [...curSessions, session])
+    setSessions([...sessions, session])
     router.push('/sessions')
   }
 
-  const customSessions = storage.get('sessions')
   useEffect(() => {
     getSessions().then((defaultSessions) => {
-      setSessions([...defaultSessions, ...(customSessions || [])])
+      setSessions([...defaultSessions, ...(sessions || [])])
     })
-  }, [sessions.length])
+  }, [])
 
   return (
     <SessionContext.Provider
