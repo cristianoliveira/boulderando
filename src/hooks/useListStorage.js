@@ -3,7 +3,6 @@ import * as storage from '../storage/local'
 
 export default (key, initData = []) => {
 	const [data, setData] = useState(storage.get(key) || initData)
-	storage.save(key, initData)
 
 	const save = (item) => {
 		if (item instanceof Array) {
