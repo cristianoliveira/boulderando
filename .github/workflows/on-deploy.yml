@@ -14,11 +14,12 @@ jobs:
         with:
           node-version: 17.7.1
 
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Create project config for testing
         run: |
-          echo "$GITHUB_CONTEXT"
+          cp .env.example .env
 
       - name: Run Cypress tests
         run: yarn test:ui
