@@ -5,6 +5,7 @@ export const getSessions = async () => {
     const { data } = await axios.get('/api/bouldering-sessions')
     return data
   } catch (e) {
+    // eslint-disable-next-line
     console.error(e)
     return []
   }
@@ -13,15 +14,15 @@ export const getSessions = async () => {
 export const postSessionSchedule = async (
   user,
   session,
-  dry_run = window.dry_run
 ) => {
+  const isDryRun = window.location.search.includes('dry_run')
   try {
     const res = await axios.post(
-      `https://murmuring-caverns-56233.herokuapp.com/sessions`,
+      `${process.env.NEXT_PUBLIC_API_URL}/sessions`,
       {
         user,
         session,
-        dry_run
+        dry_run: isDryRun
       },
       {
         headers: {
