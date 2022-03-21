@@ -30,9 +30,3 @@ jobs:
 
       - name: Run build
         run: yarn build
-
-      # - name: Start server
-      #   run: yarn ci:start
-
-      # - name: Run Cypress tests
-      #   run: yarn test:ui
