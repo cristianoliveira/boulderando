@@ -1,0 +1,6 @@
+[defaults]
+project=cristian-boulderando
+org=cristian-sx
+[auth]
+token=e3902d80ef624b62b39e609f91a4132802b8ed74017a4b4db672b325ffe9b6b0
+dsn=https://8f268c27885f4b80aae0ab09bfaf64b9@o1175165.ingest.sentry.io/6271843
