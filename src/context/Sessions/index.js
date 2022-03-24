@@ -3,13 +3,11 @@ import { useRouter } from 'next/router'
 
 import useListStorage from '../../hooks/useListStorage'
 
-import { getSessions, postSessionSchedule } from '../../api/bouldering-sessions'
-
 export const SessionContext = createContext()
 
 export const SessionConsumer = SessionContext.Consumer
 
-export function SessionProvider({ children }) {
+export function SessionProvider({ children, api }) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [sessions, setSessions, resetSessions] = useListStorage('sessions', [])
@@ -18,7 +16,7 @@ export function SessionProvider({ children }) {
   const scheduleSession = (session, user) => {
     setHasSubmitted(true)
     setIsProcessing(true)
-    return postSessionSchedule(user, session).then(({ data, error }) => {
+    return api.postSessionSchedule(user, session).then(({ data, error }) => {
       setIsProcessing(false)
 
       if (data) {
@@ -40,7 +38,7 @@ export function SessionProvider({ children }) {
 
   useEffect(() => {
     if (!sessions.length) {
-      getSessions().then((defaultSessions) => {
+      api.getSessions().then((defaultSessions) => {
         setSessions(defaultSessions)
       })
     }

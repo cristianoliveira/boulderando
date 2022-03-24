@@ -3,6 +3,10 @@ import { Typography, Link, Box } from '@mui/material'
 import NavBar from '../src/components/NavBar'
 import DryRunBadge from '../src/components/DryRunBadge'
 
+import {
+  EnvironmentProvider,
+  EnvironmentConsumer,
+} from '../src/context/Environment'
 import { UserProvider } from '../src/context/User'
 import { SessionProvider } from '../src/context/Sessions'
 import { BookingHistoryProvider } from '../src/context/BookingHistory'
@@ -18,16 +22,26 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <DryRunBadge isVisible={JSON.parse(process.env.NEXT_PUBLIC_DRY_RUN || "false")}/>
 
-      <UserProvider>
-        <SessionProvider>
-          <BookingHistoryProvider>
-            <NavBar />
-            <Component {...pageProps} />
-          </BookingHistoryProvider>
-        </SessionProvider>
-      </UserProvider>
+      <EnvironmentProvider>
+        <EnvironmentConsumer>
+          {({ configs, api }) => (
+            <>
+              <DryRunBadge
+                isVisible={configs.isDryRun}
+              />
+              <UserProvider>
+                <SessionProvider api={api}>
+                  <BookingHistoryProvider>
+                    <NavBar />
+                    <Component {...pageProps} />
+                  </BookingHistoryProvider>
+                </SessionProvider>
+              </UserProvider>
+            </>
+          )}
+        </EnvironmentConsumer>
+      </EnvironmentProvider>
 
       <Box>
         <Typography variant="small" color="text.primary" align="center">

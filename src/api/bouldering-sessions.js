@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getSessions = async () => {
+export const getSessions = () => async () => {
   try {
     const { data } = await axios.get('/api/bouldering-sessions')
     return data
@@ -11,18 +11,14 @@ export const getSessions = async () => {
   }
 }
 
-export const postSessionSchedule = async (user, session) => {
-  const isDryRun =
-    JSON.parse(process.env.NEXT_PUBLIC_DRY_RUN) ||
-    window.location.search.includes('dry_run')
-
+export const postSessionSchedule = configs => async (user, session) => {
   try {
     const res = await axios.post(
-      `${process.env.NEXT_PUBLIC_API_URL}/sessions`,
+      `${configs.apiUrl}/sessions`,
       {
         user,
         session,
-        dry_run: isDryRun,
+        dry_run: configs.isDryRun,
       },
       {
         headers: {
