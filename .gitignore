@@ -37,3 +37,6 @@ yarn-error.log*
 .eslintcache
 e2e/
 cypress/screenshots/
+
+# Sentry
+.sentryclirc
