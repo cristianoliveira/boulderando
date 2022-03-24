@@ -63,7 +63,7 @@ function SessionList() {
   return (
     <>
       <Table>
-        <TableHead>
+       <TableHead>
           <TableRow>
             <TbCell>Gym</TbCell>
             <TbCell>Day</TbCell>
