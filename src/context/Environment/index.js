@@ -6,10 +6,11 @@ export const EnvironmentContext = createContext()
 export const EnvironmentConsumer = EnvironmentContext.Consumer
 
 export function EnvironmentProvider({ children }) {
-  let hasDryRunParam = false
-  if (typeof window !== 'undefined') {
-    hasDryRunParam = window.location.search.includes('dry_run')
+  if (typeof window === 'undefined') {
+    return null;
   }
+
+  const hasDryRunParam = window.location.search.includes('dry_run')
   const isDryRun =
     JSON.parse(`${process.env.NEXT_PUBLIC_DRY_RUN || 'false'}`) ||
     hasDryRunParam
