@@ -8,7 +8,6 @@ describe('Bouldering Session Selection', () => {
     cy.viewport('iphone-7')
   })
 
-
   afterEach(() => {
     cy.removeLocalStorage('user')
     cy.removeLocalStorage('sessions')
@@ -24,19 +23,37 @@ describe('Bouldering Session Selection', () => {
     cy.visit('/sessions?dry_run')
   })
 
-  it('allows booking bouldering sessions', () => {
-    cy.contains('saturday').parent().find('button').click()
-    cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER), {
-      timeout: 20000,
-    })
-      .should('be.visible')
-      .should('contain', 'saturday')
+  it(
+    'allows booking bouldering sessions',
+    { defaultCommandTimeout: 20000 },
+    () => {
+      cy.contains('saturday').parent().find('button').click()
+      cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER))
+        .should('be.visible')
+        .should('contain', 'saturday')
 
-    cy.get(byDataTestId(TID.SESSION_FORM_ERROR_MESSAGE_CONTAINER)).should(
-      'not.exist'
-    )
+      cy.get(byDataTestId(TID.SESSION_FORM_ERROR_MESSAGE_CONTAINER)).should(
+        'not.exist'
+      )
 
-    cy.contains('basement').should('be.visible')
-    cy.contains('saturday').should('be.visible')
-  })
+      cy.contains('basement').should('be.visible')
+      cy.contains('saturday').should('be.visible')
+    }
+  )
+
+  it(
+    'handles failing booking bouldering sessions',
+    { defaultCommandTimeout: 20000 },
+    () => {
+      cy.contains('tuesday').parent().find('button').click()
+
+      cy.get(byDataTestId(TID.SESSION_FORM_ERROR_MESSAGE_CONTAINER)).should(
+        'be.visible'
+      )
+
+      cy.get(byDataTestId(TID.SESSION_FORM_SUCCESS_MESSAGE_CONTAINER)).should(
+        'not.exist'
+      )
+    }
+  )
 })

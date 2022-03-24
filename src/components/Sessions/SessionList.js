@@ -56,7 +56,7 @@ function SessionList() {
   const bookingHistory = useBookingHistoryContext()
 
   React.useEffect(() => {
-    if (result) {
+    if (result?.data) {
       bookingHistory.saveBookedSession(result.data)
     }
   }, [result])
