@@ -26,9 +26,6 @@ jobs:
         run: |
           cp .env.example .env
 
-      - name: Start server
-        run: yarn ci:start
-
       - name: Run Cypress tests
         run: yarn test:e2e
 
