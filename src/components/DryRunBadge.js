@@ -1,9 +1,8 @@
-import React from 'react'
 import styled from '@emotion/styled'
 
 import { Typography } from '@mui/material'
 
-const StickyBadge = styled.div`
+const StickyBadge = styled(Typography)`
   position: absolute;
   background: green;
   color: white;
@@ -20,9 +19,7 @@ function DryRunBadge({ isVisible }) {
   }
 
   return (
-    <StickyBadge>
-      <Typography variant="subtitle2">Is Dry Run</Typography>
-    </StickyBadge>
+      <StickyBadge variant="subtitle2" color="green">Is Dry Run</StickyBadge>
   )
 }
 
