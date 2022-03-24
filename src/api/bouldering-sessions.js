@@ -11,18 +11,18 @@ export const getSessions = async () => {
   }
 }
 
-export const postSessionSchedule = async (
-  user,
-  session,
-) => {
-  const isDryRun = window.location.search.includes('dry_run')
+export const postSessionSchedule = async (user, session) => {
+  const isDryRun =
+    JSON.parse(process.env.NEXT_PUBLIC_DRY_RUN) ||
+    window.location.search.includes('dry_run')
+
   try {
     const res = await axios.post(
       `${process.env.NEXT_PUBLIC_API_URL}/sessions`,
       {
         user,
         session,
-        dry_run: isDryRun
+        dry_run: isDryRun,
       },
       {
         headers: {

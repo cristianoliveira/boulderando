@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { Typography, Link, Box } from '@mui/material'
 import NavBar from '../src/components/NavBar'
+import DryRunBadge from '../src/components/DryRunBadge'
 
 import { UserProvider } from '../src/context/User'
 import { SessionProvider } from '../src/context/Sessions'
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+     <DryRunBadge isVisible={JSON.parse(process.env.NEXT_PUBLIC_DRY_RUN || "false")}/>
 
       <UserProvider>
         <SessionProvider>
