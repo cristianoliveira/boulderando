@@ -7,7 +7,7 @@ export const EnvironmentConsumer = EnvironmentContext.Consumer;
 
 export function EnvironmentProvider({ children }) {
   const isDryRun =
-    JSON.parse(process.env.NEXT_PUBLIC_DRY_RUN) ||
+    JSON.parse(process.env.NEXT_PUBLIC_DRY_RUN || '') ||
     window.location.search.includes('dry_run')
 
   const configs = { isDryRun, apiUrl: `${process.env.NEXT_PUBLIC_API_URL}`  }
