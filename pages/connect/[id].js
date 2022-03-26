@@ -28,20 +28,13 @@ const Connect = () => {
     })
   }
 
-  useEffect(() => {
-    if (!id) {
-      return
-    }
-    socketInitializer()
-  }, [id])
+  useEffect(() => socketInitializer(), [])
 
-  useEffect(() => {
-    if (!socketInstance || !id) {
-      return null
-    }
-    socketInstance.emit(PUSH_TO_REMOTE(id), { type: 'connect-device', code })
-  }, [socketInstance, id])
-
+  useEffect(
+    () => socketInstance.emit(PUSH_TO_REMOTE(id), { type: 'connect-device', code }),
+    [socketInstance]
+  )
+
   return (
     <Container>
       <Typography variant="h5" color="text.primary" align="center">

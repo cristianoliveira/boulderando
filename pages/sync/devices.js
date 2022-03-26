@@ -3,7 +3,7 @@ import { Container, Grid, Typography } from '@mui/material'
 import QRCode from 'react-qr-code'
 import io from 'socket.io-client'
 
-import { save, get } from '../../src/storage/local'
+import { save } from '../../src/storage/local'
 import { PUSH_TO_CLIENT } from '../../src/constants/socket-channels'
 
 let socket
@@ -11,8 +11,8 @@ export default function Devices() {
   const [connectedDevice, setConnectedDevice] = useState('')
   const [socketIntance, setSocketIntance] = useState(null)
   const [isSynching, setIsSynching] = useState(false)
-  const code = 'device-id'
-  const urlToConnect = `${window.location.origin}/sync/${code}`
+  const deviceCode = 'device-id'
+  const urlToConnect = `${window.location.origin}/sync/${deviceCode}`
 
   const socketInitializer = async () => {
     await fetch('/api/sync-devices')
@@ -29,7 +29,7 @@ export default function Devices() {
       return
     }
 
-    socketIntance.on(PUSH_TO_CLIENT(code), ({ code, sync }) => {
+    socketIntance.on(PUSH_TO_CLIENT(deviceCode), ({ code, sync }) => {
       if (code) {
         setConnectedDevice(code)
       }
@@ -43,16 +43,8 @@ export default function Devices() {
           }
         })
 
-        Object.keys(sync).forEach((key) => {
-          const data = get(key)
-          if (data) {
-            // eslint-disable-next-line
-            console.debug('item synched:', key)
-          }
-        })
-
         setInterval(() => {
-          window.location.replace('/')
+          window.location.replace('/sessions')
         }, 1000)
       }
     })
@@ -82,6 +74,7 @@ export default function Devices() {
       </Grid>
 
       <Grid
+        data-testid="device-link"
         container
         spacing={0}
         direction="column"
