@@ -18,7 +18,7 @@ export default function Devices() {
   const [connectedDevice, setConnectedDevice] = useState('')
   const [socketIntance, setSocketIntance] = useState(null)
   const [isSynching, setIsSynching] = useState(false)
-  const urlToConnect = `${window.location.origin}/sync/${generatedCode}`
+  const urlToConnect = `${window.location.origin}/sync-to/${generatedCode}`
 
   const socketInitializer = async () => {
     await fetch('/api/sync-devices')
