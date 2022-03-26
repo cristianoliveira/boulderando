@@ -5,6 +5,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import getNextPossibleDay from '../../modules/weekday'
 
 import useListStorage from '../../hooks/useListStorage'
+import { BOOKING_HISTORY } from '../../storage/items';
 
 export const BookingHistoryContext = createContext()
 
@@ -20,7 +21,7 @@ const sortByBookingDate = (sessions) =>
   )
 
 export function BookingHistoryProvider({ children }) {
-  const [bookingHistory, setBookingHistory] = useListStorage('booking-history', [])
+  const [bookingHistory, setBookingHistory] = useListStorage(BOOKING_HISTORY, [])
 
   const saveBookedSession = (session) => {
     const history = {

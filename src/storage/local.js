@@ -1,3 +1,4 @@
+
 /* eslint-disable consistent-return */
 export const get = (key, defaultValue) => {
   if (typeof window === 'undefined') {
@@ -19,7 +20,7 @@ export const save = (key, data) => {
 
   window.localStorage.setItem(key, JSON.stringify(data))
 
-  return data;
+  return data
 }
 
 export const remove = (key) => {
@@ -29,3 +30,8 @@ export const remove = (key) => {
 
   window.localStorage.removeItem(key)
 }
+
+export const items = (items) =>
+  ['user', 'sessions', 'booking-history']
+    .map((key) => ({ [key]: get(key) }))
+    .reduce((cur, acc) => ({ ...acc, ...cur }), {})
