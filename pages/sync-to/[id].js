@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import { Container, Grid, Typography, Button } from '@mui/material'
 
-import { PUSH_TO_REMOTE } from '../../src/constants/socket-channels'
+import { PUSH_TO_REMOTE, PUSH_TO_CLIENT } from '../../src/constants/socket-channels'
 
 import { get } from '../../src/storage/local'
 import * as ITEMS from '../../src/storage/items'
@@ -13,7 +13,8 @@ const storageItems = Object.keys(ITEMS)
   .reduce((c, a) => ({ ...a, ...c }), {})
 
 const Connect = () => {
-  const [socketInstance, setSocket] = useState(false)
+  const [socketInstance, setSocket] = useState(null)
+  const [isDone, setIsDone] = useState(false)
   const router = useRouter()
   const { id } = router.query
   const code = 'remote-id'
@@ -28,18 +29,24 @@ const Connect = () => {
     })
   }
 
-  useEffect(() => socketInitializer(), [])
+  // eslint-disable-next-line
+  useEffect(() => {
+    if (!socketInstance) {
+      socketInitializer()
+      return
+    }
 
-  useEffect(
-    () => socketInstance.emit(PUSH_TO_REMOTE(id), { type: 'connect-device', code }),
-    [socketInstance]
-  )
+    socketInstance.emit(PUSH_TO_REMOTE(id), { type: 'connect-device', code })
+    socketInstance.on(PUSH_TO_CLIENT(id), ({ type }) => {
+      if (type === 'done') {
+        setIsDone(true)
+      }
+    })
+    // eslint-disable-next-line
+  }, [socketInstance])
 
   return (
     <Container>
-      <Typography variant="h5" color="text.primary" align="center">
-        Sync devices
-      </Typography>
 
       <Grid
         container
@@ -49,6 +56,17 @@ const Connect = () => {
         justifyContent="center"
         style={{ minHeight: '50vh' }}
       >
+        <Grid item xs={1}>
+          <Typography variant="h5" color="text.primary" align="center">
+            Sync devices data
+          </Typography>
+        </Grid>
+        <Grid item xs={1}>
+          <Typography variant="subtitle1" color="text.secondary" align="center">
+            You are about to push this device app data to the connected
+    device
+          </Typography>
+        </Grid>
         <Grid item xs={3}>
           {socketInstance && (
             <Button
@@ -62,9 +80,14 @@ const Connect = () => {
                 })
               }}
             >
-              Sync
+              Push data
             </Button>
           )}
+        </Grid>
+        <Grid item xs={1}>
+          <Typography variant="subtitle1" color="text.secondary" align="center">
+            {isDone && "Sync is completed"}
+          </Typography>
         </Grid>
       </Grid>
     </Container>

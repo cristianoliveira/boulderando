@@ -6,8 +6,9 @@ import bookingHistory from '../fixtures/booking-history.json'
 import sessions from '../fixtures/sessions.json'
 
 import { PUSH_TO_REMOTE } from '../../src/constants/socket-channels'
+import { SYNC_DEVICE_CODE, SYNC_DEVICE_URL } from '../../pages/sync/devices'
 
-describe('Bouldering Session Selection', () => {
+describe('Synching data between devices', () => {
   beforeEach(() => {
     cy.visit('/sync/devices')
     cy.viewport('iphone-7')
@@ -29,39 +30,42 @@ describe('Bouldering Session Selection', () => {
     })
   })
 
-  it('sync the localstorage of the connected device', () => {
-    const deviceId = 'device-id'
+  it('pulls the localstorage of the connected remote device', () => {
+    let deviceId
     const localStorageRemoteDevice = {
       sessions,
       user: person,
       'booking-history': bookingHistory,
     }
 
-    cy.window().then(async (w) => {
-      await w.fetch(`/api/sync-devices?code=${deviceId}`)
-      // eslint-disable-next-line
-      w.socket = io()
+    cy.get(byDataTestId(SYNC_DEVICE_CODE))
+      .invoke('text')
+      .then((value) => {
+        deviceId = value
+      })
+
+    cy.window()
+      .then(async (w) => {
+        await w.fetch(`/api/sync-devices?code=${deviceId}`)
+        return io()
+      })
+      .as('socket')
+
+    cy.get('@socket').should('not.be.undefined')
+    cy.get('@socket').then((s) =>
+      s.emit(PUSH_TO_REMOTE(deviceId), { type: 'init', code: 'device-id' })
+    )
+
+    cy.get(byDataTestId(SYNC_DEVICE_URL)).should('be.visible')
+    cy.contains(`Connected with`).should('be.visible')
+
+    cy.get('@socket').then((s) => {
+      s.emit(PUSH_TO_REMOTE(deviceId), {
+        type: 'sync-data',
+        code: deviceId,
+        sync: localStorageRemoteDevice,
+      })
     })
-
-    cy.window().its('socket').should('not.be.undefined')
-    cy.window()
-      .its('socket')
-      .then((s) => {
-        s.emit(PUSH_TO_REMOTE(deviceId), { type: 'init', code: 'device-id' })
-      })
-
-    cy.get(byDataTestId('device-link')).should('be.visible')
-    cy.contains('Connected with device-id')
-
-    cy.window()
-      .its('socket')
-      .then((s) => {
-        s.emit(PUSH_TO_REMOTE(deviceId), {
-          type: 'sync-data',
-          code: deviceId,
-          sync: localStorageRemoteDevice,
-        })
-      })
 
     cy.url().should('contains', '/sessions', { timeout: 10000 })
 
