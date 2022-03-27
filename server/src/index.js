@@ -1,6 +1,5 @@
 import express from 'express'
 
-
 import http from 'http'
 import { Server } from 'socket.io'
 
@@ -11,7 +10,11 @@ import { PUSH_TO_REMOTE, PUSH_TO_CLIENT } from './channels.js'
 
 const app = express()
 const server = http.createServer(app)
-const io = new Server(server)
+const io = new Server(server, {
+  cors: {
+    origin: '*',
+  },
+})
 
 const port = process.env.PORT || 4444
 
