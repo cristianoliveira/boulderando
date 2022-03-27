@@ -4,7 +4,17 @@ services:
     build: .
     command: yarn dev
     volumes:
-      - .:/usr/app/
-      - /usr/app/node_modules
+      - .:/usr/web/
+      - /usr/web/node_modules
     ports:
       - "3333:3333"
+  server:
+    build: ./server/
+    command: yarn start
+    environment:
+      - PORT=4444
+    volumes:
+      - ./server/:/usr/server/
+      - ./server/node_modules:/usr/server/node_modules
+    ports:
+      - "4444:4444"

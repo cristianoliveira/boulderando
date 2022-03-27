@@ -7,7 +7,7 @@ export const EnvironmentConsumer = EnvironmentContext.Consumer
 
 export function EnvironmentProvider({ children }) {
   if (typeof window === 'undefined') {
-    return null;
+    return null
   }
 
   const hasDryRunParam = window.location.search.includes('dry_run')
@@ -15,15 +15,24 @@ export function EnvironmentProvider({ children }) {
     JSON.parse(`${process.env.NEXT_PUBLIC_DRY_RUN || 'false'}`) ||
     hasDryRunParam
 
-  const configs = { isDryRun, apiUrl: `${process.env.NEXT_PUBLIC_API_URL}` }
+  const configs = {
+    isDryRun,
+    apiUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
+    socketApiUrl: `${process.env.NEXT_PUBLIC_SOCKET_API_URL}`,
+  }
 
   const api = {
     getSessions: init.getSessions(configs),
     postSessionSchedule: init.postSessionSchedule(configs),
   }
 
+  const environment = {
+    configs,
+    api,
+  }
+
   return (
-    <EnvironmentContext.Provider value={{ configs, api }}>
+    <EnvironmentContext.Provider value={environment}>
       {children}
     </EnvironmentContext.Provider>
   )

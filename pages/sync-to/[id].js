@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react'
 import io from 'socket.io-client'
 import { Container, Grid, Typography, Button } from '@mui/material'
 
-import { PUSH_TO_REMOTE, PUSH_TO_CLIENT } from '../../src/constants/socket-channels'
+import {
+  PUSH_TO_REMOTE,
+  PUSH_TO_CLIENT,
+} from '../../src/constants/socket-channels'
 
 import { get } from '../../src/storage/local'
 import * as ITEMS from '../../src/storage/items'
@@ -21,8 +24,10 @@ const Connect = () => {
 
   let socket
   const socketInitializer = async () => {
-    await fetch(`/api/sync-devices?code=${id}`)
-    socket = socket || io()
+    await fetch(
+      `${process.env.NEXT_PUBLIC_BE_API_URL}/sync-devices?code=${id}`
+    )
+    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_BE_API_URL}`)
 
     socket.on('connect', () => {
       setSocket(socket)
@@ -47,7 +52,6 @@ const Connect = () => {
 
   return (
     <Container>
-
       <Grid
         container
         spacing={0}
@@ -63,8 +67,7 @@ const Connect = () => {
         </Grid>
         <Grid item xs={1}>
           <Typography variant="subtitle1" color="text.secondary" align="center">
-            You are about to push this device app data to the connected
-    device
+            You are about to push this device app data to the connected device
           </Typography>
         </Grid>
         <Grid item xs={3}>
@@ -86,7 +89,7 @@ const Connect = () => {
         </Grid>
         <Grid item xs={1}>
           <Typography variant="subtitle1" color="text.secondary" align="center">
-            {isDone && "Sync is completed"}
+            {isDone && 'Sync is completed'}
           </Typography>
         </Grid>
       </Grid>

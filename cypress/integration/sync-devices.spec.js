@@ -9,7 +9,7 @@ import { PUSH_TO_REMOTE } from '../../src/constants/socket-channels'
 import { SYNC_DEVICE_CODE, SYNC_DEVICE_URL } from '../../pages/sync/devices'
 
 // eslint-disable-next-line
-describe.skip('Synching data between devices', () => {
+describe('Synching data between devices', () => {
   beforeEach(() => {
     cy.visit('/sync/devices')
     cy.viewport('iphone-7')
@@ -47,8 +47,8 @@ describe.skip('Synching data between devices', () => {
 
     cy.window()
       .then(async (w) => {
-        await w.fetch(`/api/sync-devices?code=${deviceId}`)
-        return io()
+        await w.fetch(`${Cypress.env('NEXT_PUBLIC_SOCKET_API_URL')}/sync-devices?code=${deviceId}`)
+        return io.connect(`${Cypress.env('NEXT_PUBLIC_SOCKET_API_URL')}`)
       })
       .as('socket')
 

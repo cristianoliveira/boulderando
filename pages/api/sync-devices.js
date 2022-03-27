@@ -23,8 +23,9 @@ export default function handler(req, res) {
       connectDevices(io, socket, code)
     })
   } else {
-    const io = new Server(res.socket.server)
+    const io = new Server(res.socket.server, { path: '/api/sync-devices' })
     res.socket.server.io = io
   }
-  res.end()
+
+  res.send('socket')
 }

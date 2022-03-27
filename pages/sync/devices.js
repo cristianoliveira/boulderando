@@ -21,8 +21,9 @@ export default function Devices() {
   const urlToConnect = `${window.location.origin}/sync-to/${generatedCode}`
 
   const socketInitializer = async () => {
-    await fetch('/api/sync-devices')
-    socket = io()
+    await fetch(`${process.env.NEXT_PUBLIC_BE_API_URL}/sync-devices?code=${generatedCode}`)
+    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_BE_API_URL}`)
+    // socket = io()
 
     socket.on('connect', () => {
       setSocketIntance(socket)
@@ -85,7 +86,11 @@ export default function Devices() {
         {isSynching && (
           <Grid>
             {isSynching && (
-              <Typography variant="subtitle1" color="text.primary" align="center">
+              <Typography
+                variant="subtitle1"
+                color="text.primary"
+                align="center"
+              >
                 Synching... You are going to be redirected.
               </Typography>
             )}
