@@ -5,9 +5,12 @@ like book sessions. It's required for advanced feature tho, like sync devices.
 
 ### Installation
 
-Set this folder subtree poiting to heroku/main
+Set this folder as a repo poiting to heroku/main
 ```
-git subtree push --prefix path/to/subdirectory heroku main
+git init
+git remote add https://git.heroku.com/<your-app>.git
+git add . && git commit -m "init"
+git push heroku main
 ```
 
 ### Running locally

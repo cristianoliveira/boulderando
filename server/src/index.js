@@ -5,7 +5,9 @@ import http from 'http'
 import { Server } from 'socket.io'
 
 import cors from 'cors'
-import { PUSH_TO_REMOTE, PUSH_TO_CLIENT } from './channels'
+
+// eslint-disable-next-line
+import { PUSH_TO_REMOTE, PUSH_TO_CLIENT } from './channels.js'
 
 const app = express()
 const server = http.createServer(app)
