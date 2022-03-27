@@ -25,9 +25,9 @@ const Connect = () => {
   let socket
   const socketInitializer = async () => {
     await fetch(
-      `${process.env.NEXT_PUBLIC_BE_API_URL}/sync-devices?code=${id}`
+      `${process.env.NEXT_PUBLIC_SOCKET_API_URL}/sync-devices?code=${id}`
     )
-    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_BE_API_URL}`)
+    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_SOCKET_API_URL}`)
 
     socket.on('connect', () => {
       setSocket(socket)

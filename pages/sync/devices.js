@@ -21,8 +21,8 @@ export default function Devices() {
   const urlToConnect = `${window.location.origin}/sync-to/${generatedCode}`
 
   const socketInitializer = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_BE_API_URL}/sync-devices?code=${generatedCode}`)
-    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_BE_API_URL}`)
+    await fetch(`${process.env.NEXT_PUBLIC_SOCKET_API_URL}/sync-devices?code=${generatedCode}`)
+    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_SOCKET_API_URL}`)
     // socket = io()
 
     socket.on('connect', () => {
