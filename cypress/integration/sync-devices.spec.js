@@ -1,6 +1,7 @@
 import io from 'socket.io-client'
 import { byDataTestId } from '../support/data-testid'
 
+import * as NB_TID from '../../src/components/NavBar'
 import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
 import sessions from '../fixtures/sessions.json'
@@ -14,7 +15,6 @@ import { SYNC_DEVICE_CODE, SYNC_DEVICE_URL } from '../../pages/sync/devices'
 // eslint-disable-next-line
 describe('Synching data between devices', () => {
   beforeEach(() => {
-    cy.visit('/sync/devices')
     cy.viewport('iphone-7')
     cy.localStorage((ls) => {
       expect(ls.getItem('user')).equal(null)
@@ -35,6 +35,14 @@ describe('Synching data between devices', () => {
   })
 
   it('pulls the localstorage of the connected remote device', () => {
+    cy.visit('/')
+    cy.get(byDataTestId(NB_TID.NAVBAR_NAVIGATION_MENU_BUTTON))
+      .should('be.visible')
+      .click()
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_ITEM_SYNC_DEVICE))
+      .should('be.visible')
+      .click()
     let deviceId
     const localStorageRemoteDevice = {
       sessions,

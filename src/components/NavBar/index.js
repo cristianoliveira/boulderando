@@ -10,6 +10,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EditIcon from '@mui/icons-material/Edit'
 import AddBoxIcon from '@mui/icons-material/AddBox'
+import SyncIcon from '@mui/icons-material/Sync'
 
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import NavBarMenu from './NavBarMenu'
@@ -30,14 +31,20 @@ export const NAVBAR_USER_MENU_BUTTON = 'navbar_user_menu_button'
 export const NAVBAR_USER_MENU_CONTAINER = 'navbar_user_menu_button--container'
 export const NAVBAR_USER_MENU_ITEM_DELETE = 'navbar_user_menu_button--delete'
 export const NAVBAR_USER_MENU_ITEM_EDIT = 'navbar_user_menu_button--edit'
+export const NAVBAR_USER_MENU_ITEM_SYNC_DEVICE =
+  'navbar_user_menu_item_sync_device'
 
 export const NAVBAR_NAVIGATION_MENU_BUTTON = 'navbar_navigation_menu_button'
-export const NAVBAR_NAVIGATION_MENU_ITEM_SESSION = 'navbar_navigation_menu_item_session'
-export const NAVBAR_NAVIGATION_MENU_ITEM_HISTORY = 'navbar_navigation_menu_item_history'
+export const NAVBAR_NAVIGATION_MENU_ITEM_SESSION =
+  'navbar_navigation_menu_item_session'
+export const NAVBAR_NAVIGATION_MENU_ITEM_HISTORY =
+  'navbar_navigation_menu_item_history'
 
-export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD = 'navbar_navigation_menu_item_custom--add';
+export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD =
+  'navbar_navigation_menu_item_custom--add'
 
-export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE = 'navbar_navigation_menu_item_custom--delete';
+export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE =
+  'navbar_navigation_menu_item_custom--delete'
 
 export const NAVBAR_BOOKING_HISTORY_MENU = 'navbar_booking_history_button'
 
@@ -81,6 +88,12 @@ export default function NavBar() {
               'data-testid': NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE,
               disabled: !user,
             },
+            {
+              id: 'sync-devices',
+              Icon: SyncIcon,
+              label: 'Sync Devices',
+              'data-testid': NAVBAR_USER_MENU_ITEM_SYNC_DEVICE,
+            },
           ]}
           onClick={({ id }) => {
             switch (id) {
@@ -98,6 +111,10 @@ export default function NavBar() {
 
               case 'delete-custom-session':
                 deleteCustomSessions()
+                break
+
+              case 'sync-devices':
+                router.push('/sync/devices')
                 break
 
               default:
