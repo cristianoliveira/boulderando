@@ -4,10 +4,10 @@ import io from 'socket.io-client'
 import {
   PUSH_TO_REMOTE,
   PUSH_TO_CLIENT,
-} from "../constants/socket-channels"
+  EVENT_CONNECTION_INIT,
+} from '../constants/socket-channels'
 
 const socketApiUrl = `${process.env.NEXT_PUBLIC_SOCKET_API_URL}`
-export const ACTION_SOCKET_CONNECT_INIT = 'action_socket_connect_init'
 
 export default ({ channelCode, apiUrl = socketApiUrl }) => {
   const [socket, setSocket] = useState(null)
@@ -23,7 +23,7 @@ export default ({ channelCode, apiUrl = socketApiUrl }) => {
     })
   }
 
-  const listeners = [];
+  const listeners = []
   const dispatcher = (data) => {
     socket.emit(PUSH_TO_REMOTE(channelCode), data)
   }
@@ -31,28 +31,27 @@ export default ({ channelCode, apiUrl = socketApiUrl }) => {
   useEffect(() => {
     if (!socket) {
       connectSocket().then(setSocket)
-      return;
+      return
     }
 
-
     socket.emit(PUSH_TO_REMOTE(channelCode), {
-      type: ACTION_SOCKET_CONNECT_INIT,
+      type: EVENT_CONNECTION_INIT,
     })
 
     socket.on(PUSH_TO_CLIENT(channelCode), (data) => {
-      listeners.forEach(listener => { listener(data) })
+      listeners.forEach((listener) => {
+        listener(data)
+      })
     })
-
-
   }, [socket])
 
   if (!socket) {
-    return null;
+    return null
   }
 
   return {
-    onEvent: handler => listeners.push(handler),
-    dispatch: data => dispatcher(data),
-    socket
+    onEvent: (handler) => listeners.push(handler),
+    dispatch: (data) => dispatcher(data),
+    socket,
   }
 }

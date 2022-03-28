@@ -5,7 +5,10 @@ import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
 import sessions from '../fixtures/sessions.json'
 
-import { PUSH_TO_REMOTE } from '../../src/constants/socket-channels'
+import {
+  PUSH_TO_REMOTE,
+  EVENT_DEVICE_CONNECTED,
+} from '../../src/constants/socket-channels'
 import { SYNC_DEVICE_CODE, SYNC_DEVICE_URL } from '../../pages/sync/devices'
 
 // eslint-disable-next-line
@@ -47,14 +50,21 @@ describe('Synching data between devices', () => {
 
     cy.window()
       .then(async (w) => {
-        await w.fetch(`${Cypress.env('NEXT_PUBLIC_SOCKET_API_URL')}/sync-devices?code=${deviceId}`)
+        await w.fetch(
+          `${Cypress.env(
+            'NEXT_PUBLIC_SOCKET_API_URL'
+          )}/sync-devices?code=${deviceId}`
+        )
         return io.connect(`${Cypress.env('NEXT_PUBLIC_SOCKET_API_URL')}`)
       })
       .as('socket')
 
     cy.get('@socket').should('not.be.undefined')
     cy.get('@socket').then((s) =>
-      s.emit(PUSH_TO_REMOTE(deviceId), { type: 'init', code: 'device-id' })
+      s.emit(PUSH_TO_REMOTE(deviceId), {
+        type: EVENT_DEVICE_CONNECTED,
+        code: 'device-id',
+      })
     )
 
     cy.get(byDataTestId(SYNC_DEVICE_URL)).should('be.visible')

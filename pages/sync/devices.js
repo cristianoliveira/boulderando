@@ -4,13 +4,14 @@ import QRCode from 'react-qr-code'
 
 import { save } from '../../src/storage/local'
 import useSocketChannel from '../../src/hooks/useSocketChannel'
+import { EVENT_DEVICE_CONNECTED } from '../../src/constants/socket-channels'
 
 export const SYNC_DEVICE_CODE = 'synch_device_code'
 export const SYNC_DEVICE_URL = 'synch_device_url'
 
 const generatedCode = (Math.random() + 1).toString(36).substring(7)
 export default function Devices() {
-  const [connectedDevice, setConnectedDevice] = useState('')
+  const [isConnectedDevice, setConnectedDevice] = useState(false)
 
   const [isSynching, setIsSynching] = useState(false)
   const urlToConnect = `${window.location.origin}/sync-to/${generatedCode}`
@@ -20,12 +21,12 @@ export default function Devices() {
   })
   useEffect(() => {
     if (!channel) {
-      return;
+      return
     }
 
-    channel.onEvent(({ code, sync }) => {
-      if (code) {
-        setConnectedDevice(code)
+    channel.onEvent(({ type, sync }) => {
+      if (type === EVENT_DEVICE_CONNECTED) {
+        setConnectedDevice(true)
       }
 
       if (sync) {
@@ -84,9 +85,9 @@ export default function Devices() {
           </Grid>
         )}
         <Grid>
-          {connectedDevice && (
+          {isConnectedDevice && (
             <Typography variant="h5" color="text.primary" align="center">
-              Connected with {connectedDevice}
+              Connected with remote device
             </Typography>
           )}
         </Grid>

@@ -4,6 +4,8 @@ import { Container, Grid, Typography, Button } from '@mui/material'
 
 import useSocketChannel from '../../src/hooks/useSocketChannel'
 
+import { EVENT_DEVICE_CONNECTED } from '../../src/constants/socket-channels'
+
 import { get } from '../../src/storage/local'
 import * as ITEMS from '../../src/storage/items'
 
@@ -20,10 +22,10 @@ const Connect = () => {
   const channel = useSocketChannel({ channelCode: id })
   useEffect(() => {
     if (!channel) {
-      return;
+      return
     }
 
-    channel.dispatch({ type: 'connect-device', code })
+    channel.dispatch({ type: EVENT_DEVICE_CONNECTED })
     channel.onEvent(({ type }) => {
       if (type === 'done') {
         setIsDone(true)
