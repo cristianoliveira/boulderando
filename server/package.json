@@ -1,5 +1,5 @@
 {
-  "name": "boulderando-be",
+  "name": "boulderando-socket-api",
   "version": "1.0.0",
   "description": "Bouderando backend for the frontend",
   "main": "src/index.js",
