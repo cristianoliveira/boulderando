@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 
 import useListStorage from '../../hooks/useListStorage'
+import { SESSIONS } from '../../storage/items';
 
 export const SessionContext = createContext()
 
@@ -10,7 +11,7 @@ export const SessionConsumer = SessionContext.Consumer
 export function SessionProvider({ children, api }) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [sessions, setSessions, resetSessions] = useListStorage('sessions', [])
+  const [sessions, setSessions, resetSessions] = useListStorage(SESSIONS, [])
   const router = useRouter()
 
   const scheduleSession = (session, user) => {

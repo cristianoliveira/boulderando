@@ -1,0 +1,26 @@
+[
+  {
+    "gym_name": "basement",
+    "day_of_week": "saturday",
+    "human_date": "this saturday",
+    "time": "10:30 - 12:30"
+  },
+  {
+    "gym_name": "boulderklub",
+    "day_of_week": "tuesday",
+    "human_date": "this tuesday",
+    "time": "19:00 - 21:00"
+  },
+  {
+    "gym_name": "boulderklub",
+    "day_of_week": "thursday",
+    "human_date": "this thursday",
+    "time": "19:00 - 21:00"
+  },
+  {
+    "gym_name": "basement",
+    "day_of_week": "thursday",
+    "human_date": "this thursday",
+    "time": "18:30 - 20:30"
+  }
+]

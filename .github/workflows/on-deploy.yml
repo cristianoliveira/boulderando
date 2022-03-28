@@ -27,3 +27,4 @@ jobs:
         run: yarn test:ui
         env:
           CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          NEXT_PUBLIC_SOCKET_API_URL: https://boulderando-api.herokuapp.com/
