@@ -1,12 +1,8 @@
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import io from 'socket.io-client'
 import { Container, Grid, Typography, Button } from '@mui/material'
 
-import {
-  PUSH_TO_REMOTE,
-  PUSH_TO_CLIENT,
-} from '../../src/constants/socket-channels'
+import useSocketChannel from '../../src/hooks/useSocketChannel'
 
 import { get } from '../../src/storage/local'
 import * as ITEMS from '../../src/storage/items'
@@ -16,39 +12,25 @@ const storageItems = Object.keys(ITEMS)
   .reduce((c, a) => ({ ...a, ...c }), {})
 
 const Connect = () => {
-  const [socketInstance, setSocket] = useState(null)
   const [isDone, setIsDone] = useState(false)
   const router = useRouter()
   const { id } = router.query
   const code = 'remote-id'
 
-  let socket
-  const socketInitializer = async () => {
-    await fetch(
-      `${process.env.NEXT_PUBLIC_SOCKET_API_URL}/sync-devices?code=${id}`
-    )
-    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_SOCKET_API_URL}`)
-
-    socket.on('connect', () => {
-      setSocket(socket)
-    })
-  }
-
-  // eslint-disable-next-line
+  const channel = useSocketChannel({ channelCode: id })
   useEffect(() => {
-    if (!socketInstance) {
-      socketInitializer()
-      return
+    if (!channel) {
+      return;
     }
 
-    socketInstance.emit(PUSH_TO_REMOTE(id), { type: 'connect-device', code })
-    socketInstance.on(PUSH_TO_CLIENT(id), ({ type }) => {
+    channel.dispatch({ type: 'connect-device', code })
+    channel.onEvent(({ type }) => {
       if (type === 'done') {
         setIsDone(true)
       }
     })
     // eslint-disable-next-line
-  }, [socketInstance])
+  }, [channel])
 
   return (
     <Container>
@@ -71,12 +53,12 @@ const Connect = () => {
           </Typography>
         </Grid>
         <Grid item xs={3}>
-          {socketInstance && (
+          {channel && (
             <Button
               color="secondary"
               size="big"
               onClick={() => {
-                socketInstance.emit(PUSH_TO_REMOTE(id), {
+                channel.dispatch({
                   type: 'sync-data',
                   code,
                   sync: storageItems,

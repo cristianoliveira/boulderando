@@ -1,42 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Grid, Typography } from '@mui/material'
 import QRCode from 'react-qr-code'
-import io from 'socket.io-client'
 
 import { save } from '../../src/storage/local'
-import {
-  PUSH_TO_CLIENT,
-  PUSH_TO_REMOTE,
-} from '../../src/constants/socket-channels'
+import useSocketChannel from '../../src/hooks/useSocketChannel'
 
 export const SYNC_DEVICE_CODE = 'synch_device_code'
 export const SYNC_DEVICE_URL = 'synch_device_url'
 
-let socket
 const generatedCode = (Math.random() + 1).toString(36).substring(7)
 export default function Devices() {
   const [connectedDevice, setConnectedDevice] = useState('')
-  const [socketIntance, setSocketIntance] = useState(null)
+
   const [isSynching, setIsSynching] = useState(false)
   const urlToConnect = `${window.location.origin}/sync-to/${generatedCode}`
 
-  const socketInitializer = async () => {
-    await fetch(`${process.env.NEXT_PUBLIC_SOCKET_API_URL}/sync-devices?code=${generatedCode}`)
-    socket = socket || io.connect(`${process.env.NEXT_PUBLIC_SOCKET_API_URL}`)
-    // socket = io()
-
-    socket.on('connect', () => {
-      setSocketIntance(socket)
-    })
-  }
-
+  const channel = useSocketChannel({
+    channelCode: generatedCode,
+  })
   useEffect(() => {
-    if (!socketIntance) {
-      socketInitializer()
-      return
+    if (!channel) {
+      return;
     }
 
-    socketIntance.on(PUSH_TO_CLIENT(generatedCode), ({ code, sync }) => {
+    channel.onEvent(({ code, sync }) => {
       if (code) {
         setConnectedDevice(code)
       }
@@ -51,13 +38,13 @@ export default function Devices() {
         })
 
         setInterval(() => {
-          socketIntance.emit(PUSH_TO_REMOTE(generatedCode), { type: 'done' })
+          channel.dispatch({ type: 'done' })
           window.location.replace('/sessions')
         }, 1000)
       }
     })
-    // eslint-disable-next-line
-  }, [socketIntance])
+  }, [channel])
+
   return (
     <Container>
       <Grid

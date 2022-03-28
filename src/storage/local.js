@@ -30,8 +30,3 @@ export const remove = (key) => {
 
   window.localStorage.removeItem(key)
 }
-
-export const items = (items) =>
-  ['user', 'sessions', 'booking-history']
-    .map((key) => ({ [key]: get(key) }))
-    .reduce((cur, acc) => ({ ...acc, ...cur }), {})
