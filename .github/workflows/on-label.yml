@@ -26,6 +26,14 @@ jobs:
         run: |
           cp .env.example .env
 
+      - name: Set environment variables
+        run: |
+          echo "GIT_BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
+      - name: Use environment variables
+        run: |
+          echo "CYPRESS_BASE_URL=https://boulderando-${GIT_BRANCH//\//-}-crisoliveira.vercel.app"
+
       - name: Run Cypress tests
         run: yarn test:e2e
 
