@@ -14,7 +14,7 @@ export const getSessions = () => async () => {
 export const postSessionSchedule = configs => async (user, session) => {
   try {
     const res = await axios.post(
-      `${configs.bookingApiUrl}/sessions`,
+      `${configs.apiUrl}/sessions`,
       {
         user,
         session,
