@@ -36,6 +36,17 @@ export function BookingHistoryProvider({ children }) {
     setBookingHistory(history)
   }
 
+  const deleteBookedSession = (bookingHistoryToDelete) => {
+    const restOfBookingHistory = bookingHistory.filter(
+      (s) =>
+        !(
+          s.gym_name === bookingHistoryToDelete.gym_name &&
+          s.booking_date === bookingHistoryToDelete.booking_date
+        )
+    )
+    setBookingHistory(restOfBookingHistory)
+  }
+
   const hasBookedSession = (gymName, date) => {
     const sessionDate = dayjs(date, 'DD/MM/YYYY')
     return bookingHistory.find(
@@ -51,6 +62,7 @@ export function BookingHistoryProvider({ children }) {
         hasBookedSession,
         bookingHistory: sortByBookingDate(bookingHistory),
         saveBookedSession,
+        deleteBookedSession,
       }}
     >
       {children}

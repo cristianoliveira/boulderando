@@ -6,7 +6,7 @@ import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
 
 describe('Booking history', () => {
-  beforeEach(() => {
+  before(() => {
     cy.viewport('iphone-7')
     cy.setLocalStorage('user', person)
     cy.setLocalStorage('booking-history', bookingHistory)
@@ -14,7 +14,7 @@ describe('Booking history', () => {
     cy.visit('/booking-history')
   })
 
-  afterEach(() => {
+  after(() => {
     cy.removeLocalStorage('user')
     cy.removeLocalStorage('booking-history')
     cy.localStorage((ls) => {
@@ -33,5 +33,16 @@ describe('Booking history', () => {
       .last()
       .should('contain', 'boulderklub')
       .should('contain', 'tuesday-24/02/2022')
+  })
+
+  it('allows deleting booking history', () => {
+    cy.get(byDataTestId(BL_TID.BOOKING_HISTORY_LIST_ITEM))
+      .first()
+      .find(byDataTestId(BL_TID.BOOKING_HISTORY_DELETE_BTN)).click()
+
+    cy.get(byDataTestId(BL_TID.BOOKING_HISTORY_LIST_ITEM))
+      .first()
+      .should('not.contain', 'basement')
+      .should('not.contain', 'saturday-26/03/2022')
   })
 })

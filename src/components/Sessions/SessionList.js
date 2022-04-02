@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import {
+  TableContainer,
   Table,
   TableRow,
   TableCell,
@@ -61,7 +62,7 @@ function SessionList() {
     }
   }, [result])
   return (
-    <>
+    <TableContainer>
       <Table>
         <TableHead>
           <TableRow>
@@ -148,7 +149,7 @@ function SessionList() {
           </TableCell>
         </TableRow>
       </Table>
-    </>
+    </TableContainer>
   )
 }
 
