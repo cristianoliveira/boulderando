@@ -63,7 +63,7 @@ function SessionList() {
   return (
     <>
       <Table>
-       <TableHead>
+        <TableHead>
           <TableRow>
             <TbCell>Gym</TbCell>
             <TbCell>Day</TbCell>
@@ -72,7 +72,18 @@ function SessionList() {
           </TableRow>
         </TableHead>
         {sessionContext.sessions.map((session, i) => (
-          <TableRow data-testid={SESSION_LIST_TABLE_ITEM} key={i}>
+          <TableRow
+            data-testid={SESSION_LIST_TABLE_ITEM}
+            key={i}
+            sx={{
+              color: bookingHistory.hasBookedSession(
+                session.gym_name,
+                getNextPossibleDay(session.day_of_week)
+              )
+                ? 'gray'
+                : 'green',
+            }}
+          >
             <TbCell>{session.gym_name}</TbCell>
             <TbCell>
               {session.day_of_week}-{getNextPossibleDay(session.day_of_week)}
@@ -80,7 +91,13 @@ function SessionList() {
             <TbCell>{session.time}</TbCell>
             <TbCell>
               <Button
-                disabled={sessionContext.isProcessing}
+                disabled={
+                  sessionContext.isProcessing ||
+                  bookingHistory.hasBookedSession(
+                    session.gym_name,
+                    getNextPossibleDay(session.day_of_week)
+                  )
+                }
                 variant="contained"
                 type="submit"
                 onClick={() => {
