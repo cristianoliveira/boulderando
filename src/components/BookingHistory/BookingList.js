@@ -2,7 +2,7 @@ import { TableContainer, Table, TableRow, TableCell, TableHead, Button } from '@
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
-import useBookingHistoryContext from '../../context/BookingHistory'
+import shareableMessageFormat from '../../modules/shareable-message-format'
 
 const TbCell = (props) => (
   <TableCell
@@ -13,19 +13,10 @@ const TbCell = (props) => (
   />
 )
 
-const formatSession = (result) =>
-  result
-    ? `🧗🧗🧗🧗🧗
-${result.gym_name} ${result.day_of_week} ${result.booking_date} ${result.scheduled_time}
-🧗🧗🧗🧗🧗
-`
-    : ''
-
 export const BOOKING_HISTORY_LIST_ITEM = 'booking_history_list_item'
 export const BOOKING_HISTORY_DELETE_BTN = 'booking_history_delete_btn';
 
-function BookingList() {
-  const { bookingHistory, deleteBookedSession } = useBookingHistoryContext()
+function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
   return (
     <TableContainer>
       <Table>
@@ -57,7 +48,7 @@ function BookingList() {
               <Button color="inherit" size="small">
                 <ContentCopyIcon
                   onClick={() => {
-                    navigator.clipboard.writeText(formatSession(session))
+                    navigator.clipboard.writeText(shareableMessageFormat(session))
                   }}
                 />
               </Button>
@@ -78,4 +69,4 @@ function BookingList() {
   )
 }
 
-export default BookingList
+export default BookingHistoryList

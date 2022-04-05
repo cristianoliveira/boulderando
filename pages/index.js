@@ -1,7 +1,7 @@
-import SessionList from '../src/components/Sessions/SessionList'
+import SessionsPage from './sessions'
 
 export default function Home() {
   return (
-      <SessionList />
+      <SessionsPage />
   )
 }
