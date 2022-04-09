@@ -1,7 +1,7 @@
 import Head from 'next/head'
-import { Typography, Link, Box } from '@mui/material'
 import NavBar from '../src/components/NavBar'
 import DryRunBadge from '../src/components/DryRunBadge'
+import GithubForkIt from '../src/components/GithubForkIt'
 
 import {
   EnvironmentProvider,
@@ -27,14 +27,13 @@ function MyApp({ Component, pageProps }) {
         <EnvironmentConsumer>
           {({ configs, api }) => (
             <>
-              <DryRunBadge
-                isVisible={configs.isDryRun}
-              />
+              <DryRunBadge isVisible={configs.isDryRun} />
               <UserProvider>
                 <SessionProvider api={api}>
                   <BookingHistoryProvider>
                     <NavBar />
                     <Component {...pageProps} />
+                    <GithubForkIt />
                   </BookingHistoryProvider>
                 </SessionProvider>
               </UserProvider>
@@ -42,21 +41,6 @@ function MyApp({ Component, pageProps }) {
           )}
         </EnvironmentConsumer>
       </EnvironmentProvider>
-
-      <Box>
-        <Typography variant="small" color="text.primary" align="center">
-          <small>Developed by Bouldering Fans. </small>
-          <Link
-            href="https://github.com/cristianoliveira/boulderando"
-            target="_blank"
-            rel="noopener noreferrer"
-            align="center"
-            variant="body2"
-          >
-            Fork it on Github
-          </Link>
-        </Typography>
-      </Box>
     </>
   )
 }
