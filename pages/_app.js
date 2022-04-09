@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { Link } from '@mui/material'
 import NavBar from '../src/components/NavBar'
 import DryRunBadge from '../src/components/DryRunBadge'
 import GithubForkIt from '../src/components/GithubForkIt'
@@ -21,7 +20,7 @@ function MyApp({ Component, pageProps }) {
           name="description"
           content="Booking bouldering sessions made easy"
         />
-        <Link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <EnvironmentProvider>
