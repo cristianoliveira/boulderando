@@ -25,8 +25,8 @@ function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
           <TbCell>Date</TbCell>
           <TbCell>Time</TbCell>
           <TbCell>Created At</TbCell>
-          <TbCell>Copy</TbCell>
-          <TbCell>Delete</TbCell>
+          <TbCell align="right">Copy</TbCell>
+          <TbCell align="right">Delete</TbCell>
         </TableHead>
         {bookingHistory.map((session, i) => (
           <TableRow
@@ -44,7 +44,7 @@ function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
             </TbCell>
             <TbCell>{session.time}</TbCell>
             <TbCell>{session.created_at}</TbCell>
-            <TbCell>
+            <TbCell align="right">
               <Button color="inherit" size="small">
                 <ContentCopyIcon
                   onClick={() => {
@@ -53,7 +53,7 @@ function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
                 />
               </Button>
             </TbCell>
-            <TbCell>
+            <TbCell align="right">
               <Button data-testid={BOOKING_HISTORY_DELETE_BTN} color="inherit" size="small">
                 <DeleteOutlineIcon
                   onClick={() => {

@@ -54,7 +54,7 @@ function SessionList({ sessionContext, bookingHistory, user }) {
             <TbCell>Gym</TbCell>
             <TbCell>Day</TbCell>
             <TbCell>Time</TbCell>
-            <TbCell>Schedule</TbCell>
+            <TbCell align={'right'}>Schedule</TbCell>
           </TableRow>
         </TableHead>
         {sessionContext.sessions.map((session, i) => (
@@ -75,7 +75,7 @@ function SessionList({ sessionContext, bookingHistory, user }) {
               {session.day_of_week}-{getNextPossibleDay(session.day_of_week)}
             </TbCell>
             <TbCell>{session.time}</TbCell>
-            <TbCell>
+            <TbCell align={'right'}>
               <Button
                 disabled={
                   sessionContext.isProcessing ||
