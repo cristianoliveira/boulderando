@@ -45,7 +45,7 @@ yarn cy:open:e2e
 
 ## Environment Variables
 
-Before deploying your version of the app, make sure you have set all variables declared in `.env.exaple` into vercel platform: `https://vercel.com/crisoliveira/<your-project>/settings`
+Before deploying your version of the app, make sure you have set all variables declared in `.env.example` into vercel platform: `https://vercel.com/crisoliveira/<your-project>/settings`
 
 ## Deploy your own using Vercel
 
