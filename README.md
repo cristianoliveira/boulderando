@@ -5,8 +5,6 @@ Together with [its backend](https://github.com/juanibiapina/bouldering-scheduler
 
 https://boulderando.vercel.app/
 
-**This app only uses data stored on your browser**
-
 ## Getting Started
 
 Prepare the environment
