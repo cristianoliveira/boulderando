@@ -139,7 +139,11 @@ function Form({ user = {}, onSubmit }) {
         </Button>
       </FormControl>
       <FormHelperText variant="outlined">
-        ** This data is stored in your browser and can be deleted at any time
+        Your personal data is stored only in your browser and can be deleted at
+        any time. When scheduling specific sessions, your data is transmitted
+        to the corresponding Gym using the Dr. Plano booking system. By
+        scheduling sessions you&apos;re automatically agreeing to the Terms and
+        Conditions and Privacy Policy of that Gym.
       </FormHelperText>
     </StyledForm>
   )

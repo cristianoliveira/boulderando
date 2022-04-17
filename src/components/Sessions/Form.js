@@ -82,7 +82,7 @@ function Form({ onSubmit }) {
           <SelectField
             data-testid={TID.CUSTOM_SESSION_FORM_TIME}
             name="time"
-            label="Day of the week"
+            label="Time"
             register={register}
             selectOptions={timesSelection.map((time) => ({
               label: time,
