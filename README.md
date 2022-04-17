@@ -41,6 +41,10 @@ yarn cy:open
 yarn cy:open:e2e
 ```
 
+## Git Hooks
+
+Run `npx husky install` to install a pre-commit hook that lints only staged files.
+
 ## Environment Variables
 
 Before deploying your version of the app, make sure you have set all variables declared in `.env.example` into vercel platform: `https://vercel.com/crisoliveira/<your-project>/settings`
