@@ -5,10 +5,10 @@ import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemIcon from '@mui/material/ListItemIcon'
 
-const ITEM_HEIGHT = 48
+const ITEM_HEIGHT = 54
 
 export default function LongMenu({ MenuIcon, options, onClick, ...props }) {
-  const [selected, setSelected] = React.useState("")
+  const [selected, setSelected] = React.useState('')
   const [anchorEl, setAnchorEl] = React.useState(null)
   const open = Boolean(anchorEl)
   const handleClick = (event) => {
@@ -42,30 +42,34 @@ export default function LongMenu({ MenuIcon, options, onClick, ...props }) {
         onClose={handleClose}
         PaperProps={{
           style: {
-            maxHeight: ITEM_HEIGHT * 4.5,
+            maxHeight: ITEM_HEIGHT * 5,
             width: '20ch',
           },
         }}
       >
-        {options.map(({ id, Icon, label, ...oProps }) => (
-          <MenuItem
-            key={id}
-            selected={id === selected}
-            onClick={() => {
-              setSelected(id);
-              onClick({ id, label });
-              handleClose()
-            }}
-            {...oProps}
-          >
-          {Icon && (
-            <ListItemIcon>
-              <Icon fontSize="small" />
-            </ListItemIcon>
-          )}
-            <ListItemText>{label}</ListItemText>
-          </MenuItem>
-        ))}
+        {options.map(({ id, Icon, label, Component, ...oProps }) =>
+          Component ? (
+            <Component />
+          ) : (
+            <MenuItem
+              key={id}
+              selected={id === selected}
+              onClick={() => {
+                setSelected(id)
+                onClick({ id, label })
+                handleClose()
+              }}
+              {...oProps}
+            >
+              {Icon && (
+                <ListItemIcon>
+                  <Icon fontSize="small" />
+                </ListItemIcon>
+              )}
+              <ListItemText>{label}</ListItemText>
+            </MenuItem>
+          )
+        )}
       </Menu>
     </>
   )

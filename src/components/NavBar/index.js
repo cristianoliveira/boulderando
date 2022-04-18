@@ -11,6 +11,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EditIcon from '@mui/icons-material/Edit'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import SyncIcon from '@mui/icons-material/Sync'
+import Divider from '@mui/material/Divider';
 
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import NavBarMenu from './NavBarMenu'
@@ -87,6 +88,9 @@ export default function NavBar() {
               label: 'Delete All',
               'data-testid': NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE,
               disabled: !user,
+            },
+            {
+              Component: Divider
             },
             {
               id: 'sync-devices',
