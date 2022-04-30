@@ -18,12 +18,14 @@ export function EnvironmentProvider({ children }) {
   const configs = {
     isDryRun,
     apiUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
+    apiBotUrl: `${process.env.NEXT_PUBLIC_BOT_API_URL}`,
     socketApiUrl: `${process.env.NEXT_PUBLIC_SOCKET_API_URL}`,
   }
 
   const api = {
     getSessions: init.getSessions(configs),
     postSessionSchedule: init.postSessionSchedule(configs),
+    postCreateUser: init.postCreateUser(configs),
   }
 
   const environment = {

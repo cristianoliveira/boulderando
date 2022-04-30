@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import botUserFormat from './formatters/user-bot'
+
 export const getSessions = () => async () => {
   try {
     const { data } = await axios.get('/api/bouldering-sessions')
@@ -19,6 +21,30 @@ export const postSessionSchedule = configs => async (user, session) => {
         user,
         session,
         dry_run: configs.isDryRun,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
+
+    return { data: res.data }
+  } catch (error) {
+    return {
+      error: {
+        message: error.response?.data?.error || error.message,
+      },
+    }
+  }
+}
+
+export const postCreateUser = configs => async (user) => {
+  try {
+    const res = await axios.post(
+      `${configs.apiBotUrl}/users`,
+      {
+        user: botUserFormat(user)
       },
       {
         headers: {

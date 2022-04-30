@@ -8,7 +8,7 @@ export const UserContext = createContext()
 
 export const UserConsumer = UserContext.Consumer
 
-export function UserProvider({ children }) {
+export function UserProvider({ children, api }) {
   const router = useRouter()
   const [user, setUser, removeUser] = useStorage(USER)
 
@@ -21,9 +21,11 @@ export function UserProvider({ children }) {
     router.push('/user/new')
   }
 
-  const saveUser = (_user) => {
-    setUser(_user)
-    router.push('/')
+  const saveUser = (userToSave) => {
+    api.postCreateUser(userToSave).then(() => {
+      setUser(userToSave)
+      router.push('/')
+    })
   }
 
   useEffect(() => {
