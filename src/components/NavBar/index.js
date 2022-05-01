@@ -19,13 +19,6 @@ import NavBarMenu from './NavBarMenu'
 import useUserContext from '../../context/User'
 import useSessionContext from '../../context/Sessions'
 
-const PAGE_TITLES = {
-  '/': 'Book Session',
-  '/sessions': 'Book Session',
-  '/user/new': 'New user',
-  '/user/edit': 'Editing user',
-}
-
 export const NAVBAR_CONTAINER = 'navbar_container'
 
 export const NAVBAR_USER_MENU_BUTTON = 'navbar_user_menu_button'
@@ -49,7 +42,7 @@ export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE =
 
 export const NAVBAR_BOOKING_HISTORY_MENU = 'navbar_booking_history_button'
 
-export default function NavBar() {
+export default function NavBar({ pageTitle }) {
   const { user, deleteUser, editUser } = useUserContext()
   const { deleteCustomSessions } = useSessionContext()
   const router = useRouter()
@@ -90,6 +83,7 @@ export default function NavBar() {
               disabled: !user,
             },
             {
+              id: 'sync-devices-divider',
               Component: Divider
             },
             {
@@ -126,7 +120,7 @@ export default function NavBar() {
           }}
         />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {PAGE_TITLES[router.asPath]}
+          {pageTitle}
         </Typography>
         {user && (
           <div>

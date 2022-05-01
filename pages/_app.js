@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import Head from 'next/head'
 import NavBar from '../src/components/NavBar'
 import DryRunBadge from '../src/components/DryRunBadge'
@@ -11,7 +12,8 @@ import { UserProvider } from '../src/context/User'
 import { SessionProvider } from '../src/context/Sessions'
 import { BookingHistoryProvider } from '../src/context/BookingHistory'
 
-function MyApp({ Component, pageProps }) {
+function BoulderandoApp({ Component, pageProps }) {
+  const [pageTitle, setPageTitle] = useState('');
   return (
     <>
       <Head>
@@ -31,8 +33,8 @@ function MyApp({ Component, pageProps }) {
               <UserProvider>
                 <SessionProvider api={api}>
                   <BookingHistoryProvider>
-                    <NavBar />
-                    <Component {...pageProps} />
+                    <NavBar pageTitle={pageTitle} />
+                    <Component setPageTitle={setPageTitle} {...pageProps} />
                     <GithubForkIt />
                   </BookingHistoryProvider>
                 </SessionProvider>
@@ -45,4 +47,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default BoulderandoApp

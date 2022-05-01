@@ -10,7 +10,8 @@ export const SYNC_DEVICE_CODE = 'synch_device_code'
 export const SYNC_DEVICE_URL = 'synch_device_url'
 
 const generatedCode = (Math.random() + 1).toString(36).substring(7)
-export default function Devices() {
+export default function Devices({ setPageTitle }) {
+  setPageTitle("Sync device")
   const [isConnectedDevice, setConnectedDevice] = useState(false)
 
   const [isSynching, setIsSynching] = useState(false)
@@ -56,11 +57,6 @@ export default function Devices() {
         justifyContent="center"
         style={{ minHeight: '90vh' }}
       >
-        <Grid>
-          <Typography variant="h4" color="text.primary" align="center">
-            Synching devices
-          </Typography>
-        </Grid>
         <Grid style={{ minWidth: '300px' }} spacing={3}>
           <Typography
             data-testid={SYNC_DEVICE_CODE}
