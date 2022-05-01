@@ -13,7 +13,7 @@ import { SessionProvider } from '../src/context/Sessions'
 import { BookingHistoryProvider } from '../src/context/BookingHistory'
 
 function BoulderandoApp({ Component, pageProps }) {
-  const [pageTitle, setPageTitle] = useState('');
+  const [pageTitle, setPageTitle] = useState('')
   return (
     <>
       <Head>
@@ -34,7 +34,7 @@ function BoulderandoApp({ Component, pageProps }) {
                 <SessionProvider api={api}>
                   <BookingHistoryProvider>
                     <NavBar pageTitle={pageTitle} />
-                    <Component setPageTitle={setPageTitle} {...pageProps} />
+                    <Component {...pageProps} setPageTitle={setPageTitle} />
                     <GithubForkIt />
                   </BookingHistoryProvider>
                 </SessionProvider>

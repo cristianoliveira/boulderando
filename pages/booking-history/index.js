@@ -1,8 +1,9 @@
 import BookingHistoryList from '../../src/components/BookingHistory/BookingList'
 import useBookingHistoryContext from '../../src/context/BookingHistory'
 
-export default function SessionSelectPage({ setPageTitle }) {
-  setPageTitle("Select session")
+export default function BookingHistoryPage({ setPageTitle }) {
+  setPageTitle("Booking history")
+
   const { bookingHistory, deleteBookedSession } = useBookingHistoryContext()
   return (
     <BookingHistoryList
