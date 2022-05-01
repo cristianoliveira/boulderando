@@ -13,7 +13,9 @@ const storageItems = Object.keys(ITEMS)
   .map((k) => ({ [ITEMS[k]]: get(ITEMS[k]) }))
   .reduce((c, a) => ({ ...a, ...c }), {})
 
-const Connect = () => {
+const Connect = ({ setPageTitle }) => {
+  setPageTitle("Sync device")
+
   const [isDone, setIsDone] = useState(false)
   const router = useRouter()
   const { id } = router.query
@@ -44,11 +46,6 @@ const Connect = () => {
         justifyContent="center"
         style={{ minHeight: '50vh' }}
       >
-        <Grid item xs={1}>
-          <Typography variant="h5" color="text.primary" align="center">
-            Sync devices data
-          </Typography>
-        </Grid>
         <Grid item xs={1}>
           <Typography variant="subtitle1" color="text.secondary" align="center">
             You are about to push this device app data to the connected device
