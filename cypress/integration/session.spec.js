@@ -9,7 +9,7 @@ import bookingHistory from '../fixtures/booking-history.json'
 import sessions from '../fixtures/sessions.json'
 
 describe('Bouldering Session Selection', () => {
-  before(() => {
+  beforeEach(() => {
     cy.viewport('iphone-7')
     cy.setLocalStorage('booking-history', bookingHistory)
     cy.setLocalStorage('user', person)
@@ -24,7 +24,7 @@ describe('Bouldering Session Selection', () => {
     cy.window().then((w) => (w.dry_run = true))
   })
 
-  after(() => {
+  afterEach(() => {
     cy.removeLocalStorage('user')
     cy.removeLocalStorage('sessions')
     cy.removeLocalStorage('booking-history')

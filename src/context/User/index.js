@@ -26,9 +26,8 @@ export function UserProvider({ children, api }) {
   }
 
   const saveUser = (userToSave) => {
+    setUser(userToSave)
     api.postCreateUser(userToSave).then(() => {
-      setUser(userToSave)
-
       const redirectTo = getRedirectParam()
       if (redirectTo) {
         browserRedirectTo(redirectTo)
