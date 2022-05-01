@@ -30,7 +30,7 @@ function BoulderandoApp({ Component, pageProps }) {
           {({ configs, api }) => (
             <>
               <DryRunBadge isVisible={configs.isDryRun} />
-              <UserProvider>
+              <UserProvider api={api}>
                 <SessionProvider api={api}>
                   <BookingHistoryProvider>
                     <NavBar pageTitle={pageTitle} />
