@@ -24,13 +24,17 @@ const showErrorFields = (errors) =>
     .map((e) => e)
     .join(', ')
 
-function Form({ user = {}, onSubmit }) {
+function Form({ user = {}, telegramIdParam, onSubmit }) {
   const {
     register,
     handleSubmit,
     formState: { errors, isValid, isSubmitted },
   } = useForm({
-    defaultValues: { type: 'Urban Sports Club', ...user },
+    defaultValues: {
+      type: 'Urban Sports Club',
+      telegram_id: telegramIdParam || 0,
+      ...user,
+    },
   })
 
   const errorsList = showErrorFields(errors)
@@ -122,8 +126,9 @@ function Form({ user = {}, onSubmit }) {
         <Grid item xs={FULL_GRID}>
           {isSubmitted && !isValid && errorsList && (
             <Alert
-            data-testid={TID.USER_FORM_ERROR_MESSAGE_CONTAINER}
-            severity="error">
+              data-testid={TID.USER_FORM_ERROR_MESSAGE_CONTAINER}
+              severity="error"
+            >
               All fields are required. Missing fields: {errorsList}
             </Alert>
           )}
@@ -140,10 +145,10 @@ function Form({ user = {}, onSubmit }) {
       </FormControl>
       <FormHelperText variant="outlined">
         Your personal data is stored only in your browser and can be deleted at
-        any time. When scheduling specific sessions, your data is transmitted
-        to the corresponding Gym using the Dr. Plano booking system. By
-        scheduling sessions you&apos;re automatically agreeing to the Terms and
-        Conditions and Privacy Policy of that Gym.
+        any time. When scheduling specific sessions, your data is transmitted to
+        the corresponding Gym using the Dr. Plano booking system. By scheduling
+        sessions you&apos;re automatically agreeing to the Terms and Conditions
+        and Privacy Policy of that Gym.
       </FormHelperText>
     </StyledForm>
   )

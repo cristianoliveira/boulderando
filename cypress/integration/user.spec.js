@@ -3,9 +3,10 @@ import * as TID from '../../src/constants/data-testid'
 import * as NB_TID from '../../src/components/NavBar'
 
 import person from '../fixtures/persons/valid.json'
+import telegramPerson from '../fixtures/persons/telegram.json'
 
 describe('User Data Form', () => {
-  afterEach(() => {
+  beforeEach(() => {
     cy.localStorage().then((ls) => ls.removeItem('user'))
   })
 
@@ -84,14 +85,94 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
 
-    cy.getLocalStorage('user').then((user) => expect(user).deep.equal(person))
+    cy.url().should('not.include', '/user/new')
+    cy.url().should('not.include', '/user/edit')
 
-    cy.url().should('include', '/')
+    cy.getLocalStorage('user').then((user) => expect(user).deep.equal(person))
 
     cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
   })
 
-  it('can edit user data', () => {
+  it('vinculates the user to the given telegram id', () => {
+    cy.visit(`/user/new?telegram_id=${telegramPerson.telegram_id}`)
+
+    cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
+      .should('exist')
+      .type(telegramPerson.name)
+    cy.get(byDataTestId(TID.USER_INPUT_LAST_NAME))
+      .should('exist')
+      .type(telegramPerson.last_name)
+    cy.get(byDataTestId(TID.USER_INPUT_BIRTHDAY))
+      .should('exist')
+      .type(telegramPerson.birthday)
+    cy.get(byDataTestId(TID.USER_INPUT_STREET_ADDRESS))
+      .should('exist')
+      .type(telegramPerson.address)
+    cy.get(byDataTestId(TID.USER_INPUT_POSTALCODE))
+      .should('exist')
+      .type(telegramPerson.postal_code)
+    cy.get(byDataTestId(TID.USER_INPUT_CITY))
+      .should('exist')
+      .type(telegramPerson.city)
+    cy.get(byDataTestId(TID.USER_INPUT_EMAIL))
+      .should('exist')
+      .type(telegramPerson.email)
+    cy.get(byDataTestId(TID.USER_INPUT_PHONE_NUMBER))
+      .should('exist')
+      .type(telegramPerson.phone_number)
+    cy.get(byDataTestId(TID.USER_INPUT_URBAN_SPORT_NUMBER))
+      .should('exist')
+      .type(telegramPerson.usc_number)
+
+    cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
+
+    cy.url().should('not.include', '/user/new')
+    cy.url().should('not.include', '/user/edit')
+
+    cy.getLocalStorage('user').then((user) =>
+      expect(user).deep.equal(telegramPerson)
+    )
+
+    cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
+  })
+
+  it('redirects the user to the given redirect_to', () => {
+    cy.visit(`/user/new?redirect_to=https://google.com`)
+
+    cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
+      .should('exist')
+      .type(telegramPerson.name)
+    cy.get(byDataTestId(TID.USER_INPUT_LAST_NAME))
+      .should('exist')
+      .type(telegramPerson.last_name)
+    cy.get(byDataTestId(TID.USER_INPUT_BIRTHDAY))
+      .should('exist')
+      .type(telegramPerson.birthday)
+    cy.get(byDataTestId(TID.USER_INPUT_STREET_ADDRESS))
+      .should('exist')
+      .type(telegramPerson.address)
+    cy.get(byDataTestId(TID.USER_INPUT_POSTALCODE))
+      .should('exist')
+      .type(telegramPerson.postal_code)
+    cy.get(byDataTestId(TID.USER_INPUT_CITY))
+      .should('exist')
+      .type(telegramPerson.city)
+    cy.get(byDataTestId(TID.USER_INPUT_EMAIL))
+      .should('exist')
+      .type(telegramPerson.email)
+    cy.get(byDataTestId(TID.USER_INPUT_PHONE_NUMBER))
+      .should('exist')
+      .type(telegramPerson.phone_number)
+    cy.get(byDataTestId(TID.USER_INPUT_URBAN_SPORT_NUMBER))
+      .should('exist')
+      .type(telegramPerson.usc_number)
+
+    cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
+
+    cy.url().should('include', 'google.com')
+  })
+
+  it('allows edit user data', () => {
     cy.setLocalStorage('user', person)
 
     cy.visit('/user/edit')
@@ -133,6 +214,9 @@ describe('User Data Form', () => {
       .type(' NewName')
 
     cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
+
+    cy.url().should('not.include', '/user/new')
+    cy.url().should('not.include', '/user/edit')
 
     cy.getLocalStorage('user').then(async (user) => {
       await expect(user.name).equal('John NewName')
