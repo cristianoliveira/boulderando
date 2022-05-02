@@ -11,7 +11,9 @@ export default function UserNew({ setPageTitle }) {
   return (
     <Container>
       <UserForm
-        telegramIdParam={getUrlParam('telegram_id')}
+        telegramIdParam={
+          getUrlParam('telegram_id') || getUrlParam('telegramId')
+        }
         onSubmit={saveUser}
       />
     </Container>
