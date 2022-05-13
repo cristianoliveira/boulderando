@@ -26,13 +26,13 @@ export function UserProvider({ children, api }) {
   }
 
   const saveUser = (userToSave) => {
-    setUser(userToSave)
     api.postCreateUser(userToSave).then(() => {
       const redirectTo = getRedirectParam()
       if (redirectTo) {
         browserRedirectTo(redirectTo)
       }
 
+      setUser(userToSave)
       router.push('/')
     })
   }
