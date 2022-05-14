@@ -39,7 +39,7 @@ export const postSessionSchedule = (configs) => async (user, session) => {
 
 export const postCreateUser = (configs) => async (user) => {
   const res = await axios.post(
-    `${configs.apiBotUrl}/users`,
+    `${configs.apiUrl}/users`,
     { user },
     {
       headers: {
