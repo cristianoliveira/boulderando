@@ -18,6 +18,7 @@ export function EnvironmentProvider({ children }) {
   const configs = {
     isDryRun,
     apiUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
+    telegramInviteLink: `${process.env.NEXT_PUBLIC_TELEGRAM_GROUP_INVITE_LINK}`,
     socketApiUrl: `${process.env.NEXT_PUBLIC_SOCKET_API_URL}`,
   }
 

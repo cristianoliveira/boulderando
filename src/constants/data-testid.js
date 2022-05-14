@@ -20,3 +20,6 @@ export const CUSTOM_SESSION_FORM_TIME = 'custom_session_form_time';
 export const CUSTOM_SESSION_FORM_SUBMIT_BUTTON = 'custom_session_form_submit_button';
 
 export const BOOKING_HISTORY_MENU_CONTAINER = 'booking_history_menu_container';
+
+export const USER_TELEGRAM_GROUP_LINK = 'user_telegram_group_link'
+

@@ -10,6 +10,13 @@ describe('User Data Form', () => {
     cy.localStorage().then((ls) => ls.removeItem('user'))
   })
 
+  it('shows a invite link for unkown users (without telegram id)', () => {
+    cy.visit('/')
+
+    cy.get(byDataTestId(TID.USER_TELEGRAM_GROUP_LINK))
+      .should('be.visible')
+  })
+
   it('requires user booking data', () => {
     cy.visit('/')
 
