@@ -4,4 +4,3 @@ type StorageKey = string;
 
 type SaveStorageItem = (item: StorageData) => void
 type RemoveStorageItem = () => void
-

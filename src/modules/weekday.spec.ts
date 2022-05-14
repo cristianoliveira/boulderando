@@ -1,5 +1,5 @@
-import getNextPossibleDay from './weekday';
 import dayjs from 'dayjs'
+import getNextPossibleDay from './weekday';
 
 describe('getNextPossibleDay', () => {
   it('gets the next possible date of next week if today is after the looking day', () => {

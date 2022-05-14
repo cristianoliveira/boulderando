@@ -10,12 +10,18 @@ const daysOfTheWeek = [
   'saturday',
 ]
 
-export default function getNextPossible(nextWeekDay, refDate = new Date()) {
+export default function getNextPossible(
+  nextWeekDay: SessionDate,
+  refDate = new Date()
+): SessionDate {
   const today = dayjs(refDate)
   const nextPossibleDayOfTheWeek = daysOfTheWeek.indexOf(nextWeekDay)
 
   if (today.day() + 1 > nextPossibleDayOfTheWeek) {
-    return today.add(1, 'week').day(nextPossibleDayOfTheWeek).format('DD/MM/YYYY')
+    return today
+      .add(1, 'week')
+      .day(nextPossibleDayOfTheWeek)
+      .format('DD/MM/YYYY')
   }
 
   return today.day(nextPossibleDayOfTheWeek).format('DD/MM/YYYY')
