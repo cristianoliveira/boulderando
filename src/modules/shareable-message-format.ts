@@ -1,4 +1,3 @@
-import { Session } from '../types';
 import getNextPossibleDay from './weekday'
 
 export default (session: Session):string =>
