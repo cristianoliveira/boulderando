@@ -1,5 +1,8 @@
 ## Boulderando
 
+[![Lint & unit test & audit checks](https://github.com/cristianoliveira/boulderando/actions/workflows/on-push.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-push.yml)
+[![E2E checks on deploy](https://github.com/cristianoliveira/boulderando/actions/workflows/on-deploy.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-deploy.yml)
+
 Boulderando is a tool made by Bouldering Fans to make it easier to book bouldering sessions in Berlin.
 Together with [its backend](https://github.com/juanibiapina/bouldering-scheduler), it allows you to book bouldering sessions with a click of a button on any device.
 
