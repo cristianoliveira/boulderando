@@ -1,8 +1,7 @@
-name: Cypress checks
+name: Lint & unit test & audit checks
 on: [push]
 jobs:
   checks:
-    name: Check ui + unit tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

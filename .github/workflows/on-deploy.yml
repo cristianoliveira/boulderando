@@ -1,4 +1,4 @@
-name: Run UI on deploy
+name: E2E checks on deploy
 # https://docs.github.com/en/actions/reference/events-that-trigger-workflows
 on: [push, deployment, deployment_status]
 jobs:
@@ -13,12 +13,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 17.7.1
-
-      # - name: Dump GitHub context
-      #   env:
-      #     GITHUB_CONTEXT: ${{ toJson(github) }}
-      #   run: |
-      #     echo "$GITHUB_CONTEXT"
 
       - name: Install dependencies
         run: yarn install
