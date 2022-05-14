@@ -1,0 +1,15 @@
+{
+  "baseUrl": "http://localhost:3333",
+  "env": {},
+  "video": false,
+  "pluginsFile": false,
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "e2e/results/e2e-test-[hash].xml",
+    "toConsole": true
+  },
+  "chromeWebSecurity": false,
+  "retries": 3,
+  "testFiles": "**/*.spec.e2e.js",
+  "ignoreTestFiles": "**/*.unstable.spec.e2e.js"
+}
