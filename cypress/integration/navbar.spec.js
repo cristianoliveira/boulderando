@@ -97,7 +97,7 @@ describe('Navigation Bar', () => {
         .should('be.visible')
         .click()
 
-      cy.url().should('include', '/user/new')
+      cy.url().should('include', '/user/invite')
 
       cy.getLocalStorage('user').then((user) => {
         expect(user).equal(null)
