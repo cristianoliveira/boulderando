@@ -17,7 +17,7 @@ export function EnvironmentProvider({ children }) {
 
   const configs = {
     isDryRun,
-    apiUrl: `${process.env.NEXT_PUBLIC_BOT_API_URL}`,
+    apiUrl: `${process.env.NEXT_PUBLIC_API_URL}`,
     socketApiUrl: `${process.env.NEXT_PUBLIC_SOCKET_API_URL}`,
   }
 
