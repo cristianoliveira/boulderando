@@ -15,9 +15,38 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_TELEGRAM_GROUP_LINK))
       .should('be.visible')
-      .click()
+      .should('have.attr', 'href').and('include', 'https://t.me')
+  })
 
-    cy.url().should('contain', 'https://t.me')
+  it('shows a invite link for kown users (without telegram id)', () => {
+    const newEmail = 'newemail@foobar.com'
+    const newTelegramId = '99999'
+    cy.setLocalStorage('user', {
+      ...telegramPerson,
+      telegram_id: null,
+    })
+    cy.visit(`/user/new?telegram_id=${newTelegramId}`)
+
+    cy.url().should('contain', `/user/edit?telegram_id=${newTelegramId}`)
+
+    cy.get(byDataTestId(TID.USER_INPUT_EMAIL))
+      .should('exist')
+      .find('input')
+      .clear()
+
+    cy.get(byDataTestId(TID.USER_INPUT_EMAIL)).type(newEmail)
+
+    cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
+
+    cy.url().should('not.include', '/user/edit')
+
+    cy.getLocalStorage('user').then((user) =>
+      expect(user).deep.equal({
+        ...telegramPerson,
+        email: newEmail,
+        telegram_id: newTelegramId,
+      })
+    )
   })
 
   it('collects and store locally user data', () => {
@@ -140,7 +169,7 @@ describe('User Data Form', () => {
     cy.url().should('include', 'google.com')
   })
 
-  it('allows edit user data', () => {
+  it('allows an user edit their data', () => {
     cy.setLocalStorage('user', person)
 
     cy.visit('/user/edit')
