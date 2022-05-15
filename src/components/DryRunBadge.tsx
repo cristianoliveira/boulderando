@@ -11,12 +11,16 @@ const StickyBadge = styled.div`
   left: 0;
   width: 100%;
   text-align: center;
-  font-size: 12px
+  font-size: 12px;
 `
 
-function DryRunBadge({ isVisible }) {
+type DryRunBadgePros = Visible
+
+function DryRunBadge({
+  isVisible,
+}: DryRunBadgePros): JSX.Element | null {
   if (!isVisible) {
-    return null;
+    return null
   }
 
   return (
