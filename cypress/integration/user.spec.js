@@ -15,6 +15,9 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_TELEGRAM_GROUP_LINK))
       .should('be.visible')
+      .click()
+
+    cy.url().should('contain', 'https://t.me')
   })
 
   it('collects and store locally user data', () => {
@@ -100,7 +103,9 @@ describe('User Data Form', () => {
   })
 
   it('redirects the user to the given redirect_to', () => {
-    cy.visit(`/user/new?redirect_to=https://google.com&telegram_id=${telegramPerson.telegram_id}`)
+    cy.visit(
+      `/user/new?redirect_to=https://google.com&telegram_id=${telegramPerson.telegram_id}`
+    )
 
     cy.get(byDataTestId(TID.USER_INPUT_FIRST_NAME))
       .should('exist')
