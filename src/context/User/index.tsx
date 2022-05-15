@@ -5,14 +5,24 @@ import useStorage from '../../hooks/useStorage'
 import { USER } from '../../storage/items'
 import { getRedirectParam, browserRedirectTo } from '../../modules/redirect-to'
 
-export const UserContext = createContext()
+type UserContextValue = {
+  user: StorageData;
+  saveUser(user: User): void
+  deleteUser(): void
+  editUser(): void
+} | null
+
+export const UserContext = createContext<UserContextValue>(null)
 
 export const UserConsumer = UserContext.Consumer
 
 const URI_USER_NEW = '/user/new'
 const URI_USER_EDIT = '/user/edit'
 
-export function UserProvider({ children, api }) {
+export function UserProvider({
+  children,
+  api,
+}: WithChildren & WithApi): JSX.Element {
   const router = useRouter()
   const [user, setUser, removeUser] = useStorage(USER)
 
@@ -25,7 +35,7 @@ export function UserProvider({ children, api }) {
     router.push(URI_USER_NEW)
   }
 
-  const saveUser = (userToSave) => {
+  const saveUser = (userToSave: User) => {
     api.postCreateUser(userToSave).then(() => {
       const redirectTo = getRedirectParam()
       if (redirectTo) {

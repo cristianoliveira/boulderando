@@ -9,3 +9,7 @@ interface Clickable<Arg, Return = void> {
 interface Disableable {
   disabled: boolean
 }
+
+interface WithChildren {
+  children: JSX.Element
+}
