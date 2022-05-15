@@ -17,6 +17,7 @@ export default <T>(
 
   const remove = (): void => {
     storage.remove(key)
+    setData(initData as any)
   }
 
   return [data, save, remove]

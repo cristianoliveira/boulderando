@@ -1,11 +1,25 @@
 import { createContext, useContext } from 'react'
 import * as init from '../../api/bouldering-sessions'
 
-export const EnvironmentContext = createContext()
+type EnvironmentConfiguration = {
+  isDryRun: boolean;
+  apiUrl: string
+  telegramInviteLink: string
+  socketApiUrl: string
+}
+
+type EnvironmentContextValue = {
+  configs: EnvironmentConfiguration
+  api: any
+}
+
+export const EnvironmentContext = createContext<EnvironmentContextValue>(
+  undefined as any
+)
 
 export const EnvironmentConsumer = EnvironmentContext.Consumer
 
-export function EnvironmentProvider({ children }) {
+export function EnvironmentProvider({ children }: WithChildren) {
   if (typeof window === 'undefined') {
     return null
   }
@@ -23,7 +37,7 @@ export function EnvironmentProvider({ children }) {
   }
 
   const api = {
-    getSessions: init.getSessions(configs),
+    getSessions: init.getSessions(),
     postSessionSchedule: init.postSessionSchedule(configs),
     postCreateUser: init.postCreateUser(configs),
   }
