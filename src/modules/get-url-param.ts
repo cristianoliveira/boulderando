@@ -1,4 +1,4 @@
-export default (paramName) => {
+export default (paramName: string): string | null => {
   if (typeof window === 'undefined') {
     return '';
   }

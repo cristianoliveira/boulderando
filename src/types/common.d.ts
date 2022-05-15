@@ -1,0 +1,3 @@
+interface Visible {
+  isVisible: boolean;
+}
