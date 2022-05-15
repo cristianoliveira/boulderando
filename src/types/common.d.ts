@@ -1,11 +1,11 @@
 interface Visible {
-  isVisible: boolean;
+  isVisible: boolean
 }
 
 interface Clickable {
-  onClick: (event: JSX.NativeUIEvent) => void;
+  onClick: (event: React.SyntheticEvent<any, any | undefined>) => void
 }
 
 interface Disableable {
-  disabled: boolean;
+  disabled: boolean
 }
