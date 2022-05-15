@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import Head from 'next/head'
+import { AppProps } from 'next/app'
+
 import NavBar from '../src/components/NavBar'
 import DryRunBadge from '../src/components/DryRunBadge'
 import GithubForkIt from '../src/components/GithubForkIt'
@@ -12,8 +14,8 @@ import { UserProvider } from '../src/context/User'
 import { SessionProvider } from '../src/context/Sessions'
 import { BookingHistoryProvider } from '../src/context/BookingHistory'
 
-function BoulderandoApp({ Component, pageProps }) {
-  const [pageTitle, setPageTitle] = useState('')
+function BoulderandoApp({ Component, pageProps }: AppProps): JSX.Element {
+  const [pageTitle, setPageTitle] = useState<string>('')
   return (
     <>
       <Head>
