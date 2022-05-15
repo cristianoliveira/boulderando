@@ -1,10 +1,11 @@
 import styled from '@emotion/styled'
 
+import { useForm } from 'react-hook-form'
+
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
 import Button from '@mui/material/Button'
 import Grid from '@mui/material/Grid'
-import { useForm } from 'react-hook-form'
 import Alert from '@mui/material/Alert'
 
 import PhoneField from '../fields/PhoneField'
@@ -28,18 +29,24 @@ function Form({ user = {}, telegramIdParam, onSubmit }) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isValid, isSubmitted },
   } = useForm({
     defaultValues: {
       type: 'Urban Sports Club',
-      telegram_id: telegramIdParam || 0,
       ...user,
     },
   })
 
+  setValue('telegram_id', telegramIdParam)
+
   const errorsList = showErrorFields(errors)
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm
+      onSubmit={handleSubmit((data) => {
+        onSubmit(data)
+      })}
+    >
       <Grid
         direction="row"
         justify="flex-start"

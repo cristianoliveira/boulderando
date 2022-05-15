@@ -20,6 +20,37 @@ describe('User Data Form', () => {
     cy.url().should('contain', 'https://t.me')
   })
 
+  it('shows a invite link for kown users (without telegram id)', () => {
+    const newEmail = 'newemail@foobar.com'
+    const newTelegramId = '99999'
+    cy.setLocalStorage('user', {
+      ...telegramPerson,
+      telegram_id: null,
+    })
+    cy.visit(`/user/new?telegram_id=${newTelegramId}`)
+
+    cy.url().should('contain', `/user/edit?telegram_id=${newTelegramId}`)
+
+    cy.get(byDataTestId(TID.USER_INPUT_EMAIL))
+      .should('exist')
+      .find('input')
+      .clear()
+
+    cy.get(byDataTestId(TID.USER_INPUT_EMAIL)).type(newEmail)
+
+    cy.get(byDataTestId(TID.USER_FORM_SUBMIT_BUTTON)).should('exist').click()
+
+    cy.url().should('not.include', '/user/edit')
+
+    cy.getLocalStorage('user').then((user) =>
+      expect(user).deep.equal({
+        ...telegramPerson,
+        email: newEmail,
+        telegram_id: newTelegramId,
+      })
+    )
+  })
+
   it('collects and store locally user data', () => {
     cy.visit(`/user/new?telegram_id=${person.telegram_id}`)
 
