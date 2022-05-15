@@ -1,6 +1,9 @@
-declare type StorageData = string | number | object | null | StorageData[];
+declare type StorageData<T> =
+  | T
+  | any
+  | null
 
-type StorageKey = string;
+type StorageKey = string
 
-type SaveStorageItem = (item: StorageData) => void
+type SaveStorageItem<T> = (item: StorageData<T>) => void
 type RemoveStorageItem = () => void

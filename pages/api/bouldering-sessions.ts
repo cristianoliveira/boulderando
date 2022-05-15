@@ -1,5 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 //
+import type { NextApiRequest, NextApiResponse } from 'next'
+
 const GYMS = {
   BASEMENT: 'basement',
   BKK: 'boulderklub',
@@ -44,6 +46,6 @@ const sessions = [
   },
 ]
 
-export default function handler(req, res) {
+export default function handler(_: NextApiRequest, res: NextApiResponse) {
   res.status(200).json(sessions)
 }

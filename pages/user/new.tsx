@@ -5,7 +5,9 @@ import useUserContext from '../../src/context/User'
 
 import getUrlParam from '../../src/modules/get-url-param'
 
-export default function UserNew({ setPageTitle }) {
+export default function UserNew({
+  setPageTitle,
+}: PageWithTitle): JSX.Element | null {
   setPageTitle('New user')
 
   const { user, saveUser } = useUserContext()
@@ -14,12 +16,12 @@ export default function UserNew({ setPageTitle }) {
   const telegramId = getUrlParam('telegram_id') || getUrlParam('telegramId')
   if (!telegramId && !user) {
     router.push('/user/invite')
-    return null;
+    return null
   }
 
   if (telegramId && user) {
     router.push(`/user/edit?telegram_id=${telegramId}`)
-    return null;
+    return null
   }
 
   return (
