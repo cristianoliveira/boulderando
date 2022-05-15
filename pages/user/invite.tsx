@@ -3,8 +3,9 @@ import useEnvironment from '../../src/context/Environment'
 
 import { USER_TELEGRAM_GROUP_LINK } from '../../src/constants/data-testid'
 
-
-export default function UserInvite({ setPageTitle }) {
+export default function UserInvite({
+  setPageTitle,
+}: PageWithTitle): JSX.Element {
   setPageTitle('Invite user')
 
   const { configs } = useEnvironment()
@@ -20,7 +21,10 @@ export default function UserInvite({ setPageTitle }) {
         style={{ minHeight: '90vh' }}
       >
         <Typography variant="h4">{"Let's boulder!"}</Typography>
-        <Typography>First, you are not an user of our group. Please join using the link below</Typography>
+        <Typography>
+          First, you are not an user of our group. Please join using the link
+          below
+        </Typography>
         <Link
           data-testid={USER_TELEGRAM_GROUP_LINK}
           href={configs.telegramInviteLink}
