@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import IconButton from '@mui/material/IconButton'
+import IconButton, { IconButtonProps } from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -9,7 +9,7 @@ const ITEM_HEIGHT = 54
 
 type IconProps = {
   fontSize: string
-}
+} & IconButtonProps;
 
 type MenuOptionId = string
 type MenuOption = {
@@ -24,7 +24,7 @@ type LongMenuProps = {
   MenuIcon: React.ComponentClass<object>
   options: MenuOption[]
   'data-testid': string
-} & Clickable
+} & Clickable<Partial<MenuOption>>
 
 export default function LongMenu({
   MenuIcon,
@@ -35,7 +35,7 @@ export default function LongMenu({
   const [selected, setSelected] = useState<MenuOptionId>('')
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
   const open = Boolean(anchorEl)
-  const handleClick = (event: React.SyntheticEvent<any>) => {
+  const handleClick = (event: React.SyntheticEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
   }
   const handleClose = () => {

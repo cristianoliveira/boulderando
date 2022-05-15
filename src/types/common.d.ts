@@ -2,8 +2,8 @@ interface Visible {
   isVisible: boolean
 }
 
-interface Clickable {
-  onClick: (event: React.SyntheticEvent<any, any | undefined>) => void
+interface Clickable<Arg, Return = void> {
+  onClick: (event: Arg) => Return
 }
 
 interface Disableable {
