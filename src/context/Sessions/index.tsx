@@ -23,7 +23,10 @@ export const SessionConsumer = SessionContext.Consumer
 export function SessionProvider({ children, api }: WithChildren & WithApi) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
-  const [sessions, setSessions, resetSessions] = useListStorage(SESSIONS, [])
+  const [sessions, setSessions, resetSessions] = useListStorage<Session>(
+    SESSIONS,
+    []
+  )
   const router = useRouter()
 
   const scheduleSession = (session: Session, user: User) => {

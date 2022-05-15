@@ -1,5 +1,8 @@
 /* eslint-disable consistent-return */
-export const get = (key: string, defaultValue: StorageData = null): StorageData => {
+export const get = (
+  key: string,
+  defaultValue: StorageData<any> = null
+): StorageData<any> => {
   if (typeof window === 'undefined') {
     return defaultValue
   }
@@ -12,7 +15,7 @@ export const get = (key: string, defaultValue: StorageData = null): StorageData 
   return JSON.parse(data)
 }
 
-export const save = (key: string, data: StorageData): StorageData => {
+export const save = (key: string, data: StorageData<any>): StorageData<any> => {
   if (typeof window === 'undefined') {
     return null
   }

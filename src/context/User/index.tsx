@@ -6,13 +6,13 @@ import { USER } from '../../storage/items'
 import { getRedirectParam, browserRedirectTo } from '../../modules/redirect-to'
 
 type UserContextValue = {
-  user: StorageData;
+  user: StorageData<User>
   saveUser(user: User): void
   deleteUser(): void
   editUser(): void
-} | null
+}
 
-export const UserContext = createContext<UserContextValue>(null)
+export const UserContext = createContext<UserContextValue>(undefined as any)
 
 export const UserConsumer = UserContext.Consumer
 
@@ -24,7 +24,7 @@ export function UserProvider({
   api,
 }: WithChildren & WithApi): JSX.Element {
   const router = useRouter()
-  const [user, setUser, removeUser] = useStorage(USER)
+  const [user, setUser, removeUser] = useStorage<User>(USER)
 
   const editUser = () => {
     router.push(URI_USER_EDIT)
@@ -64,4 +64,4 @@ export function UserProvider({
   )
 }
 
-export default () => useContext(UserContext)
+export default () => useContext<UserContextValue>(UserContext)

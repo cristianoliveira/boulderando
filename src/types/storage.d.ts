@@ -1,12 +1,9 @@
 declare type StorageData<T> =
   | T
-  | string
-  | number
-  | object
+  | any
   | null
-  | StorageData<T>[]
 
 type StorageKey = string
 
-type SaveStorageItem = (item: StorageData) => void
+type SaveStorageItem<T> = (item: StorageData<T>) => void
 type RemoveStorageItem = () => void

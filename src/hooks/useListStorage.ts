@@ -1,23 +1,22 @@
 import { useState } from 'react'
 import * as storage from '../storage/local'
 
-export default (
+export default <T>(
   key: StorageKey,
-  initData: StorageData = []
-): [StorageData, SaveStorageItem, RemoveStorageItem] => {
-  const [data, setData] = useState(storage.get(key) || initData)
+  initData?: StorageData<T>[]
+): [StorageData<T>[], SaveStorageItem<T>, RemoveStorageItem] => {
+  const [data, setData] = useState<T[]>(storage.get(key) || initData)
 
-  const save = (item: StorageData): void => {
+  const save = (item: StorageData<T> | StorageData<T>[]): void => {
     if (item instanceof Array) {
       setData(storage.save(key, item))
     } else {
-      setData(storage.save(key, [...(data as StorageData[]), item]))
+      setData(storage.save(key, [...data, item]))
     }
   }
 
   const remove = (): void => {
     storage.remove(key)
-    setData(initData)
   }
 
   return [data, save, remove]
