@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import { byDataTestId } from '../support/data-testid'
 
-import * as NB_TID from '../../src/components/NavBar'
+import * as NB_TID from '../../src/components/NavBar/data-testid'
 import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
 import sessions from '../fixtures/sessions.json'
