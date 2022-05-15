@@ -15,7 +15,7 @@ const StyledGithubForkItLink = styled.div`
   }
 `
 
-function GithubForkItLink() {
+function GithubForkItLink(): JSX.Element {
   return (
     <StyledGithubForkItLink>
       <Link

@@ -11,7 +11,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import EditIcon from '@mui/icons-material/Edit'
 import AddBoxIcon from '@mui/icons-material/AddBox'
 import SyncIcon from '@mui/icons-material/Sync'
-import Divider from '@mui/material/Divider';
+import Divider from '@mui/material/Divider'
 
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 import NavBarMenu from './NavBarMenu'
@@ -19,28 +19,20 @@ import NavBarMenu from './NavBarMenu'
 import useUserContext from '../../context/User'
 import useSessionContext from '../../context/Sessions'
 
-export const NAVBAR_CONTAINER = 'navbar_container'
-
-export const NAVBAR_USER_MENU_BUTTON = 'navbar_user_menu_button'
-export const NAVBAR_USER_MENU_CONTAINER = 'navbar_user_menu_button--container'
-export const NAVBAR_USER_MENU_ITEM_DELETE = 'navbar_user_menu_button--delete'
-export const NAVBAR_USER_MENU_ITEM_EDIT = 'navbar_user_menu_button--edit'
-export const NAVBAR_USER_MENU_ITEM_SYNC_DEVICE =
-  'navbar_user_menu_item_sync_device'
-
-export const NAVBAR_NAVIGATION_MENU_BUTTON = 'navbar_navigation_menu_button'
-export const NAVBAR_NAVIGATION_MENU_ITEM_SESSION =
-  'navbar_navigation_menu_item_session'
-export const NAVBAR_NAVIGATION_MENU_ITEM_HISTORY =
-  'navbar_navigation_menu_item_history'
-
-export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD =
-  'navbar_navigation_menu_item_custom--add'
-
-export const NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE =
-  'navbar_navigation_menu_item_custom--delete'
-
-export const NAVBAR_BOOKING_HISTORY_MENU = 'navbar_booking_history_button'
+import {
+  NAVBAR_CONTAINER,
+  NAVBAR_USER_MENU_BUTTON,
+  NAVBAR_USER_MENU_CONTAINER,
+  NAVBAR_USER_MENU_ITEM_DELETE,
+  NAVBAR_USER_MENU_ITEM_EDIT,
+  NAVBAR_USER_MENU_ITEM_SYNC_DEVICE,
+  NAVBAR_NAVIGATION_MENU_BUTTON,
+  NAVBAR_NAVIGATION_MENU_ITEM_SESSION,
+  NAVBAR_NAVIGATION_MENU_ITEM_HISTORY,
+  NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_ADD,
+  NAVBAR_NAVIGATION_MENU_ITEM_CUSTOM_DELETE,
+  NAVBAR_BOOKING_HISTORY_MENU,
+} from './data-testid'
 
 export default function NavBar({ pageTitle }) {
   const { user, deleteUser, editUser } = useUserContext()
@@ -84,7 +76,7 @@ export default function NavBar({ pageTitle }) {
             },
             {
               id: 'sync-devices-divider',
-              Component: Divider
+              Component: Divider,
             },
             {
               id: 'sync-devices',

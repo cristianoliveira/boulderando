@@ -2,7 +2,7 @@ import { byDataTestId } from '../support/data-testid'
 
 import person from '../fixtures/persons/valid.json'
 
-import * as NB_TID from '../../src/components/NavBar'
+import * as NB_TID from '../../src/components/NavBar/data-testid'
 
 const withUser = () => {
   cy.setLocalStorage('user', person)
@@ -73,8 +73,6 @@ describe('Navigation Bar', () => {
     })
 
     it('gives options to edit user', () => {
-      //
-      //
       cy.get(byDataTestId(NB_TID.NAVBAR_CONTAINER)).should('be.visible')
       cy.get(byDataTestId(NB_TID.NAVBAR_USER_MENU_BUTTON))
         .should('be.visible')
