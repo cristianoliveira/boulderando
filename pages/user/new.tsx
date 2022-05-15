@@ -5,13 +5,9 @@ import useUserContext from '../../src/context/User'
 
 import getUrlParam from '../../src/modules/get-url-param'
 
-type UserPageProps = {
-  setPageTitle(title: string): void
-}
-
 export default function UserNew({
   setPageTitle,
-}: UserPageProps): JSX.Element | null {
+}: PageWithTitle): JSX.Element | null {
   setPageTitle('New user')
 
   const { user, saveUser } = useUserContext()
