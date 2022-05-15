@@ -38,7 +38,7 @@ function Form({ user = {}, telegramIdParam, onSubmit }) {
     },
   })
 
-  setValue('telegram_id', telegramIdParam)
+  setValue('telegram_id', telegramIdParam || user?.telegram_id)
 
   const errorsList = showErrorFields(errors)
   return (

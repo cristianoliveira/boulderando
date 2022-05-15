@@ -15,9 +15,7 @@ describe('User Data Form', () => {
 
     cy.get(byDataTestId(TID.USER_TELEGRAM_GROUP_LINK))
       .should('be.visible')
-      .click()
-
-    cy.url().should('contain', 'https://t.me')
+      .should('have.attr', 'href').and('include', 'https://t.me')
   })
 
   it('shows a invite link for kown users (without telegram id)', () => {
@@ -171,7 +169,7 @@ describe('User Data Form', () => {
     cy.url().should('include', 'google.com')
   })
 
-  it('allows edit user data', () => {
+  it('allows an user edit their data', () => {
     cy.setLocalStorage('user', person)
 
     cy.visit('/user/edit')
