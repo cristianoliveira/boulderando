@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import * as init from '../../api/bouldering-sessions'
+import initApiClient from '../../api/bouldering-sessions'
 
 type EnvironmentConfiguration = {
   isDryRun: boolean;
@@ -10,8 +10,7 @@ type EnvironmentConfiguration = {
 
 type EnvironmentContextValue = {
   configs: EnvironmentConfiguration
-  api: any
-}
+} & WithApi
 
 export const EnvironmentContext = createContext<EnvironmentContextValue>(
   undefined as any
@@ -36,11 +35,7 @@ export function EnvironmentProvider({ children }: WithChildren) {
     socketApiUrl: `${process.env.NEXT_PUBLIC_SOCKET_API_URL}`,
   }
 
-  const api = {
-    getSessions: init.getSessions(),
-    postSessionSchedule: init.postSessionSchedule(configs),
-    postCreateUser: init.postCreateUser(configs),
-  }
+  const api: Api = initApiClient(configs)
 
   const environment = {
     configs,
