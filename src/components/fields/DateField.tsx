@@ -13,11 +13,10 @@ const StyledFormControl = styled(FormControl)`
 export default function DateField({
   name,
   label,
-  description,
   register,
   formControl,
   ...props
-}) {
+}: FieldProps): JSX.Element {
   return (
     <StyledFormControl fullWidth margin="dense" {...formControl}>
       <InputLabel htmlFor={name}>{label}</InputLabel>

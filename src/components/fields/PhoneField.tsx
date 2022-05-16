@@ -5,12 +5,10 @@ import Input from '@mui/material/Input'
 export default function TextField({
   name,
   label,
-  description,
   register,
-  required,
   formControl,
   ...props
-}) {
+}: FieldProps): JSX.Element {
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
       <InputLabel htmlFor={name}>{label}</InputLabel>

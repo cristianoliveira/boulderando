@@ -5,14 +5,11 @@ import Input from '@mui/material/Input'
 export default function TextField({
   name,
   label,
-  description,
   placeholder,
-  value,
   register,
-  required,
   formControl,
   ...props
-}) {
+}: FieldProps) {
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
       <InputLabel htmlFor={name}>{label}</InputLabel>
