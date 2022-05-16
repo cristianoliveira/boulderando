@@ -6,13 +6,11 @@ import MenuItem from '@mui/material/MenuItem'
 export default function TextField({
   name,
   label: inputLabel,
-  description,
   register,
-  required,
   formControl,
   selectOptions = [{ label: '', value: '' }],
   ...props
-}) {
+}: FieldProps & SelectProps): JSX.Element {
   return (
     <FormControl fullWidth margin="dense" {...formControl}>
       <InputLabel htmlFor={name}>{inputLabel}</InputLabel>
