@@ -1,10 +1,18 @@
-import { TableContainer, Table, TableRow, TableCell, TableHead, Button } from '@mui/material'
+import {
+  TableContainer,
+  Table,
+  TableRow,
+  TableCell,
+  TableHead,
+  Button,
+  TableCellProps,
+} from '@mui/material'
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 import shareableMessageFormat from '../../modules/shareable-message-format'
 
-const TbCell = (props) => (
+const TbCell = (props: TableCellProps): JSX.Element => (
   <TableCell
     sx={{
       padding: '8px',
@@ -14,9 +22,12 @@ const TbCell = (props) => (
 )
 
 export const BOOKING_HISTORY_LIST_ITEM = 'booking_history_list_item'
-export const BOOKING_HISTORY_DELETE_BTN = 'booking_history_delete_btn';
+export const BOOKING_HISTORY_DELETE_BTN = 'booking_history_delete_btn'
 
-function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
+function BookingHistoryList({
+  bookingHistory,
+  deleteBookedSession,
+}: BookingHistoryContext): JSX.Element {
   return (
     <TableContainer>
       <Table>
@@ -32,10 +43,6 @@ function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
           <TableRow
             data-testid={BOOKING_HISTORY_LIST_ITEM}
             key={i}
-            sx={{
-              color: session.error ? 'red' : 'green',
-            }}
-            fullWidth
           >
             <TbCell>{session.gym_name}</TbCell>
             <TbCell>
@@ -48,13 +55,19 @@ function BookingHistoryList({ bookingHistory, deleteBookedSession }) {
               <Button color="inherit" size="small">
                 <ContentCopyIcon
                   onClick={() => {
-                    navigator.clipboard.writeText(shareableMessageFormat(session))
+                    navigator.clipboard.writeText(
+                      shareableMessageFormat(session)
+                    )
                   }}
                 />
               </Button>
             </TbCell>
             <TbCell align="right">
-              <Button data-testid={BOOKING_HISTORY_DELETE_BTN} color="inherit" size="small">
+              <Button
+                data-testid={BOOKING_HISTORY_DELETE_BTN}
+                color="inherit"
+                size="small"
+              >
                 <DeleteOutlineIcon
                   onClick={() => {
                     deleteBookedSession(session)
