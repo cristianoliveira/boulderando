@@ -11,6 +11,10 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 import shareableMessageFormat from '../../modules/shareable-message-format'
+import {
+BOOKING_HISTORY_LIST_ITEM,
+BOOKING_HISTORY_DELETE_BTN,
+} from './data-testid'
 
 const TbCell = (props: TableCellProps): JSX.Element => (
   <TableCell
@@ -20,9 +24,6 @@ const TbCell = (props: TableCellProps): JSX.Element => (
     {...props}
   />
 )
-
-export const BOOKING_HISTORY_LIST_ITEM = 'booking_history_list_item'
-export const BOOKING_HISTORY_DELETE_BTN = 'booking_history_delete_btn'
 
 function BookingHistoryList({
   bookingHistory,

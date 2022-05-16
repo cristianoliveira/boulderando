@@ -1,6 +1,6 @@
 import { byDataTestId } from '../support/data-testid'
 
-import * as BL_TID from '../../src/components/BookingHistory/BookingList'
+import * as BL_TID from '../../src/components/BookingHistory/data-testid'
 
 import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
