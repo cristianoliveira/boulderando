@@ -27,7 +27,7 @@ export const BOOKING_HISTORY_DELETE_BTN = 'booking_history_delete_btn'
 function BookingHistoryList({
   bookingHistory,
   deleteBookedSession,
-}: BookingHistoryContext): JSX.Element {
+}: Partial<BookingHistoryContext>): JSX.Element {
   return (
     <TableContainer>
       <Table>
