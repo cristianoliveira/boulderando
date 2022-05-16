@@ -27,7 +27,10 @@ export const BOOKING_HISTORY_DELETE_BTN = 'booking_history_delete_btn'
 function BookingHistoryList({
   bookingHistory,
   deleteBookedSession,
-}: Partial<BookingHistoryContext>): JSX.Element {
+}: Pick<
+  BookingHistoryContext,
+  'bookingHistory' | 'deleteBookedSession'
+>): JSX.Element {
   return (
     <TableContainer>
       <Table>
@@ -39,11 +42,8 @@ function BookingHistoryList({
           <TbCell align="right">Copy</TbCell>
           <TbCell align="right">Delete</TbCell>
         </TableHead>
-        {bookingHistory.map((session, i) => (
-          <TableRow
-            data-testid={BOOKING_HISTORY_LIST_ITEM}
-            key={i}
-          >
+        {bookingHistory?.map((session: Booking, i: number) => (
+          <TableRow data-testid={BOOKING_HISTORY_LIST_ITEM} key={i}>
             <TbCell>{session.gym_name}</TbCell>
             <TbCell>
               {(session.human_date || '').replace(/this/, '')}-
