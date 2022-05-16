@@ -4,7 +4,7 @@
 [![E2E checks on deploy](https://github.com/cristianoliveira/boulderando/actions/workflows/on-deploy.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-deploy.yml)
 
 Boulderando is a tool made by Bouldering Fans to make it easier to book bouldering sessions in Berlin.
-Together with [its backend](https://github.com/juanibiapina/bouldering-scheduler), it allows you to book bouldering sessions with a click of a button on any device.
+Together with [its backend (Telegram BOT and API)](https://github.com/juanibiapina/boulderando_bot), it allows you to book bouldering sessions with a click of a button on any device.
 
 https://boulderando.vercel.app/
 
