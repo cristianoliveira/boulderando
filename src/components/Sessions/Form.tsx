@@ -17,19 +17,19 @@ const StyledForm = styled.form`
 
 const FULL_GRID = 12
 
-const showErrorFields = (errors) =>
+const showErrorFields = (errors: object): string =>
   Object.keys(errors)
     .map((e) => e)
     .join(', ')
 
 // Sometime in life you have to just have faith
 // range from 8:00 to 21:30
-const timesSelection = [...Array(20).keys()]
+const timesSelection: Array<string> = [...Array(20).keys()]
   .filter((i) => i >= 8 && i <= 20)
   .map((i) => [`${i}:00 - ${i + 2}:00`, `${i}:30 - ${i + 2}:30`])
   .flat()
 
-function Form({ onSubmit }) {
+function Form({ onSubmit }: Submitable): JSX.Element {
   const {
     register,
     handleSubmit,
@@ -45,7 +45,6 @@ function Form({ onSubmit }) {
     >
       <Grid
         direction="row"
-        justify="flex-start"
         alignItems="flex-start"
         spacing={2}
         container

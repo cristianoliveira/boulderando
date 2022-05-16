@@ -13,3 +13,7 @@ interface Disableable {
 interface WithChildren {
   children: JSX.Element
 }
+
+type Submitable = {
+  onSubmit(event: object): void
+}

@@ -1,9 +1,9 @@
 type FieldProps = {
+  'data-testid': string
   name: string
   label: string
-  description: string
   register(name: string, opts?: object): object
-  formControl: object
+  formControl?: object
   placeholder?: string
 }
 
