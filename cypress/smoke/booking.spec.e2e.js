@@ -14,6 +14,10 @@ describe('Bouldering Session Selection', () => {
     'allows booking bouldering sessions',
     { defaultCommandTimeout: 20000 },
     () => {
+      if (Cypress.env('SMOKE_TEST_IGNORE')) {
+        return
+      }
+
       cy.visit(
         `/user/new?telegram_id=${Cypress.env('SMOKE_TEST_USER_TELEGRAM_ID')}`
       )

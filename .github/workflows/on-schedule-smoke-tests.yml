@@ -1,4 +1,4 @@
-name: Lint & unit test & audit checks
+name: Periodic Smoke Tests
 
 on:
   workflow_dispatch:
