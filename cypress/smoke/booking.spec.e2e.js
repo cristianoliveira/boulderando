@@ -55,7 +55,7 @@ describe('Bouldering Session Selection', () => {
       cy.url().should('not.include', '/user/new')
       cy.url().should('not.include', '/user/edit')
 
-      cy.visit('/sessions?dry_run')
+      cy.visit('/sessions')
 
       const day = dayjs().format('dddd').toLowerCase();
       cy.contains(day).parent().find('button').click()
