@@ -1,0 +1,26 @@
+name: Lint & unit test & audit checks
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 22 * * 2,4,6'
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node.js v17
+        uses: actions/setup-node@v2
+        with:
+          node-version: 17.7.1
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run Ui tests
+        run: yarn test:smoke
+        env:
+          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          NEXT_PUBLIC_SOCKET_API_URL: https://boulderando-api.herokuapp.com/

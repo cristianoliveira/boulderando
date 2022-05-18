@@ -10,7 +10,9 @@
     "test:ui": "cypress run -C cypress/configs/ui.json",
     "cy:open": "cypress open -C cypress/configs/ui.json",
     "test:e2e": "cypress run -C cypress/configs/e2e.json",
-    "cy:open:e2e": "cypress open -C cypress/configs/e2e.json"
+    "cy:open:e2e": "cypress open -C cypress/configs/e2e.json",
+    "test:smoke": "cypress run -C cypress/configs/smoke.json",
+    "cy:open:smoke": "cypress open -C cypress/configs/smoke.json"
   },
   "dependencies": {
     "@babel/core": "^7.17.8",
