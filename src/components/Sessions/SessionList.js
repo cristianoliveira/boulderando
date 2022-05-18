@@ -12,7 +12,8 @@ import {
 } from '@mui/material'
 
 import ContentCopyIcon from '@mui/icons-material/ContentCopy'
-import EventAvailableIcon from '@mui/icons-material/EventAvailable'
+
+import BookableSession from './BookableSession'
 
 import getNextPossibleDay from '../../modules/weekday'
 import shareableMessageFormat from '../../modules/shareable-message-format'
@@ -36,8 +37,6 @@ const TbCell = (props) => (
   />
 )
 
-export const SESSION_LIST_TABLE_ITEM = 'session_list_table_item'
-
 function SessionList({ sessionContext, bookingHistory, user }) {
   const [result, setResult] = React.useState(null)
 
@@ -58,42 +57,20 @@ function SessionList({ sessionContext, bookingHistory, user }) {
           </TableRow>
         </TableHead>
         {sessionContext.sessions.map((session, i) => (
-          <TableRow
-            data-testid={SESSION_LIST_TABLE_ITEM}
+          <BookableSession
             key={i}
-            sx={{
-              color: bookingHistory.hasBookedSession(
-                session.gym_name,
-                getNextPossibleDay(session.day_of_week)
-              )
-                ? 'gray'
-                : 'green',
+            session={session}
+            hasBeenBooked={bookingHistory.hasBookedSession(
+              session.gym_name,
+              getNextPossibleDay(session.day_of_week)
+            )}
+            isProcessing={sessionContext.isProcessing}
+            onBookingSubmit={(selectedSession) => {
+              sessionContext
+                .scheduleSession(selectedSession, user)
+                .then(setResult)
             }}
-          >
-            <TbCell>{session.gym_name}</TbCell>
-            <TbCell>
-              {session.day_of_week}-{getNextPossibleDay(session.day_of_week)}
-            </TbCell>
-            <TbCell>{session.time}</TbCell>
-            <TbCell align={'right'}>
-              <Button
-                disabled={
-                  sessionContext.isProcessing ||
-                  bookingHistory.hasBookedSession(
-                    session.gym_name,
-                    getNextPossibleDay(session.day_of_week)
-                  )
-                }
-                variant="contained"
-                type="submit"
-                onClick={() => {
-                  sessionContext.scheduleSession(session, user).then(setResult)
-                }}
-              >
-                <EventAvailableIcon />
-              </Button>
-            </TbCell>
-          </TableRow>
+          />
         ))}
         <TableRow>
           <TableCell colSpan="6">
