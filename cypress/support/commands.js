@@ -29,16 +29,26 @@ Cypress.Commands.add('setLocalStorage', (key, data) => {
   cy.window().then((w) => {
     w.localStorage.setItem(key, JSON.stringify(data))
   })
- });
+})
 
-Cypress.Commands.add('getLocalStorage', (key) => cy.window().then((w) => JSON.parse(w.localStorage.getItem(key))));
+Cypress.Commands.add('getLocalStorage', (key) =>
+  cy.window().then((w) => JSON.parse(w.localStorage.getItem(key)))
+)
 
 Cypress.Commands.add('removeLocalStorage', () => {
   cy.window().then((w) => {
     w.localStorage.removeItem('user')
   })
- });
+})
 
 Cypress.Commands.add('localStorage', () => {
   cy.window().then((w) => w.localStorage)
- });
+})
+
+Cypress.Commands.add('getEnv', (env) => {
+  if (!Cypress.env(env)) {
+    throw new Error(`Missing variable ${env}`)
+  }
+
+  return Cypress.env(env)
+})
