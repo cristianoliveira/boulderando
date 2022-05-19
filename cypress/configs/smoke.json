@@ -1,5 +1,14 @@
 {
-  "env": {},
+  "baseUrl": "https://boulderando.vercel.app",
+  "env": {
+    "SMOKE_TEST_IGNORE": "",
+    "SMOKE_TEST_USER_NAME": "",
+    "SMOKE_TEST_USER_LAST_NAME": "",
+    "SMOKE_TEST_USER_EMAIL": "",
+    "SMOKE_TEST_USER_TELEGRAM_ID": "",
+    "SMOKE_TEST_USER_PHONE": "",
+    "SMOKE_TEST_URBAN_SPORTS_NO": ""
+  },
   "video": false,
   "pluginsFile": false,
   "reporter": "junit",

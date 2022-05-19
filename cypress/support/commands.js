@@ -44,11 +44,3 @@ Cypress.Commands.add('removeLocalStorage', () => {
 Cypress.Commands.add('localStorage', () => {
   cy.window().then((w) => w.localStorage)
 })
-
-Cypress.Commands.add('getEnv', (env) => {
-  if (!Cypress.env(env)) {
-    throw new Error(`Missing variable ${env}`)
-  }
-
-  return Cypress.env(env)
-})

@@ -24,3 +24,10 @@ jobs:
         env:
           CYPRESS_BASE_URL: https://boulderando.vercel.app/
           NEXT_PUBLIC_SOCKET_API_URL: https://boulderando-api.herokuapp.com/
+          CYPRESS_SMOKE_TEST_IGNORE: '${{ secrets.CYPRESS_SMOKE_TEST_IGNORE }}'
+          CYPRESS_SMOKE_TEST_USER_NAME: '${{ secrets.CYPRESS_SMOKE_TEST_USER_NAME }}'
+          CYPRESS_SMOKE_TEST_USER_LAST_NAME: '${{ secrets.CYPRESS_SMOKE_TEST_USER_LAST_NAME }}'
+          CYPRESS_SMOKE_TEST_USER_EMAIL: '${{ secrets.CYPRESS_SMOKE_TEST_USER_EMAIL }}'
+          CYPRESS_SMOKE_TEST_USER_TELEGRAM_ID: '${{ secrets.CYPRESS_SMOKE_TEST_USER_TELEGRAM_ID }}'
+          CYPRESS_SMOKE_TEST_USER_PHONE: '${{ secrets.CYPRESS_SMOKE_TEST_USER_PHONE }}'
+          CYPRESS_SMOKE_TEST_URBAN_SPORTS_NO: '${{ secrets.CYPRESS_SMOKE_TEST_URBAN_SPORTS_NO }}'
