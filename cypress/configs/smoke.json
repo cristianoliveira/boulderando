@@ -1,5 +1,4 @@
 {
-  "baseUrl": "http://localhost:3333",
   "env": {},
   "video": false,
   "pluginsFile": false,

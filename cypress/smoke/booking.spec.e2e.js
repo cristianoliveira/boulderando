@@ -5,11 +5,6 @@ import * as TID from '../../src/constants/data-testid'
 import person from '../fixtures/persons/placeholder.json'
 
 describe('Bouldering Session Selection', () => {
-  beforeEach(() => {
-    cy.viewport('iphone-7')
-    cy.visit('/sessions?dry_run')
-  })
-
   it(
     'allows booking bouldering sessions',
     { defaultCommandTimeout: 20000 },
@@ -55,7 +50,7 @@ describe('Bouldering Session Selection', () => {
       cy.url().should('not.include', '/user/new')
       cy.url().should('not.include', '/user/edit')
 
-      cy.visit('/sessions')
+      cy.visit('/sessions?dry_run')
 
       const day = dayjs().format('dddd').toLowerCase();
       cy.contains(day).parent().find('button').click()
