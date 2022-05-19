@@ -22,5 +22,5 @@ jobs:
       - name: Run Ui tests
         run: yarn test:smoke
         env:
-          CYPRESS_BASE_URL: ${{ github.event.deployment_status.target_url }}
+          CYPRESS_BASE_URL: https://boulderando.vercel.app/
           NEXT_PUBLIC_SOCKET_API_URL: https://boulderando-api.herokuapp.com/
