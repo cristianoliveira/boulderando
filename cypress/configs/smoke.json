@@ -1,5 +1,6 @@
 {
   "baseUrl": "https://boulderando.vercel.app",
+  "projectId": "e71ejb",
   "env": {
     "SMOKE_TEST_IGNORE": "",
     "SMOKE_TEST_USER_NAME": "",
