@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form matches the snapshot 1`] = `
+<form
+  className="css-gz8dae"
+  onSubmit={[Function]}
+>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-lndw90-MuiGrid-root"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="gym_name"
+        >
+          Gym
+        </label>
+        <div
+          className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+          data-testid="custom_session_form_gym"
+          onClick={[Function]}
+        >
+          <div
+            aria-describedby="Input for gym_name"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-labelledby="gym_name"
+            className="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+            id="gym_name"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="notranslate"
+            >
+              ​
+            </span>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+            disabled={false}
+            name="gym_name"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            required={false}
+            tabIndex={-1}
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+            data-testid="ArrowDropDownIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+          <fieldset
+            aria-hidden={true}
+            className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="css-hdw1oc"
+            >
+              <span
+                className="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="human_date"
+        >
+          Day of the week
+        </label>
+        <div
+          className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+          data-testid="custom_session_form_day"
+          onClick={[Function]}
+        >
+          <div
+            aria-describedby="Input for human_date"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-labelledby="human_date"
+            className="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+            id="human_date"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="notranslate"
+            >
+              ​
+            </span>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+            disabled={false}
+            name="human_date"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            required={false}
+            tabIndex={-1}
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+            data-testid="ArrowDropDownIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+          <fieldset
+            aria-hidden={true}
+            className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="css-hdw1oc"
+            >
+              <span
+                className="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="time"
+        >
+          Time
+        </label>
+        <div
+          className="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"
+          data-testid="custom_session_form_time"
+          onClick={[Function]}
+        >
+          <div
+            aria-describedby="Input for time"
+            aria-expanded="false"
+            aria-haspopup="listbox"
+            aria-labelledby="time"
+            className="MuiSelect-select MuiSelect-outlined MuiOutlinedInput-input MuiInputBase-input css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"
+            id="time"
+            onBlur={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onMouseDown={[Function]}
+            role="button"
+            tabIndex={0}
+          >
+            <span
+              className="notranslate"
+            >
+              ​
+            </span>
+          </div>
+          <input
+            aria-hidden={true}
+            className="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+            disabled={false}
+            name="time"
+            onAnimationStart={[Function]}
+            onChange={[Function]}
+            required={false}
+            tabIndex={-1}
+          />
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconOutlined css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+            data-testid="ArrowDropDownIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7 10l5 5 5-5z"
+            />
+          </svg>
+          <fieldset
+            aria-hidden={true}
+            className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="css-hdw1oc"
+            >
+              <span
+                className="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    />
+  </div>
+  <div
+    className="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+  >
+    <button
+      className="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      data-testid="custom_session_form_submit_button"
+      disabled={false}
+      onBlur={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      Save data
+    </button>
+  </div>
+  <p
+    className="MuiFormHelperText-root MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+  >
+    ** This data is stored in your browser and can be deleted at any time
+  </p>
+</form>
+`;

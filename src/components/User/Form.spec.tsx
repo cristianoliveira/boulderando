@@ -1,5 +1,4 @@
 import React from 'react'
-import { act } from '@testing-library/react'
 // eslint-disable-next-line
 import renderer from 'react-test-renderer'
 
