@@ -8,8 +8,9 @@ module.exports = config
 
 // Or async function
 module.exports = async () => ({
+  testEnvironment: "jsdom",
   verbose: true,
   modulePathIgnorePatterns: ['cypress'],
-  collectCoverage: true,
+  // collectCoverage: true,
   collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
 })
