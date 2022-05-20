@@ -1,4 +1,4 @@
-name: Lint & unit test & audit checks
+name: Lint & audit checks
 on: [push]
 jobs:
   checks:
