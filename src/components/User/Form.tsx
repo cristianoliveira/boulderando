@@ -21,7 +21,7 @@ const StyledForm = styled.form`
 const FULL_GRID = 12
 
 type UserFormProps = {
-  user: User
+  user?: User
   telegramIdParam: string
 } & Submitable
 
@@ -43,7 +43,7 @@ function Form({ user, telegramIdParam, onSubmit }: UserFormProps) {
     },
   })
 
-  setValue('telegram_id', telegramIdParam || user.telegram_id)
+  setValue('telegram_id', telegramIdParam || user?.telegram_id)
 
   const errorsList = showErrorFields(errors as Partial<FieldError>)
   return (

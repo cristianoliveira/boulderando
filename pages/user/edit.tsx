@@ -11,9 +11,7 @@ export default function UserEdit({ setPageTitle }: PageWithTitle): JSX.Element {
   return (
     <Container>
       <UserForm
-        telegramIdParam={
-          getUrlParam('telegram_id') || getUrlParam('telegramId')
-        }
+        telegramIdParam={getUrlParam('telegram_id')}
         user={user}
         onSubmit={saveUser}
       />
