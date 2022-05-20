@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import IconButton, { IconButtonProps } from '@mui/material/IconButton'
+import SvgIcon from '@mui/material/SvgIcon'
+import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -7,21 +8,17 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 
 const ITEM_HEIGHT = 54
 
-type IconProps = {
-  fontSize: string
-} & IconButtonProps;
-
 type MenuOptionId = string
 type MenuOption = {
   id: MenuOptionId
-  Icon: React.ComponentClass<IconProps>
+  Icon: typeof SvgIcon
   label: string
-  Component: React.ComponentClass<object>
+  Component?: React.ComponentClass<object>
   'data-testid': string
 } & Disableable
 
 type LongMenuProps = {
-  MenuIcon: React.ComponentClass<object>
+  MenuIcon: typeof SvgIcon
   options: MenuOption[]
   'data-testid': string
 } & Clickable<Partial<MenuOption>>
