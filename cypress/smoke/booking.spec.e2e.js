@@ -9,10 +9,6 @@ describe('Bouldering Session Selection', () => {
     'allows booking bouldering sessions',
     { defaultCommandTimeout: 20000 },
     () => {
-      if (Cypress.env('SMOKE_TEST_IGNORE')) {
-        return
-      }
-
       cy.visit(
         `/user/new?telegram_id=${Cypress.env('SMOKE_TEST_USER_TELEGRAM_ID')}`
       )
@@ -50,7 +46,11 @@ describe('Bouldering Session Selection', () => {
       cy.url().should('not.include', '/user/new')
       cy.url().should('not.include', '/user/edit')
 
-      cy.visit('/sessions?dry_run')
+      if (Cypress.env('SMOKE_TEST_IGNORE')) {
+        cy.visit('/sessions?dry_run')
+      } else {
+        cy.visit('/sessions')
+      }
 
       const day = dayjs().format('dddd').toLowerCase();
       cy.contains(day).parent().find('button').click()
