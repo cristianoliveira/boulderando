@@ -1,6 +1,6 @@
 import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
-import * as NB_TID from '../../src/components/NavBar/data-testid'
+import * as NB_TID from '../../src/components/NavigationBar/data-testid'
 
 import person from '../fixtures/persons/valid.json'
 import telegramPerson from '../fixtures/persons/telegram.json'

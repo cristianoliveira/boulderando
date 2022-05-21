@@ -2,7 +2,7 @@ import { byDataTestId } from '../support/data-testid'
 
 import person from '../fixtures/persons/valid.json'
 
-import * as NB_TID from '../../src/components/NavBar/data-testid'
+import * as NB_TID from '../../src/components/NavigationBar/data-testid'
 
 const withUser = () => {
   cy.setLocalStorage('user', person)

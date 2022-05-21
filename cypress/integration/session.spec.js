@@ -2,7 +2,7 @@ import { byDataTestId } from '../support/data-testid'
 import * as TID from '../../src/constants/data-testid'
 
 import * as SL_TID from '../../src/components/Sessions/data-testid'
-import * as NB_TID from '../../src/components/NavBar/data-testid'
+import * as NB_TID from '../../src/components/NavigationBar/data-testid'
 
 import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
