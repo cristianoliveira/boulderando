@@ -33,7 +33,11 @@ import {
   NAVBAR_NAVIGATION_MENU_ITEM_SESSION,
 } from './data-testid'
 
-export default function NavBar({ pageTitle }) {
+type NavBarProps = {
+  pageTitle: string
+}
+
+export default function NavBar({ pageTitle }: NavBarProps) {
   const { user, deleteUser, editUser } = useUserContext()
   const { deleteCustomSessions } = useSessionContext()
   const router = useRouter()
@@ -75,7 +79,9 @@ export default function NavBar({ pageTitle }) {
             },
             {
               id: 'sync-devices-divider',
+              label: 'divider',
               Component: Divider,
+              'data-testid': 'divider',
             },
             {
               id: 'sync-devices',
