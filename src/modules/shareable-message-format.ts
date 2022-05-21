@@ -1,6 +1,6 @@
 import getNextPossibleDay from './weekday'
 
-export default (session: Session):string =>
+export default (session?: Session):string =>
   session
     ? `🧗🧗🧗🧗🧗
 ${session.gym_name} ${session.day_of_week} ${getNextPossibleDay(
