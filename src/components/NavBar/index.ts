@@ -1,3 +1,2 @@
-import NavBar from './NavBar'
-
-export default NavBar
+// eslint-disable-next-line
+export { default as NavBar } from './NavBar'

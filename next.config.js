@@ -3,10 +3,13 @@
 // https://nextjs.org/docs/api-reference/next.config.js/introduction
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
+/* eslint-disable */
 const { withSentryConfig } = require('@sentry/nextjs');
+/* eslint-enable */
 
 const moduleExports = {
   reactStrictMode: true,
+  pageExtensions: ['page.jsx', 'page.js', 'page.tsx', 'page.ts']
 }
 
 const sentryWebpackPluginOptions = {

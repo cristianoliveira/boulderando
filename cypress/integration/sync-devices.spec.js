@@ -10,7 +10,10 @@ import {
   PUSH_TO_REMOTE,
   EVENT_DEVICE_CONNECTED,
 } from '../../src/constants/socket-channels'
-import { SYNC_DEVICE_CODE, SYNC_DEVICE_URL } from '../../pages/sync/devices'
+import {
+  SYNC_DEVICE_CODE,
+  SYNC_DEVICE_URL,
+} from '../../pages/sync/devices.page'
 
 // eslint-disable-next-line
 describe('Synching data between devices', () => {
