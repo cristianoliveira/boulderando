@@ -6,7 +6,7 @@
     "start": "next start",
     "lint": "next lint && eslint cypress -c cypress/.eslintrc",
     "ci:start": "yarn dev & wait-on http://localhost:3333",
-    "test": "jest src",
+    "test": "jest",
     "coverage": "jest src --coverage && coveralls < coverage/lcov.info",
     "test:ui": "cypress run -C cypress/configs/ui.json",
     "cy:open": "cypress open -C cypress/configs/ui.json",
