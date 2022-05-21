@@ -13,7 +13,7 @@ export default function UserNew({
   const { user, saveUser } = useUserContext()
 
   const router = useRouter()
-  const telegramId = getUrlParam('telegram_id') || getUrlParam('telegramId')
+  const telegramId = getUrlParam('telegram_id')
   if (!telegramId && !user) {
     router.push('/user/invite')
     return null

@@ -14,9 +14,9 @@ type SessionContextValue = {
   saveCustomSession(session: Session): void
   isProcessing: boolean
   hasSubmitted: boolean
-} | null
+}
 
-export const SessionContext = createContext<SessionContextValue>(null)
+export const SessionContext = createContext<SessionContextValue>(undefined as any)
 
 export const SessionConsumer = SessionContext.Consumer
 

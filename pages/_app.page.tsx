@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Head from 'next/head'
 import { AppProps } from 'next/app'
 
-import NavBar from '../src/components/NavBar'
+import { NavBar } from '../src/components/NavigationBar'
 import DryRunBadge from '../src/components/DryRunBadge'
 import GithubForkIt from '../src/components/GithubForkIt'
 

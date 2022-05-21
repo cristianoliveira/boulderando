@@ -1,7 +1,7 @@
 import io from 'socket.io-client'
 import { byDataTestId } from '../support/data-testid'
 
-import * as NB_TID from '../../src/components/NavBar/data-testid'
+import * as NB_TID from '../../src/components/NavigationBar/data-testid'
 import person from '../fixtures/persons/valid.json'
 import bookingHistory from '../fixtures/booking-history.json'
 import sessions from '../fixtures/sessions.json'
@@ -10,7 +10,10 @@ import {
   PUSH_TO_REMOTE,
   EVENT_DEVICE_CONNECTED,
 } from '../../src/constants/socket-channels'
-import { SYNC_DEVICE_CODE, SYNC_DEVICE_URL } from '../../pages/sync/devices'
+import {
+  SYNC_DEVICE_CODE,
+  SYNC_DEVICE_URL,
+} from '../../pages/sync/devices.page'
 
 // eslint-disable-next-line
 describe('Synching data between devices', () => {

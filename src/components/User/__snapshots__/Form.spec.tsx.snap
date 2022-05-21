@@ -1,0 +1,405 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form matches the snapshot 1`] = `
+<form
+  className="css-gz8dae"
+  onSubmit={[Function]}
+>
+  <div
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-lndw90-MuiGrid-root"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="name"
+        >
+          First Name
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--first_name--input"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for name"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="name"
+            name="name"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="last_name"
+        >
+          Last Name
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--last_name--input"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for last_name"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="last_name"
+            name="last_name"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-mo9nhr-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="birthday"
+        >
+          Birthday
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--birthday--input"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for birthday"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="birthday"
+            name="birthday"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="date"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="address"
+        >
+          Street address
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--street-address--input"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for address"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="address"
+            name="address"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="postal_code"
+        >
+          Postal Code
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--postal_code--input"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for postal_code"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="postal_code"
+            name="postal_code"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="city"
+        >
+          City
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--city--input"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for city"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="city"
+            name="city"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="email"
+        >
+          Email
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--input--email"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for email"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="email"
+            name="email"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="phone_number"
+        >
+          Phone Number
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--input_phone--number"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for phone_number"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="phone_number"
+            name="phone_number"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="0000 00000000"
+            required={false}
+            type="tel"
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    >
+      <div
+        style={
+          Object {
+            "height": 0,
+            "visibility": "hidden",
+          }
+        }
+      >
+        <div
+          className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+        >
+          <label
+            className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+            data-shrink={false}
+            htmlFor="type"
+          />
+          <div
+            className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+            data-testid="type"
+            onClick={[Function]}
+          >
+            <input
+              aria-describedby="Input for type"
+              aria-invalid={false}
+              className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+              disabled={false}
+              id="type"
+              name="type"
+              onAnimationStart={[Function]}
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              required={false}
+              type="text"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        className="MuiFormControl-root MuiFormControl-marginDense MuiFormControl-fullWidth css-zevgu-MuiFormControl-root"
+      >
+        <label
+          className="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
+          data-shrink={false}
+          htmlFor="usc_number"
+        >
+          Urban Sports Club No.
+        </label>
+        <div
+          className="MuiInput-root MuiInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1480iag-MuiInputBase-root-MuiInput-root"
+          data-testid="user--input--urban_sport_number"
+          onClick={[Function]}
+        >
+          <input
+            aria-describedby="Input for usc_number"
+            aria-invalid={false}
+            className="MuiInput-input MuiInputBase-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+            disabled={false}
+            id="usc_number"
+            name="usc_number"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            required={false}
+            type="text"
+          />
+        </div>
+      </div>
+      <p
+        className="MuiFormHelperText-root css-1d1r5q-MuiFormHelperText-root"
+      >
+        Your USB member number.
+      </p>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 css-1idn90j-MuiGrid-root"
+    />
+  </div>
+  <div
+    className="MuiFormControl-root MuiFormControl-fullWidth css-q8hpuo-MuiFormControl-root"
+  >
+    <button
+      className="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-sghohy-MuiButtonBase-root-MuiButton-root"
+      data-testid="user--form_submit--button"
+      disabled={false}
+      onBlur={[Function]}
+      onContextMenu={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      Save data
+    </button>
+  </div>
+  <p
+    className="MuiFormHelperText-root MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+  >
+    Your personal data is stored only in your browser and can be deleted at any time. When scheduling specific sessions, your data is transmitted to the corresponding Gym using the Dr. Plano booking system. By scheduling sessions you're automatically agreeing to the Terms and Conditions and Privacy Policy of that Gym.
+  </p>
+</form>
+`;

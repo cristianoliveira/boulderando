@@ -8,8 +8,12 @@ module.exports = config
 
 // Or async function
 module.exports = async () => ({
+  testEnvironment: 'jsdom',
   verbose: true,
   modulePathIgnorePatterns: ['cypress'],
-  collectCoverage: true,
-  collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
+  // Ingore nextjs generated files
+  testMatch: [
+    '**/__tests__/**/*.spec.[jt]s?(x)',
+    '**/?(*.)+(spec|test).[jt]s?(x)',
+  ],
 })

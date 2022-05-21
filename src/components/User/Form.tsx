@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { useForm } from 'react-hook-form'
+import { useForm, FieldError } from 'react-hook-form'
 
 import FormControl from '@mui/material/FormControl'
 import FormHelperText from '@mui/material/FormHelperText'
@@ -20,12 +20,17 @@ const StyledForm = styled.form`
 
 const FULL_GRID = 12
 
-const showErrorFields = (errors) =>
+type UserFormProps = {
+  user?: User
+  telegramIdParam: string
+} & Submitable
+
+const showErrorFields = (errors: Partial<FieldError>) =>
   Object.keys(errors)
     .map((e) => e)
     .join(', ')
 
-function Form({ user = {}, telegramIdParam, onSubmit }) {
+function Form({ user, telegramIdParam, onSubmit }: UserFormProps) {
   const {
     register,
     handleSubmit,
@@ -33,14 +38,14 @@ function Form({ user = {}, telegramIdParam, onSubmit }) {
     formState: { errors, isValid, isSubmitted },
   } = useForm({
     defaultValues: {
-      type: 'Urban Sports Club',
       ...user,
+      type: 'Urban Sports Club',
     },
   })
 
   setValue('telegram_id', telegramIdParam || user?.telegram_id)
 
-  const errorsList = showErrorFields(errors)
+  const errorsList = showErrorFields(errors as Partial<FieldError>)
   return (
     <StyledForm
       onSubmit={handleSubmit((data) => {
@@ -49,7 +54,6 @@ function Form({ user = {}, telegramIdParam, onSubmit }) {
     >
       <Grid
         direction="row"
-        justify="flex-start"
         alignItems="flex-start"
         spacing={2}
         container
@@ -120,7 +124,7 @@ function Form({ user = {}, telegramIdParam, onSubmit }) {
         </Grid>
         <Grid item xs={FULL_GRID}>
           <div style={{ visibility: 'hidden', height: 0 }}>
-            <TextField name="type" register={register} />
+            <TextField data-testid="type" name="type" register={register} />
           </div>
           <TextField
             data-testid={TID.USER_INPUT_URBAN_SPORT_NUMBER}

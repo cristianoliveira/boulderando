@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import IconButton, { IconButtonProps } from '@mui/material/IconButton'
+import { OverridableComponent } from '@mui/material/OverridableComponent'
+import SvgIcon from '@mui/material/SvgIcon'
+import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import ListItemText from '@mui/material/ListItemText'
@@ -7,21 +9,18 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 
 const ITEM_HEIGHT = 54
 
-type IconProps = {
-  fontSize: string
-} & IconButtonProps;
-
 type MenuOptionId = string
+
 type MenuOption = {
   id: MenuOptionId
-  Icon: React.ComponentClass<IconProps>
   label: string
-  Component: React.ComponentClass<object>
   'data-testid': string
-} & Disableable
+  Icon?: OverridableComponent<any>
+  Component?: OverridableComponent<any>
+} & Partial<Disableable>
 
 type LongMenuProps = {
-  MenuIcon: React.ComponentClass<object>
+  MenuIcon: typeof SvgIcon
   options: MenuOption[]
   'data-testid': string
 } & Clickable<Partial<MenuOption>>
@@ -81,7 +80,7 @@ export default function LongMenu({
             disabled,
           }: MenuOption) =>
             Component ? (
-              <Component />
+              <Component key={id} />
             ) : (
               <MenuItem
                 key={id}
