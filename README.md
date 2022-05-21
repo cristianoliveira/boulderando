@@ -4,7 +4,7 @@
 [![E2E checks on deploy](https://github.com/cristianoliveira/boulderando/actions/workflows/on-deploy.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-deploy.yml)
 [![Periodic Smoke Tests](https://github.com/cristianoliveira/boulderando/actions/workflows/on-schedule-smoke-tests.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-schedule-smoke-tests.yml)
 [![Unit tests coverage report](https://github.com/cristianoliveira/boulderando/actions/workflows/on-pull_request-coverage.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-pull_request-coverage.yml)
-[![Coverage Status](https://coveralls.io/repos/github/cristianoliveira/boulderando/badge.svg?branch=feat/coveralls)](https://coveralls.io/github/cristianoliveira/boulderando?branch=feat/coveralls)
+[![Coverage Status](https://coveralls.io/repos/github/cristianoliveira/boulderando/badge.svg?branch=main)](https://coveralls.io/github/cristianoliveira/boulderando?branch=main)
 
 Boulderando is a tool made by Bouldering Fans to make it easier to book bouldering sessions in Berlin.
 Together with [its backend (Telegram BOT and API)](https://github.com/juanibiapina/boulderando_bot), it allows you to book bouldering sessions with a click of a button on any device.
