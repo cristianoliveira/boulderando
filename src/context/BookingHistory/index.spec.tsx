@@ -1,5 +1,5 @@
 import React from 'react'
-import { render, act } from '@testing-library/react'
+import { render, act, waitFor } from '@testing-library/react'
 
 import useBookingHistoryContext, { BookingHistoryProvider } from '.'
 
@@ -7,7 +7,7 @@ describe('BookingHistoryProvider', () => {
   const defaultProps = {}
 
   it('provides the booking history context functions and data', () => {
-    let context: BookingHistoryContext | null = null
+    let context: BookingHistoryContext | any = {}
     const StubComponent = () => {
       context = useBookingHistoryContext()
       return <div>Stubed</div>
@@ -30,20 +30,23 @@ describe('BookingHistoryProvider', () => {
       created_at: '01/01/2020',
     }
 
+    waitFor(() => expect(context.bookingHistory).not.toBeUndefined())
     act(() => {
-      context?.saveBookedSession(session)
+      context.saveBookedSession(session)
     })
 
     expect(context).toEqual(
       expect.objectContaining({ bookingHistory: [session] })
     )
 
+    expect(
+      context.hasBookedSession(session.gym_name, session.booking_date)
+    ).toBeTruthy()
+
     act(() => {
       context?.deleteBookedSession(session)
     })
 
-    expect(context).toEqual(
-      expect.objectContaining({ bookingHistory: [] })
-    )
+    expect(context).toEqual(expect.objectContaining({ bookingHistory: [] }))
   })
 })
