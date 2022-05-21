@@ -13,8 +13,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 import shareableMessageFormat from '../../modules/shareable-message-format'
 import {
 BOOKING_HISTORY_LIST_ITEM,
-BOOKING_HISTORY_DELETE_BTN,
-} from './data-testid'
+BOOKING_HISTORY_DELETE_BTN, } from './data-testid'
 
 const TbCell = (props: TableCellProps): JSX.Element => (
   <TableCell
