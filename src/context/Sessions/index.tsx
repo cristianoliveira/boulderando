@@ -4,23 +4,15 @@ import { useRouter } from 'next/router'
 import useListStorage from '../../hooks/useListStorage'
 import { SESSIONS } from '../../storage/items'
 
-type SessionContextValue = {
-  sessions: StorageData<Session>
-  deleteCustomSessions(): void
-  scheduleSession(
-    session: Session,
-    user: User
-  ): Promise<{ data?: object; error?: object }>
-  saveCustomSession(session: Session): void
-  isProcessing: boolean
-  hasSubmitted: boolean
-}
-
-export const SessionContext = createContext<SessionContextValue>(undefined as any)
+export const SessionContext = createContext<SessionContext>(undefined as any)
 
 export const SessionConsumer = SessionContext.Consumer
 
-export function SessionProvider({ children, api }: WithChildren & WithApi) {
+type SessionProviderProps = {
+  api: Pick<Api, "postSessionSchedule" | "getSessions">;
+} & WithChildren
+
+export function SessionProvider({ children, api }: SessionProviderProps) {
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [sessions, setSessions, resetSessions] = useListStorage<Session>(
