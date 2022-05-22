@@ -1,19 +1,15 @@
-/**
- * @jest-environment jsdom
- */
+/** @jest-environment jsdom */
 import { render, act } from '@testing-library/react'
 import * as React from 'react'
 import * as storage from '../storage/local'
 
 import useStorage from './useStorage'
 
-const TestComponent = ({
-  dataKey,
-  initialData,
-  onDataChange,
-  onInit,
-}) => {
-  const [testData, setTestData, removeTestData] = useStorage(dataKey, initialData)
+const TestComponent: React.FC<any> = ({ dataKey, initialData, onDataChange, onInit }: any) => {
+  const [testData, setTestData, removeTestData] = useStorage(
+    dataKey,
+    initialData
+  )
 
   React.useEffect(() => {
     onInit({ setTestData, removeTestData })
@@ -41,7 +37,7 @@ describe('useStorage', () => {
       <TestComponent
         dataKey="user"
         onDataChange={onChangeSpy}
-        onInit={() => {}}
+        onInit={() => ''}
       />
     )
 
@@ -50,13 +46,13 @@ describe('useStorage', () => {
 
   it('stores items into storage', () => {
     const onChangeSpy = jest.fn()
-    let stateManager
+    let stateManager: any
 
     render(
       <TestComponent
         dataKey="user"
         onDataChange={onChangeSpy}
-        onInit={(manager) => {
+        onInit={(manager: any) => {
           stateManager = manager
         }}
       />
