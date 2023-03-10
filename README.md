@@ -1,3 +1,7 @@
+### ARCHIVED
+
+Gyms don't require pre book anymore and heroku free tier is gone.
+
 ## Boulderando
 
 [![Lint & unit test & audit checks](https://github.com/cristianoliveira/boulderando/actions/workflows/on-push.yml/badge.svg)](https://github.com/cristianoliveira/boulderando/actions/workflows/on-push.yml)
